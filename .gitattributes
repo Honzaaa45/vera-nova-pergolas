@@ -1,0 +1,20 @@
+# Fins de ligne normalisées en LF dans le dépôt, quelle que soit la machine
+# qui committe. Sans cette règle, un contributeur sous Windows et un autre
+# sous Linux produisent des diffs entiers là où une seule ligne a changé.
+* text=auto eol=lf
+
+# Fichiers binaires : ne jamais tenter de convertir quoi que ce soit.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.webp   binary
+*.woff2  binary
+*.ico    binary
+
+# Le SVG est du texte : on veut voir les diffs.
+*.svg    text eol=lf
+
+# Exclure les médias du calcul de langage de GitHub, pour que le dépôt soit
+# identifié comme du HTML/CSS/JS et non comme une collection d'images.
+docs/media/*      linguist-documentation
+assets/fonts/*    linguist-vendored

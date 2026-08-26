@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------- outillage
+# Le projet est volontairement sans build : node_modules n'apparaît que si
+# l'on installe un validateur en local. Il ne doit jamais être committé.
+node_modules/
+dist/
+build/
+.cache/
+*.tsbuildinfo
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ------------------------------------------------------------------- env
+# Aucune clé n'est nécessaire aujourd'hui. Cette règle est un garde-fou
+# pour le jour où un service de formulaire sera branché.
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------------- logs
+*.log
+npm-debug.log*
+logs/
+
+# ------------------------------------------- configuration locale d'outils
+# Réglages de permissions et de serveur propres à une machine.
+.claude/settings.local.json
+.claude/skills/
+.vscode/
+.idea/
+*.code-workspace
+
+# -------------------------------------------------------- système et Office
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+~$*
+
+# ------------------------------------------------------ sauvegardes locales
+*.bak
+*.tmp
+*.orig
+*.rej
+*~
