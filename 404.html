@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable | Vera Nova</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preload" href="assets/fonts/sora-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="/" aria-label="Vera Nova, accueil">
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="537" height="333">
+      <img class="brand__word" src="assets/img/logo-word.png" alt="Vera Nova" width="1078" height="136">
+    </a>
+    <div class="topbar__act">
+      <a class="tel-link" href="tel:+33700000000"><i class="ph ph-phone" aria-hidden="true"></i>07 XX XX XX XX</a>
+    </div>
+  </div>
+</header>
+
+<main class="e404">
+  <div class="wrap wrap--narrow">
+    <p class="e404__code" aria-hidden="true">404</p>
+    <h1>Cette page n'existe pas.</h1>
+    <p>
+      Le lien est peut-être ancien, ou l'adresse comporte une faute de frappe.
+      Le plus simple est de repartir de l'accueil.
+    </p>
+    <div class="e404__cta">
+      <a class="cta" href="/"><span>Retour à l'accueil</span><i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      <a class="cta cta--ghost" href="tel:+33700000000"><i class="ph ph-phone-call" aria-hidden="true"></i><span>Nous appeler</span></a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="year">2026</span> Vera Nova.</p>
+    <p><a href="mentions-legales.html">Mentions légales</a> &middot; <a href="confidentialite.html">Confidentialité</a></p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
