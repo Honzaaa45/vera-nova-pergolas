@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <!-- Source de docs/media/social.png, image de previsualisation sociale.
+       Pour regenerer le PNG apres modification, voir la procedure decrite
+       dans CONTRIBUTING.md, section « Medias du README ».
+       Un commentaire XML ne peut pas contenir deux tirets consecutifs :
+       la ligne de commande ne peut donc pas etre recopiee ici. -->
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#181D21"/>
+      <stop offset="55%" stop-color="#111518"/>
+      <stop offset="100%" stop-color="#0B0E10"/>
+    </linearGradient>
+    <!-- Lueur radiale plutot que rectangulaire : un rectangle en degrade
+         vertical laissait une couture nette au milieu de l'image. -->
+    <radialGradient id="l" cx="76%" cy="4%" r="68%">
+      <stop offset="0%" stop-color="#FF4450" stop-opacity=".30"/>
+      <stop offset="55%" stop-color="#FF4450" stop-opacity=".09"/>
+      <stop offset="100%" stop-color="#FF4450" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#f)"/>
+  <rect width="1280" height="640" fill="url(#l)"/>
+
+  <!-- lames, ouverture progressive du haut vers le bas -->
+    <rect x="726" y="96" width="446" height="20.0" rx="3" fill="#D9DDE1" opacity="1.0"/>
+    <rect x="726" y="136" width="446" height="18.75" rx="3" fill="#D9DDE1" opacity="0.955"/>
+    <rect x="726" y="176" width="446" height="17.5" rx="3" fill="#D9DDE1" opacity="0.91"/>
+    <rect x="726" y="216" width="446" height="16.25" rx="3" fill="#D9DDE1" opacity="0.865"/>
+    <rect x="726" y="256" width="446" height="15.0" rx="3" fill="#D9DDE1" opacity="0.82"/>
+    <rect x="726" y="296" width="446" height="13.75" rx="3" fill="#D9DDE1" opacity="0.775"/>
+    <rect x="726" y="336" width="446" height="12.5" rx="3" fill="#D9DDE1" opacity="0.73"/>
+    <rect x="726" y="376" width="446" height="11.25" rx="3" fill="#D9DDE1" opacity="0.685"/>
+    <rect x="726" y="416" width="446" height="10.0" rx="3" fill="#D9DDE1" opacity="0.64"/>
+    <rect x="726" y="456" width="446" height="8.75" rx="3" fill="#D9DDE1" opacity="0.595"/>
+    <rect x="726" y="496" width="446" height="7.5" rx="3" fill="#D9DDE1" opacity="0.55"/>
+
+  <!-- poteaux -->
+  <rect x="712" y="80" width="8" height="500" rx="4" fill="#C9CDD1" opacity=".42"/>
+  <rect x="1178" y="80" width="8" height="500" rx="4" fill="#C9CDD1" opacity=".42"/>
+
+  <!-- texte -->
+  <text x="92" y="268" fill="#F5F2ED" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="94" font-weight="700" letter-spacing="6">VERA NOVA</text>
+
+  <rect x="95" y="304" width="132" height="5" rx="2.5" fill="#FF4450"/>
+
+  <text x="92" y="366" fill="#B9C1C8" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="30" font-weight="500" letter-spacing="5">PERGOLAS BIOCLIMATIQUES</text>
+
+  <text x="92" y="424" fill="#8A949C" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="23" font-weight="400">Site vitrine — HTML, CSS et JavaScript natifs</text>
+  <text x="92" y="460" fill="#8A949C" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="23" font-weight="400">Aucun framework, aucune étape de build</text>
+
+  <text x="92" y="562" fill="#5E686F" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="21" font-weight="500" letter-spacing="1.4">github.com/Honzaaa45</text>
+</svg>

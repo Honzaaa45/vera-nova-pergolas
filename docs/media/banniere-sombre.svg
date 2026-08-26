@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 340" width="1280" height="340" role="img" aria-label="Vera Nova, pergolas bioclimatiques, site vitrine">
+  <title>Vera Nova — pergolas bioclimatiques</title>
+
+  <!-- ===================================================================
+       Banniere animee du README.
+       Les lames s'ouvrent et se referment : c'est exactement ce que fait
+       une pergola bioclimatique, et c'est le seul mouvement de l'image.
+       Anime en CSS embarque, sans script : GitHub n'execute pas de JS,
+       mais rend bien les animations CSS contenues dans un SVG.
+       =================================================================== -->
+
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161A1D"/>
+      <stop offset="100%" stop-color="#0E1113"/>
+    </linearGradient>
+    <linearGradient id="lueur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF4450" stop-opacity=".30"/>
+      <stop offset="100%" stop-color="#FF4450" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="cadre"><rect width="1280" height="340" rx="14"/></clipPath>
+  </defs>
+
+  <style>
+    /* transform-box est indispensable : sans lui, l'origine des
+       transformations d'un element SVG est celle du viewBox, pas celle de
+       la forme, et les lames pivoteraient autour du coin de l'image. */
+    .lame {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: ouverture 7s cubic-bezier(.65,0,.35,1) infinite;
+    }
+    @keyframes ouverture {
+      0%,   10% { transform: scaleY(1);    opacity: 1;   }
+      42%,  58% { transform: scaleY(.14);  opacity: .55; }
+      90%, 100% { transform: scaleY(1);    opacity: 1;   }
+    }
+
+    /* la lumiere passe quand les lames s'effacent */
+    .rayon { animation: percee 7s cubic-bezier(.65,0,.35,1) infinite; }
+    @keyframes percee {
+      0%,  10% { opacity: 0; }
+      42%, 58% { opacity: 1; }
+      90%,100% { opacity: 0; }
+    }
+
+    .trait {
+      stroke-dasharray: 116;
+      stroke-dashoffset: 116;
+      animation: tracer 7s ease-out infinite;
+    }
+    @keyframes tracer {
+      0%       { stroke-dashoffset: 116; }
+      22%, 92% { stroke-dashoffset: 0;   }
+      100%     { stroke-dashoffset: 116; }
+    }
+
+    /* Un lecteur qui a demande moins d'animations ne doit pas subir une
+       image qui bouge en boucle. */
+    @media (prefers-reduced-motion: reduce) {
+      .lame, .rayon, .trait { animation: none; }
+      .trait { stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <g clip-path="url(#cadre)">
+    <rect width="1280" height="340" fill="url(#fond)"/>
+    <rect class="rayon" x="720" y="0" width="560" height="340" fill="url(#lueur)"/>
+
+    <!-- LAMES -->
+    <g>
+      <rect class="lame" x="756" y="52" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.0s"/>
+      <rect class="lame" x="756" y="80" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.11s"/>
+      <rect class="lame" x="756" y="108" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.22s"/>
+      <rect class="lame" x="756" y="136" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.33s"/>
+      <rect class="lame" x="756" y="164" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.44s"/>
+      <rect class="lame" x="756" y="192" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.55s"/>
+      <rect class="lame" x="756" y="220" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.66s"/>
+      <rect class="lame" x="756" y="248" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.77s"/>
+      <rect class="lame" x="756" y="276" width="446" height="18" rx="4" fill="#D9DDE1" style="animation-delay:0.88s"/>
+    </g>
+
+    <!-- POTEAUX -->
+    <rect x="742" y="44" width="7" height="252" rx="3" fill="#C9CDD1" opacity=".55"/>
+    <rect x="1216" y="44" width="7" height="252" rx="3" fill="#C9CDD1" opacity=".55"/>
+
+    <!-- TEXTE -->
+    <text x="86" y="150" fill="#F5F2ED"
+          font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+          font-size="70" font-weight="700" letter-spacing="7">VERA NOVA</text>
+
+    <line class="trait" x1="88" y1="182" x2="204" y2="182"
+          stroke="#FF4450" stroke-width="4" stroke-linecap="round"/>
+
+    <text x="86" y="228" fill="#A9B2BA"
+          font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+          font-size="22" font-weight="500" letter-spacing="4.5">PERGOLAS BIOCLIMATIQUES</text>
+
+    <text x="86" y="266" fill="#A9B2BA" opacity=".72"
+          font-family="Segoe UI, Helvetica Neue, Arial, sans-serif"
+          font-size="17" font-weight="400" letter-spacing="1.6">Site vitrine — HTML, CSS et JavaScript natifs</text>
+
+    <rect x="0.5" y="0.5" width="1279" height="339" rx="14" fill="none" stroke="#2A3036"/>
+  </g>
+</svg>
