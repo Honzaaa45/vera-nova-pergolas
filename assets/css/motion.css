@@ -1,0 +1,150 @@
+/* =========================================================================
+   VERA NOVA - styles de la couche d'interactions
+   Accompagne assets/js/motion.js. Chargé en dernier.
+   ========================================================================= */
+
+/* ---------------------------------------------------- défilement fluide
+   Lenis pilote la molette ; on neutralise le lissage natif du navigateur
+   pour éviter que les deux se combattent. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------------------------------------------- révélation typographique
+   Le masque est le conteneur, le mot glisse dessous. Le débordement doit
+   rester visible verticalement le temps de la montée, d'où le padding. */
+/* Le masquage est conditionné à la présence du script, qui pose lui-même
+   .has-motion sur <html>. Sans ce garde-fou, un CDN injoignable ou une
+   erreur JS ferait disparaître les six titres de la page pour de bon. */
+.has-motion [data-split] { visibility: hidden; }
+.has-motion [data-split].is-shown { visibility: visible; }
+
+.sp {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* réserve pour les jambages : sans elle, les p et g sont rognés */
+  padding-bottom: .12em;
+  margin-bottom: -.12em;
+}
+.sp__i { display: inline-block; will-change: transform; }
+
+/* ------------------------------------------------------------ magnétisme
+   Le bouton bouge, pas le curseur. La zone sensible dépasse légèrement
+   le bouton pour que l'attraction s'amorce avant le survol. */
+[data-magnetic] { position: relative; }
+[data-magnetic]::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--mag-r, 90px) * -.5);
+  z-index: -1;
+}
+[data-magnetic] .mag__in { display: inline-flex; will-change: transform; }
+
+/* ------------------------------------------------- inclinaison et reflet */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+/* le reflet est un calque au-dessus, piloté par --mx et --my */
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity .45s var(--ease, ease);
+  background: radial-gradient(
+    38% 55% at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, .30),
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+[data-tilt].is-tilting::after { opacity: 1; }
+
+/* bordure rétro-éclairée : un liseré qui s'allume au survol */
+[data-glow] { position: relative; }
+[data-glow]::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 3;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .45s var(--ease, ease);
+  background: radial-gradient(
+    40% 60% at var(--mx, 50%) var(--my, 50%),
+    rgba(216, 1, 16, .85),
+    rgba(216, 1, 16, 0) 72%
+  );
+  /* ne garde que le contour : le centre est découpé */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+[data-glow]:hover::before { opacity: 1; }
+
+/* --------------------------------------------------------- parallaxe
+   Le script n'écrit que --dy. Chaque couche recompose ici sa propre
+   transformation, sinon le translateZ et la rotation du héros seraient
+   effacés. L'ordre compte : translateY vient en dernier, après la
+   profondeur, pour que le décalage reste vertical à l'écran. */
+[data-depth] { will-change: transform; }
+
+.hero__louvers { transform: translateZ(-28px) rotate(-7deg) translateY(var(--dy, 0px)); }
+.hero__frame   { transform: translateZ(20px)  translateY(var(--dy, 0px)); }
+.hero__badge   { transform: translateZ(54px)  translateY(var(--dy, 0px)); }
+
+/* --------------------------------------------------- en-tête réactif
+   La barre se resserre au défilement et son verre s'épaissit. */
+.topbar {
+  transition:
+    height .45s cubic-bezier(.22, .61, .36, 1),
+    background-color .45s ease,
+    box-shadow .45s ease,
+    -webkit-backdrop-filter .45s ease,
+    backdrop-filter .45s ease;
+}
+.topbar.is-shrunk {
+  height: calc(var(--top-h) - 12px);
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(25, 30, 35, .07), 0 10px 30px -18px rgba(25, 30, 35, .35);
+}
+.topbar.is-shrunk .topbar__in { height: calc(var(--top-h) - 12px); }
+.topbar__in { transition: height .45s cubic-bezier(.22, .61, .36, 1); }
+.topbar .brand__mark,
+.topbar .brand__word { transition: height .45s cubic-bezier(.22, .61, .36, 1); }
+.topbar.is-shrunk .brand__mark { height: 26px; }
+.topbar.is-shrunk .brand__word { height: 15px; }
+
+/* ------------------------------------------------ images sous masque */
+[data-mask] { overflow: hidden; will-change: clip-path; }
+[data-mask] img { will-change: transform; }
+
+/* ======================================================================
+   MOUVEMENT RÉDUIT
+   Tout est neutralisé : la page reste complète et lisible.
+   ====================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  [data-split] { visibility: visible; }
+  .sp, .sp__i { display: inline; overflow: visible; padding: 0; margin: 0; }
+  [data-tilt]::after, [data-glow]::before { display: none; }
+  /* on remet la course à zéro sans toucher au transform : celui-ci porte
+     la profondeur des couches, l'effacer aplatirait le héros */
+  [data-depth] { --dy: 0px; }
+  .topbar, .topbar__in, .topbar .brand__mark, .topbar .brand__word { transition: none; }
+}
+
+/* Sur écran tactile, ni inclinaison ni reflet : il n'y a pas de survol,
+   et ces calques coûtent de la composition pour rien. */
+@media (hover: none) {
+  [data-tilt]::after, [data-glow]::before { display: none; }
+  [data-tilt] { transform: none !important; }
+}
