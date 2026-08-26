@@ -1,0 +1,66 @@
+# =========================================================================
+# Intégration continue.
+#
+# Le site est en HTML/CSS/JS natif, sans build ni framework : il n'y a donc
+# ni compilation à valider, ni tests unitaires à jouer. Cette CI vérifie les
+# trois choses qui peuvent réellement casser un site statique, et rien de
+# décoratif :
+#
+#   1. une erreur de syntaxe JavaScript qui casserait la page en silence ;
+#   2. du HTML invalide ou inaccessible ;
+#   3. une image, une feuille de style ou une ancre qui pointe dans le vide.
+# =========================================================================
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification:
+    name: Syntaxe, HTML et liens
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ------------------------------------------------------------------
+      # 1. Syntaxe JavaScript
+      # `node --check` analyse le fichier sans l'exécuter. Les modules sont
+      # écrits pour le navigateur et référencent window ou document : on ne
+      # peut donc pas les lancer ici, mais une faute de syntaxe est attrapée.
+      # ------------------------------------------------------------------
+      - name: Vérifier la syntaxe des modules JavaScript
+        run: |
+          echo "Modules analysés :"
+          for f in assets/js/*.js; do
+            node --check "$f"
+            echo "  ok  $f"
+          done
+
+      # ------------------------------------------------------------------
+      # 2. Validité et accessibilité du HTML
+      # Configuration dans .htmlvalidate.json. Deux règles purement
+      # stylistiques y sont désactivées, la raison est écrite dans
+      # docs/regles-html-validate.md ; toutes les autres font échouer la CI.
+      # ------------------------------------------------------------------
+      - name: Valider les pages HTML
+        run: npx --yes html-validate@9 index.html 404.html mentions-legales.html confidentialite.html
+
+      # ------------------------------------------------------------------
+      # 3. Liens et ressources locales
+      # ------------------------------------------------------------------
+      - name: Vérifier les liens et les ressources
+        run: node tools/verifier-liens.mjs
