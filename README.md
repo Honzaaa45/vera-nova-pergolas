@@ -35,6 +35,13 @@
 > enregistrée ; la marche à suivre est décrite dans
 > [CONTRIBUTING.md](CONTRIBUTING.md).
 
+> [!IMPORTANT]
+> Le badge de CI ci-dessus est rouge pour une raison extérieure au code :
+> GitHub Actions refuse de démarrer les jobs tant qu'un litige de facturation
+> pèse sur le compte. Le workflow est valide et les trois contrôles passent sur
+> un clone neuf. Le badge redeviendra vert dès la régularisation, sans aucune
+> modification du dépôt.
+
 ---
 
 ## Pourquoi ce projet
@@ -314,8 +321,8 @@ une page vide au premier incident réseau.
   `HomeAndConstructionBusiness` et `FAQPage`, avec 6 questions déclarées.
 - Accessibilité : navigation au clavier, `prefers-reduced-motion` respecté
   partout, effets de survol désactivés sur écran tactile.
-- CI verte sur trois contrôles réels : syntaxe des 9 modules, validité des 4
-  pages, et 94 références locales vérifiées.
+- Trois contrôles réels, vérifiés sur un clone neuf : syntaxe des 9 modules,
+  validité des 4 pages, et 94 références locales.
 
 **En cours**
 
