@@ -347,7 +347,8 @@ Code sous [licence MIT](LICENSE).
 
 Ne sont **pas** couverts : la marque et le logo « Vera Nova », les
 photographies issues d'[Unsplash](https://unsplash.com/license), et les polices
-Sora et Manrope, sous SIL Open Font License 1.1.
+Sora et Manrope, sous SIL Open Font License 1.1. Le détail, y compris les
+licences des bibliothèques chargées en CDN, figure dans [NOTICE.md](NOTICE.md).
 
 ## Auteur
 
