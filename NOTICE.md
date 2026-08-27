@@ -1,9 +1,11 @@
 # Mentions relatives aux droits
 
-La [licence MIT](LICENSE) couvre le **code** de ce dépôt : HTML, CSS,
-JavaScript, et les scripts de `tools/`.
+Le **code** de ce dépôt — HTML, CSS, JavaScript, et les scripts de `tools/` —
+est sous [tous droits réservés](LICENSE) : consultable, mais non réutilisable
+sans autorisation écrite.
 
-Elle ne couvre pas les éléments suivants.
+Les composants tiers ci-dessous conservent en revanche leurs licences propres,
+qui leur sont plus permissives.
 
 ## Marque et logo
 

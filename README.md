@@ -12,8 +12,7 @@
 écrit en HTML, CSS et JavaScript natifs — sans framework et sans étape de build.</strong></p>
 
 <p>
-  <a href="LICENSE"><img alt="Licence MIT" src="https://img.shields.io/badge/licence-MIT-D80110?style=flat-square"></a>
-  <a href="../../actions/workflows/ci.yml"><img alt="État de la CI" src="../../actions/workflows/ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="Tous droits réservés" src="https://img.shields.io/badge/licence-tous%20droits%20r%C3%A9serv%C3%A9s-D80110?style=flat-square"></a>
   <img alt="Sans build" src="https://img.shields.io/badge/build-aucun-2D3740?style=flat-square">
   <img alt="Dépendances npm en production" src="https://img.shields.io/badge/d%C3%A9pendances%20npm-0-2D3740?style=flat-square">
   <img alt="Langage principal" src="https://img.shields.io/github/languages/top/Honzaaa45/vera-nova-pergolas?style=flat-square&color=2D3740">
@@ -34,13 +33,6 @@
 > Ce visuel est un emplacement réservé. La capture animée n'a pas encore été
 > enregistrée ; la marche à suivre est décrite dans
 > [CONTRIBUTING.md](CONTRIBUTING.md).
-
-> [!IMPORTANT]
-> Le badge de CI ci-dessus est rouge pour une raison extérieure au code :
-> GitHub Actions refuse de démarrer les jobs tant qu'un litige de facturation
-> pèse sur le compte. Le workflow est valide et les trois contrôles passent sur
-> un clone neuf. Le badge redeviendra vert dès la régularisation, sans aucune
-> modification du dépôt.
 
 ---
 
@@ -350,17 +342,20 @@ une page vide au premier incident réseau.
 
 ## Licence
 
-Code sous [licence MIT](LICENSE).
+**Tous droits réservés** — voir [LICENSE](LICENSE).
 
-Ne sont **pas** couverts : la marque et le logo « Vera Nova », les
-photographies issues d'[Unsplash](https://unsplash.com/license), et les polices
-Sora et Manrope, sous SIL Open Font License 1.1. Le détail, y compris les
-licences des bibliothèques chargées en CDN, figure dans [NOTICE.md](NOTICE.md).
+Ce dépôt est public pour être **lu**, pas pour être réutilisé. Le code est
+consultable et vous pouvez vous en inspirer pour apprendre, mais sa reprise
+dans un autre projet, personnel ou commercial, demande une autorisation écrite.
+
+Les composants tiers gardent leurs licences propres — photographies
+[Unsplash](https://unsplash.com/license), polices sous SIL Open Font License
+1.1, bibliothèques chargées en CDN. Le détail est dans [NOTICE.md](NOTICE.md).
 
 ## Auteur
 
 **[@Honzaaa45](https://github.com/Honzaaa45)** — étudiant en BUT GEII, parcours
 Automatisme et Informatique Industrielle.
 
-Les remarques et les *pull requests* sont bienvenues : voir
-[CONTRIBUTING.md](CONTRIBUTING.md).
+Les remarques et les retours sont les bienvenus, par *issue*. Les conventions
+du projet sont décrites dans [CONTRIBUTING.md](CONTRIBUTING.md).

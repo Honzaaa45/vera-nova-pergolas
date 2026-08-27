@@ -1,8 +1,14 @@
 # Contribuer
 
-Merci de l'intérêt porté au projet. Ce document tient volontairement en une
-page : le site n'a pas d'étape de build, il n'y a donc presque rien à
-installer.
+Merci de l'intérêt porté au projet.
+
+Ce dépôt est sous [tous droits réservés](LICENSE) : il est publié pour être lu,
+pas pour être repris. Les **issues** — remarques, questions, signalements de
+bugs — sont les bienvenues. Une *pull request* ne sera fusionnée que sur
+sollicitation préalable.
+
+Le reste de ce document décrit comment lancer et vérifier le site. Il tient en
+une page : sans étape de build, il n'y a presque rien à installer.
 
 ## Lancer le site en local
 
