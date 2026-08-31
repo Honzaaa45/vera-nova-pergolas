@@ -5,23 +5,23 @@ window.VERA_PRODUCTS = [
     intro:"La pergola à lames la plus compacte de la gamme. Ses lames pivotent jusqu'à 110 degrés et dégagent largement le ciel sans jamais quitter leur cadre.",
     specs:[["Largeur maximale","4,5 m"],["Avancée maximale","7,5 m"],["Rotation des lames","110°"],["Toit coulissant","Non"]],
     features:["Lames orientables motorisées","Pose adossée ou autoportante","Évacuation d'eau intégrée","Structure aluminium TS-6063"],
-    options:["Zip Screen","Éclairage LED","Capteurs vent et soleil","Fermeture vitrée"], next:"platin"
+    options:["Zip Screen","Éclairage à confirmer","Capteurs à confirmer","Fermeture vitrée"], next:"platin"
   },
   {
     id:"platin", number:"02", family:"pergolas", familyLabel:"Pergolas", category:"Lames orientables", name:"Platin",
     image:"pergola-guirlandes.webp", imageAlt:"Grande pergola bioclimatique éclairée en soirée", altImage:"canopy-acier.webp", thirdImage:"terrasse-salon.webp",
-    intro:"Le modèle le plus large de la gamme. Les lames s'orientent et la toiture peut s'escamoter pour retrouver réellement le ciel au-dessus de la terrasse.",
-    specs:[["Largeur maximale","6 m"],["Avancée maximale","7,5 m"],["Toit coulissant","Disponible"],["Éclairage","LED intégrées"]],
-    features:["Toiture à lames escamotables","Bandeau LED intégré","Pilotage centralisé","Grande portée sans surcharge visuelle"],
-    options:["Stores verticaux Zip","Vitrages coulissants","Capteurs climatiques","Nuancier RAL sur demande"], next:"oval"
+    intro:"Le modèle le plus large de la gamme. Les lames s'orientent et une configuration escamotable peut être étudiée selon le projet.",
+    specs:[["Largeur maximale","6 m"],["Avancée maximale","7,5 m"],["Toit coulissant","Option à confirmer"],["Éclairage","Option à confirmer"]],
+    features:["Lames orientables motorisées","Grande portée","Structure aluminium TS-6063","Configuration coulissante à confirmer"],
+    options:["Stores verticaux Zip","Vitrages coulissants","Éclairage à confirmer","Nuancier RAL sur demande"], next:"oval"
   },
   {
     id:"oval", number:"03", family:"pergolas", familyLabel:"Pergolas", category:"Lames orientables", name:"Oval",
     image:"terrasse-piscine-moderne.webp", imageAlt:"Pergola autoportante près d'une piscine", altImage:"piscine-table.webp", thirdImage:"maison-terrasse.webp",
     intro:"Une silhouette distinctive avec des poteaux de section ovale. La descente d'eau disparaît dans la structure pour préserver une ligne nette.",
-    specs:[["Rotation des lames","75°"],["Évacuation","Dans les poteaux"],["Pose","Autoportante ou adossée"],["Structure","Aluminium"]],
+    specs:[["Rotation des lames","À confirmer"],["Évacuation","Dans les poteaux"],["Pose","Autoportante ou adossée"],["Structure","Aluminium"]],
     features:["Poteaux de section ovale","Descente d'eau invisible","Lames orientables motorisées","Finition thermolaquée"],
-    options:["Stores Zip Screen","Éclairage intégré","Fermetures vitrées","Pilotage à distance"], next:"toile"
+    options:["Stores Zip Screen","Éclairage à confirmer","Fermetures vitrées","Pilotage à distance"], next:"toile"
   },
   {
     id:"toile", number:"04", family:"pergolas", familyLabel:"Pergolas", category:"Toile rétractable", name:"Pergola à toile",
@@ -69,7 +69,7 @@ window.VERA_PRODUCTS = [
     intro:"Un auvent vitré qui préserve la lumière naturelle tout en protégeant la terrasse. Le chéneau périphérique est intégré à la structure.",
     specs:[["Toiture","Verre feuilleté"],["Évacuation","Chéneau intégré"],["Pose","Adossée"],["Étude","Sur mesure"]],
     features:["Lumière naturelle préservée","Couverture fixe","Drainage invisible","Structure thermolaquée"],
-    options:["Store intérieur","Éclairage LED","Fermetures latérales","Teinte RAL"], next:"store-banne"
+    options:["Store intérieur","Éclairage à confirmer","Fermetures latérales","Teinte RAL"], next:"store-banne"
   },
   {
     id:"store-banne", number:"10", family:"complements", familyLabel:"Compléments", category:"Store de façade", name:"Store banne à coffre",
@@ -77,7 +77,7 @@ window.VERA_PRODUCTS = [
     intro:"Le coffre intégral referme entièrement la toile lorsqu'elle est rangée. Il protège le mécanisme et conserve une façade nette sans poteau au sol.",
     specs:[["Coffre","Intégral"],["Pose","En façade"],["Commande","Motorisée"],["Emprise au sol","Aucune"]],
     features:["Toile protégée dans le coffre","Façade dégagée","Déploiement motorisé","Ombre immédiate"],
-    options:["Capteur vent","Télécommande","Choix de toile","Éclairage sous coffre"], next:"parasol"
+    options:["Capteur vent","Télécommande","Choix de toile","Éclairage à confirmer"], next:"parasol"
   },
   {
     id:"parasol", number:"11", family:"complements", familyLabel:"Compléments", category:"Protection mobile", name:"Parasol déporté",
@@ -90,9 +90,9 @@ window.VERA_PRODUCTS = [
   {
     id:"carport", number:"12", family:"complements", familyLabel:"Compléments", category:"Abri de voiture", name:"Carport",
     image:"guirlandes-ville.webp", imageAlt:"Abri de voiture en aluminium", altImage:"maison-gamme.webp", thirdImage:"canopy-acier.webp",
-    intro:"Une structure aluminium pensée pour protéger une ou deux voitures. Les dimensions, la couverture et les finitions sont étudiées selon l'emplacement.",
-    specs:[["Configuration","Sur demande"],["Capacité","Une ou deux voitures"],["Structure","Aluminium"],["Finitions","Coordonnées à la gamme"]],
-    features:["Conception sur mesure","Structure durable","Protection toute saison","Ligne assortie à l'habitation"],
-    options:["Teinte RAL","Éclairage intégré","Évacuation des eaux","Configuration adossée ou libre"], next:"compact"
+    intro:"Une solution proposée uniquement sur demande. Les dimensions, la couverture, la structure et les finitions sont définies après étude de l'emplacement.",
+    specs:[["Configuration","Sur demande"],["Dimensions","À définir"],["Couverture","À confirmer"],["Finitions","À confirmer"]],
+    features:["Étude de l'implantation","Dimensions définies sur place","Couverture à confirmer","Finitions à confirmer"],
+    options:["Teinte à définir","Éclairage à confirmer","Gestion des eaux à confirmer","Implantation à étudier"], next:"compact"
   }
 ];

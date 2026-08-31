@@ -2,7 +2,7 @@
 
 Cette variante est autonome et ne dépend d'aucun fichier situé au-dessus de ce
 dossier. Elle reprend les contenus Vera Nova disponibles au moment de sa
-création dans une nouvelle expérience en trois niveaux :
+création dans une expérience éditoriale en trois niveaux :
 
 - `index.html` : page d'accueil narrative ;
 - `catalogue/index.html` : catalogue filtrable des douze systèmes ;
@@ -11,6 +11,9 @@ création dans une nouvelle expérience en trois niveaux :
 
 Le site reste en HTML, CSS et JavaScript natifs. Les polices et les images sont
 hébergées localement. Aucun cookie et aucun outil de suivi ne sont utilisés.
+La direction visuelle active se trouve dans `assets/css/era.css` et les
+interactions dans `assets/js/era.js`. Le catalogue est construit depuis un seul
+fichier de données, `assets/js/catalogue-data.js`.
 
 ## Aperçu local
 
@@ -24,6 +27,6 @@ Puis ouvrir `http://127.0.0.1:5180/`.
 
 ## Contenu à confirmer
 
-Les coordonnées, garanties, délais, tarifs et champs juridiques provisoires
+Les coordonnées, garanties, délais et champs juridiques provisoires
 conservent le même statut que dans le projet principal. Le formulaire utilise
 encore `contact@veranova.fr` comme adresse d'exemple.

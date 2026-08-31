@@ -37,16 +37,19 @@
   function setOverlay(name,open){
     var panel=q('[data-overlay="'+name+'"]');
     if(!panel)return;
+    if(open)qa(".overlay.is-open").forEach(function(item){item.classList.remove("is-open");item.setAttribute("aria-hidden","true")});
     panel.classList.toggle("is-open",open);
     panel.setAttribute("aria-hidden",String(!open));
+    qa('[data-open="'+name+'"]').forEach(function(trigger){trigger.setAttribute("aria-expanded",String(open))});
     body.classList.toggle("is-locked",open);
     if(open){var focusable=q("button,a,input,select,textarea",panel);if(focusable)setTimeout(function(){focusable.focus()},80)}
   }
 
   function initOverlays(){
-    qa("[data-open]").forEach(function(btn){btn.addEventListener("click",function(){setOverlay(btn.getAttribute("data-open"),true)})});
+    qa("[data-open]").forEach(function(btn){btn.setAttribute("aria-haspopup","dialog");btn.setAttribute("aria-expanded","false");btn.addEventListener("click",function(){setOverlay(btn.getAttribute("data-open"),true)})});
     qa("[data-close]").forEach(function(btn){btn.addEventListener("click",function(){setOverlay(btn.getAttribute("data-close"),false)})});
-    qa(".overlay").forEach(function(panel){panel.addEventListener("click",function(event){if(event.target===panel)setOverlay(panel.getAttribute("data-overlay"),false)})});
+    qa(".overlay").forEach(function(panel){panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.addEventListener("click",function(event){if(event.target===panel)setOverlay(panel.getAttribute("data-overlay"),false)})});
+    qa(".overlay a").forEach(function(link){link.addEventListener("click",function(){setOverlay(link.closest(".overlay").getAttribute("data-overlay"),false)})});
     addEventListener("keydown",function(event){if(event.key==="Escape")qa(".overlay.is-open").forEach(function(panel){setOverlay(panel.getAttribute("data-overlay"),false)})});
   }
 
@@ -125,8 +128,10 @@
     grid.innerHTML=window.VERA_PRODUCTS.map(function(product,index){var second=window.VERA_PRODUCTS[(index+3)%window.VERA_PRODUCTS.length].image;return '<a class="product-card" data-family="'+product.family+'" href="'+productLink(product.id)+'" aria-label="Voir '+product.name+'"><div class="product-card__media"><img src="'+imagePath(product.image)+'" alt="'+product.imageAlt+'" loading="lazy"><img src="'+imagePath(second)+'" alt="" loading="lazy"></div><div class="product-card__top"><span>'+product.number+'</span><span>'+product.familyLabel+'</span></div><div class="product-card__bottom"><p class="eyebrow">'+product.category+'</p><h2 class="product-card__name">'+product.name+'</h2><div class="product-card__data">'+specShort(product)+'<span class="product-card__arrow">↗</span></div></div></a>'}).join("");
     var total=q("[data-product-total]");if(total)total.textContent=String(window.VERA_PRODUCTS.length).padStart(2,"0");
     var buttons=qa("[data-filter]");var empty=q(".empty");
-    buttons.forEach(function(button){button.addEventListener("click",function(){var value=button.getAttribute("data-filter");var visible=0;buttons.forEach(function(item){item.classList.toggle("is-active",item===button)});qa(".product-card",grid).forEach(function(card){var show=value==="all"||card.getAttribute("data-family")===value;card.hidden=!show;if(show)visible++});if(empty)empty.classList.toggle("is-visible",visible===0)})});
-    initPageTransitions();
+    function applyFilter(value){var visible=0;var active=q('[data-filter="'+value+'"]')||q('[data-filter="all"]');buttons.forEach(function(item){item.classList.toggle("is-active",item===active)});qa(".product-card",grid).forEach(function(card){var show=value==="all"||card.getAttribute("data-family")===value;card.hidden=!show;if(show)visible++});if(empty)empty.classList.toggle("is-visible",visible===0)}
+    buttons.forEach(function(button){button.addEventListener("click",function(){var value=button.getAttribute("data-filter");applyFilter(value);if(value==="all")history.replaceState(null,"",location.pathname+location.search);else history.replaceState(null,"","#"+value)})});
+    function applyHash(){applyFilter(location.hash.replace("#","")||"all")}
+    addEventListener("hashchange",applyHash);applyHash();
   }
 
   function detailMarkup(list,tag){return list.map(function(item,index){return tag==="spec"?'<div class="spec"><dt>'+item[0]+'</dt><dd>'+item[1]+'</dd></div>':'<article class="option"><span class="option__number">'+String(index+1).padStart(2,"0")+'</span><h3>'+item+'</h3><p>Configuration définie lors de l\'étude technique et du devis.</p></article>'}).join("")}

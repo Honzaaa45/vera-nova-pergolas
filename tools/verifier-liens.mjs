@@ -17,8 +17,24 @@ const RACINE = resolve(process.cwd());
 const erreurs = [];
 let verifiees = 0;
 
-/* -------------------------------------------------- fichiers HTML à lire */
-const pagesHtml = readdirSync(RACINE).filter((f) => f.endsWith('.html'));
+/* -------------------------------------------------- fichiers HTML à lire
+   On descend dans les sous-dossiers : le catalogue vit dans catalogue/ et
+   ses treize pages doivent être vérifiées comme les autres. */
+function pagesDe(dossier) {
+  const trouvees = [];
+  for (const e of readdirSync(dossier, { withFileTypes: true })) {
+    // version-era-residence est un projet parallèle, avec ses propres
+    // ressources : il se vérifie séparément.
+    if (e.name.startsWith('.') || e.name === 'node_modules'
+        || e.name === 'version-era-residence') continue;
+    const chemin = join(dossier, e.name);
+    if (e.isDirectory()) trouvees.push(...pagesDe(chemin));
+    else if (e.name.endsWith('.html')) trouvees.push(chemin);
+  }
+  return trouvees;
+}
+
+const pagesHtml = pagesDe(RACINE).map((p) => p.slice(RACINE.length + 1));
 if (pagesHtml.length === 0) {
   console.error('Aucune page HTML trouvée à la racine.');
   process.exit(1);
