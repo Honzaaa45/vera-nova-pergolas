@@ -56,6 +56,39 @@
     maj();
   })();
 
+  /* ------------------------------------------------- ambiance jour / soir
+     Deux images superposées dans le bandeau ; les boutons font passer la
+     classe est-active de l'une à l'autre, le fondu est en CSS. */
+  (function () {
+    var groupe = document.querySelector('.ambiance');
+    var images = document.querySelectorAll('.hero__img');
+    var hero = document.querySelector('.hero');
+    if (!groupe || images.length < 2 || !hero) return;
+
+    // On arme le fondu seulement une fois la page peinte : sinon la
+    // transition se joue au chargement et l'image met une seconde à
+    // apparaitre sur un aplat bleu nuit.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { hero.classList.add('est-prete'); });
+    });
+
+    groupe.addEventListener('click', function (e) {
+      var b = e.target.closest('.ambiance__b');
+      if (!b || b.classList.contains('est-active')) return;
+      var vers = b.dataset.vers;
+
+      groupe.querySelectorAll('.ambiance__b').forEach(function (x) {
+        var on = x === b;
+        x.classList.toggle('est-active', on);
+        x.setAttribute('aria-pressed', String(on));
+      });
+
+      images.forEach(function (img) {
+        img.classList.toggle('est-active', img.dataset.ambiance === vers);
+      });
+    });
+  })();
+
   /* --------------------------------------------------------------- menu */
   (function () {
     var btn = document.getElementById('burger');

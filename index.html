@@ -162,11 +162,19 @@
 <section class="hero" id="top">
 
   <div class="hero__media" id="hero-media">
-    <img src="assets/img/gallery/maison-gamme.webp"
+    <img class="hero__img est-active" data-ambiance="jour"
+         src="assets/img/gallery/maison-gamme.webp"
          srcset="assets/img/gallery/maison-gamme-sm.webp 900w, assets/img/gallery/maison-gamme.webp 1600w"
          sizes="100vw"
          alt="Maison équipée de pergolas bioclimatiques, stores et fermetures vitrées Vera Nova"
          width="1600" height="900" fetchpriority="high" decoding="async">
+    <!-- La seconde ambiance n'est pas la même maison : nous n'avons pas encore
+         de rendu nocturne du même bâtiment. Le texte du bouton dit « le soir »
+         et non « la même maison le soir », pour ne rien laisser croire. -->
+    <img class="hero__img" data-ambiance="soir"
+         src="assets/img/gallery/pergola-guirlandes.webp"
+         alt="Pergola bioclimatique éclairée à la tombée du jour"
+         width="1000" height="750" loading="lazy" decoding="async">
     <span class="hero__scrim" aria-hidden="true"></span>
 
     <!-- Chaque produit visible porte sa pastille. Coordonnées exprimées dans
@@ -278,8 +286,16 @@
       <span class="a-droite" data-scroll-reveal="a">toute l'année</span>
     </p>
 
+    <div class="hero__pied">
+    <div class="ambiance" role="group" aria-label="Ambiance de l'image">
+      <button type="button" class="ambiance__b est-active" data-vers="jour" aria-pressed="true">De jour</button>
+      <span class="ambiance__trait" aria-hidden="true"></span>
+      <button type="button" class="ambiance__b" data-vers="soir" aria-pressed="false">Le soir</button>
+    </div>
+
     <p class="hero__aide">Touchez un point sur la maison</p>
     <a class="hero__desc" href="#principe"><span>Défiler</span></a>
+    </div>
   </div>
 </section>
 
@@ -415,6 +431,76 @@
       Nous nous déplaçons plus loin pour les projets importants. Appelez-nous pour
       vérifier votre commune.
     </p>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     6 bis · LA MÉTHODE — chapitres empilés en sticky
+     Chaque chapitre reste collé pendant que le suivant monte par-dessus.
+     Aucun détournement du défilement : c'est position:sticky qui fait tout,
+     donc le clavier et les lecteurs d'écran continuent de fonctionner.
+     ===================================================================== -->
+<section class="methode" aria-label="Notre méthode">
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">La méthode</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Trois temps,<br>dans cet ordre</h2>
+  </div>
+
+  <div class="methode__pile">
+    <article class="chap">
+      <div class="chap__in">
+        <div class="chap__txt">
+          <p class="chap__no">01</p>
+          <p class="surtitre">Observer</p>
+          <h3 class="titre-m">Partir du lieu.</h3>
+          <p>
+            Orientation, hauteur de façade, portance de la dalle, circulation et
+            habitudes quotidiennes. Tout cela détermine l'implantation avant la
+            moindre décision technique.
+          </p>
+        </div>
+        <figure class="chap__fig">
+          <img src="assets/img/gallery/piscine-table.webp" alt="Espace repas extérieur au bord d'une piscine" width="1000" height="750" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </article>
+
+    <article class="chap">
+      <div class="chap__in">
+        <div class="chap__txt">
+          <p class="chap__no">02</p>
+          <p class="surtitre">Composer</p>
+          <h3 class="titre-m">Choisir le système.</h3>
+          <p>
+            Lames orientables, toile rétractable, vitrages ou stores : la
+            combinaison se décide selon le degré d'ouverture, de protection et de
+            lumière recherché, puis la teinte referme l'ensemble.
+          </p>
+        </div>
+        <figure class="chap__fig">
+          <img src="assets/img/gallery/terrasse-couverte.webp" alt="Terrasse couverte par une pergola" width="1000" height="750" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </article>
+
+    <article class="chap">
+      <div class="chap__in">
+        <div class="chap__txt">
+          <p class="chap__no">03</p>
+          <p class="surtitre">Poser</p>
+          <h3 class="titre-m">Soigner chaque ligne.</h3>
+          <p>
+            La pose coordonne structure, évacuation des eaux et automatismes.
+            C'est là que se joue la différence entre une pergola posée et une
+            pergola qui semble avoir toujours été là. Un à deux jours sur place.
+          </p>
+        </div>
+        <figure class="chap__fig">
+          <img src="assets/img/gallery/canopy-acier.webp" alt="Structure aluminium aux lignes précises" width="1000" height="750" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </article>
   </div>
 </section>
 
