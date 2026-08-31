@@ -343,3 +343,60 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 160; heig
   .gfam__grille { grid-template-columns: 1fr; }
   .gcard__fig { aspect-ratio: 16 / 10; }
 }
+
+
+/* =========================================================================
+   BANDEAU D'ACCUEIL — passage en pleine largeur
+
+   La grille à deux colonnes avait été dessinée pour un visuel en portrait
+   tenant dans une arche. L'image montre maintenant la maison entière avec
+   toute la gamme, en 16:9 : dans une colonne de 390 px elle serait illisible.
+   Le titre passe donc au-dessus, et l'image occupe toute la largeur.
+   ========================================================================= */
+
+.hero__grid {
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+/* Le parent centre ses enfants ; en donnant une largeur maximale au titre,
+   celui-ci devient plus etroit que la colonne et se retrouvait centre. */
+.hero__in { padding-bottom: 0; align-items: flex-start; text-align: left; }
+
+/* Le titre garde une largeur de lecture confortable même sur grand écran :
+   au-delà d'une vingtaine de mots par ligne, l'œil perd le fil. */
+.hero__title { max-width: 15ch; }
+.hero .hero__lead { max-width: 54ch; }
+
+.hero__visual {
+  width: 100%;
+  justify-self: stretch;
+  perspective: 1600px;
+}
+
+.hero__frame {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+.hero__frame img { object-position: center 42%; }
+
+/* Le voile sombre servait à détacher la légende sur une image en portrait ;
+   sur ce rendu clair et lumineux, il ternissait la moitié basse. */
+.hero__shade {
+  background: linear-gradient(180deg, transparent 62%, rgba(10, 14, 15, .55));
+}
+
+/* Les lames décoratives encadraient l'arche. Elles n'ont plus de place sur
+   une image pleine largeur, où elles mordraient sur la maison. */
+.hero__louvers { display: none; }
+
+/* En bas a droite, le medaillon recouvrait la legende de l image.
+   Il remonte au-dessus du cadre, ou il ne croise plus rien. */
+.hero__badge { right: -1.5rem; top: -2rem; bottom: auto; }
+
+@media (max-width: 900px) {
+  .hero__title { max-width: none; }
+  .hero__badge { width: 92px; right: -.5rem; top: -1.25rem; bottom: auto; }
+}
