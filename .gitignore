@@ -56,3 +56,11 @@ docs/media/reference/pages/
 docs/media/reference/*.jpg
 docs/media/reference/*.jpeg
 docs/media/reference/*.png
+
+# ------------------------------------------- copies de sites de référence
+# Un site aspiré est le code, les images et les textes d'un tiers dans leur
+# intégralité. Cela sert à étudier une mise en page en local ; cela n'a rien
+# à faire dans un dépôt, encore moins public.
+era-residence-copy/
+SiteOne-Crawler/
+*.zip

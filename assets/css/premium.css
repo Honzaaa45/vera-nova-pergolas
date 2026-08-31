@@ -352,63 +352,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 160; heig
 
 
 /* =========================================================================
-   BANDEAU D'ACCUEIL — passage en pleine largeur
-
-   La grille à deux colonnes avait été dessinée pour un visuel en portrait
-   tenant dans une arche. L'image montre maintenant la maison entière avec
-   toute la gamme, en 16:9 : dans une colonne de 390 px elle serait illisible.
-   Le titre passe donc au-dessus, et l'image occupe toute la largeur.
-   ========================================================================= */
-
-.hero__grid {
-  grid-template-columns: 1fr;
-  gap: clamp(2.5rem, 5vw, 4rem);
-  align-items: start;
-}
-
-/* Le parent centre ses enfants ; en donnant une largeur maximale au titre,
-   celui-ci devient plus etroit que la colonne et se retrouvait centre. */
-.hero__in { padding-bottom: 0; align-items: flex-start; text-align: left; }
-
-/* Le titre garde une largeur de lecture confortable même sur grand écran :
-   au-delà d'une vingtaine de mots par ligne, l'œil perd le fil. */
-.hero__title { max-width: 15ch; }
-.hero .hero__lead { max-width: 54ch; }
-
-.hero__visual {
-  width: 100%;
-  justify-self: stretch;
-  perspective: 1600px;
-}
-
-.hero__frame {
-  height: auto;
-  aspect-ratio: 16 / 9;
-  border-radius: 10px;
-}
-.hero__frame img { object-position: center 42%; }
-
-/* Le voile sombre servait à détacher la légende sur une image en portrait ;
-   sur ce rendu clair et lumineux, il ternissait la moitié basse. */
-.hero__shade {
-  background: linear-gradient(180deg, transparent 62%, rgba(10, 14, 15, .55));
-}
-
-/* Les lames décoratives encadraient l'arche. Elles n'ont plus de place sur
-   une image pleine largeur, où elles mordraient sur la maison. */
-.hero__louvers { display: none; }
-
-/* En bas a droite, le medaillon recouvrait la legende de l image.
-   Il remonte au-dessus du cadre, ou il ne croise plus rien. */
-.hero__badge { right: -1.5rem; top: -2rem; bottom: auto; }
-
-@media (max-width: 900px) {
-  .hero__title { max-width: none; }
-  .hero__badge { width: 92px; right: -.5rem; top: -1.25rem; bottom: auto; }
-}
-
-
-/* =========================================================================
    COUCHE ÉDITORIALE
 
    Deux registres, et rien entre les deux — c'est ce contraste qui fait tout
@@ -527,3 +470,267 @@ body, p, li, dd, input, textarea, select, button {
 /* ---------------------------------------------------------------- fond
    Le blanc chaud remplace le blanc pur sur toute la page. */
 body { background: var(--paper); }
+
+
+/* =========================================================================
+   BANDEAU D'ACCUEIL — plein écran, texte sur l'image
+
+   Le texte se superpose désormais à l'image au lieu de s'empiler au-dessus.
+   L'ancienne version atteignait 1761 px de haut, soit presque deux écrans
+   avant d'arriver au contenu.
+   ========================================================================= */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 0;
+  display: grid;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.hero__media,
+.hero__over { grid-area: 1 / 1; }
+
+.hero__media { position: relative; overflow: hidden; }
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  display: block;
+}
+
+/* Voile de lisibilité. Le rendu est lumineux et le ciel très clair en haut :
+   sans lui, un titre blanc y disparaîtrait. Le dégradé est plus dense en bas
+   à gauche, là où se pose le texte, et laisse la maison respirer à droite. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(16, 26, 44, .82) 0%, rgba(16, 26, 44, .45) 34%, rgba(16, 26, 44, 0) 62%),
+    linear-gradient(to right, rgba(16, 26, 44, .55) 0%, rgba(16, 26, 44, .12) 42%, rgba(16, 26, 44, 0) 70%);
+}
+
+.hero__over {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--top-h) + 2rem) clamp(1.25rem, 4vw, 4rem) clamp(2.5rem, 6vh, 5rem);
+  pointer-events: none;   /* laisse les points cliquables dessous */
+}
+.hero__over-in { width: min(100%, 62ch); pointer-events: auto; }
+
+.hero__tag { color: rgba(243, 243, 236, .82); margin: 0 0 1.4rem; display: flex; align-items: center; gap: .7rem; }
+.hero__tag span { width: 2rem; height: 1px; background: var(--red); display: inline-block; }
+
+.hero__title { color: #F3F3EC; margin: 0 0 1.4rem; max-width: none; }
+.hero__title .rot { color: #F3F3EC; }
+
+.hero__lead { color: rgba(243, 243, 236, .8); margin: 0 0 2rem; max-width: 48ch; }
+.hero__lead .script { color: #F3F3EC; font-size: 1.5em; }
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; }
+.hero .btn { background: rgba(243, 243, 236, .1); color: #F3F3EC; border-color: rgba(243, 243, 236, .3); backdrop-filter: blur(8px); }
+.hero .btn--solid { background: #F3F3EC; color: var(--ink); border-color: #F3F3EC; }
+
+.hero__aide {
+  margin: 1.6rem 0 0;
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(243, 243, 236, .5);
+}
+
+/* =========================================================================
+   LES POINTS D'INTÉRÊT
+   Position calculée par assets/js/pins.js — voir ce fichier pour la raison.
+   ========================================================================= */
+
+.pins { position: absolute; inset: 0; z-index: 2; margin: 0; padding: 0; list-style: none; }
+
+.pin { position: absolute; transform: translate(-50%, -50%); }
+.pin[hidden] { display: none; }
+
+.pin__btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.pin__dot {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #F3F3EC;
+  box-shadow: 0 2px 10px rgba(10, 16, 28, .35);
+  transition: transform .35s var(--ease), background-color .35s var(--ease);
+}
+.pin__btn:hover .pin__dot,
+.pin__btn:focus-visible .pin__dot { transform: scale(1.15); background: var(--red); color: #F3F3EC; }
+.pin.is-open .pin__dot { background: var(--red); color: #F3F3EC; transform: rotate(45deg); }
+
+/* Le halo qui bat, pour que l'œil repère les points sans les chercher. */
+.pin__halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(243, 243, 236, .45);
+  animation: pin-battement 2.6s var(--ease) infinite;
+}
+@keyframes pin-battement {
+  0%   { transform: scale(.75); opacity: .75; }
+  70%  { transform: scale(1.5);  opacity: 0; }
+  100% { transform: scale(1.5);  opacity: 0; }
+}
+.pin.is-open .pin__halo { animation: none; opacity: 0; }
+
+/* ------------------------------------------------------------- la bulle */
+.pin__tip {
+  position: absolute;
+  left: 32px;
+  top: 50%;
+  z-index: 4;
+  width: 244px;
+  padding: 1rem 1.1rem 1.05rem;
+  border-radius: 8px;
+  background: rgba(243, 243, 236, .96);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px -22px rgba(10, 16, 28, .6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-6px, -50%);
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
+}
+.pin__tip.is-left { left: auto; right: 32px; transform: translate(6px, -50%); }
+.pin.is-open .pin__tip { opacity: 1; visibility: visible; transform: translate(0, -50%); }
+
+.pin__cat { margin: 0 0 .2rem; font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
+.pin__nom { margin: 0 0 .45rem; font-family: var(--f-display); font-size: 1.2rem; font-weight: 400; letter-spacing: -.015em; color: var(--ink); }
+.pin__txt { margin: 0 0 .7rem; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.pin__lien { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--red); padding-bottom: 2px; }
+
+/* ------------------------------------------------------------- mobile */
+@media (max-width: 760px) {
+  .hero__over { align-items: flex-end; padding-bottom: 3.5rem; }
+  .hero__lead { display: none; }          /* la place manque : le titre et les boutons priment */
+  .pin__btn { width: 40px; height: 40px; }  /* cible tactile confortable */
+  .pin__tip { width: min(72vw, 244px); }
+}
+
+/* Un halo qui bat en boucle est exactement ce qu'un utilisateur ayant réduit
+   les animations demande à ne pas voir. */
+@media (prefers-reduced-motion: reduce) {
+  .pin__halo { animation: none; opacity: .35; }
+}
+
+/* Texte réservé aux lecteurs d'écran. Les points d'intérêt n'affichent
+   qu'un « + » : sans ce libellé, un lecteur d'écran annoncerait dix boutons
+   identiques et sans nom. On ne peut pas utiliser display:none, qui les
+   retirerait aussi de la restitution vocale. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ---------------------------------------------- barre haute sur l'image
+   Tant qu'on est en haut de page, la barre flotte au-dessus d'un rendu
+   sombre : logo, dock et libellés passent en clair. Dès qu'elle se réduit,
+   elle reprend son fond blanc et ses couleurs d'origine. */
+.topbar { background: transparent; box-shadow: none; }
+
+.brand--clair { display: block; }
+.brand--sombre { display: none; }
+.topbar.is-shrunk .brand--clair { display: none; }
+.topbar.is-shrunk .brand--sombre { display: block; }
+
+.topbar:not(.is-shrunk) .dock__list { background: rgba(243, 243, 236, .12); backdrop-filter: blur(14px); border-color: rgba(243, 243, 236, .2); }
+.topbar:not(.is-shrunk) .dock__item { color: rgba(243, 243, 236, .85); }
+.topbar:not(.is-shrunk) .dock__pill { background: rgba(243, 243, 236, .2); }
+.topbar:not(.is-shrunk) .tel { color: #F3F3EC; }
+.topbar:not(.is-shrunk) .topbar__act .btn--solid { background: #F3F3EC; color: var(--ink); border-color: #F3F3EC; }
+.topbar:not(.is-shrunk) .dock__toggle span { background: #F3F3EC; }
+
+/* ------------------------------------------------- largeur du titre
+   La colonne était fixée à 62ch. L'unité ch se calcule sur la taille de
+   police du conteneur, soit 16 px, ce qui donnait environ 500 px — bien
+   trop étroit pour un titre de 100 px, qui se coupait en trois lignes et
+   débordait sous l'écran. */
+.hero__over-in { width: min(100%, 900px); }
+.hero__title { font-size: clamp(2.8rem, 6.4vw, 6rem); line-height: .95; }
+.hero__lead { max-width: 46ch; }
+
+/* Voile allégé : le premier réglage noircissait tout le tiers gauche, et
+   la véranda et le parasol y disparaissaient. */
+.hero__scrim {
+  background:
+    linear-gradient(to top, rgba(16, 26, 44, .74) 0%, rgba(16, 26, 44, .32) 40%, rgba(16, 26, 44, 0) 68%),
+    linear-gradient(to right, rgba(16, 26, 44, .34) 0%, rgba(16, 26, 44, .06) 46%, rgba(16, 26, 44, 0) 72%);
+}
+
+/* ------------------------------------------- bandeau en trois bandes
+   Le titre occupe le ciel, la bande centrale reste libre pour que les
+   points sur la maison soient atteignables, les appels à l'action se
+   posent sur la pelouse. Un bloc de texte unique en recouvrait sept sur
+   dix, qui devenaient impossibles à cliquer. */
+.hero__over {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: stretch;
+}
+.hero__haut, .hero__bas { pointer-events: auto; width: min(100%, 720px); }
+.hero__bas { align-self: end; }
+
+.hero__title { font-size: clamp(2.4rem, 5vw, 4.6rem); margin-bottom: 0; }
+.hero__lead { margin: 0 0 1.5rem; }
+
+/* La bande du milieu ne contient rien : elle réserve la maison aux points. */
+.hero__over::before { content: ""; grid-row: 2; }
+
+@media (max-width: 760px) {
+  /* Sur un écran étroit, la maison occupe une bande trop mince pour que
+     dix cibles tactiles y tiennent sans se chevaucher. Les points passent
+     sous la responsabilité de la section Gamme, qui les liste tous. */
+  .pins { display: none; }
+  .hero__aide { display: none; }
+  .hero__lead { display: block; }
+}
+
+/* Les bandes de texte sont des blocs qui s'étendent bien au-delà de leurs
+   mots : elles interceptaient les clics destinés aux points situés dessous,
+   y compris dans leurs zones vides. Seuls les éléments réellement porteurs
+   de contenu restent opaques au pointeur. */
+.hero__haut, .hero__bas { pointer-events: none; }
+.hero__haut > *, .hero__bas > * { pointer-events: auto; }
+
+/* Le paragraphe reste dans le quart gauche, sur le ciel et les arbres,
+   plutôt que de s'étendre devant la façade. */
+.hero__lead { max-width: 32ch; }
+
+/* Le titre et le paragraphe sont des blocs de niveau : leur boîte s'étend
+   sur toute la largeur de la bande, bien au-delà des mots, et interceptait
+   les clics des points situés à droite du texte. En les ajustant à leur
+   contenu, seules les lettres bloquent. */
+.hero__title, .hero__tag { width: fit-content; max-width: 100%; }
+/* Le paragraphe garde sa largeur de lecture : fit-content seul l'etirait
+   sur une seule ligne devant la facade. */
+.hero__lead { width: fit-content; max-width: 32ch; }

@@ -109,8 +109,13 @@
   <div class="topbar__in">
 
     <a class="brand" href="#top" aria-label="Vera Nova, accueil">
-      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="537" height="333" decoding="async">
-      <img class="brand__word" src="assets/img/logo-word.png" alt="Vera Nova" width="1078" height="136" decoding="async">
+      <!-- Deux jeux de logos : la barre flotte sur une image sombre en
+           haut de page, puis prend un fond clair une fois réduite. Un
+           seul logo serait invisible dans l'un des deux états. -->
+      <img class="brand__mark brand--sombre" src="assets/img/logo-mark.png" alt="" width="537" height="333" decoding="async">
+      <img class="brand__word brand--sombre" src="assets/img/logo-word.png" alt="Vera Nova" width="1078" height="136" decoding="async">
+      <img class="brand__mark brand--clair" src="assets/img/logo-mark-light.png" alt="" width="537" height="333" decoding="async">
+      <img class="brand__word brand--clair" src="assets/img/logo-word-light.png" alt="" width="1078" height="136" decoding="async">
     </a>
 
     <nav class="dock" id="dock" aria-label="Navigation des sections">
@@ -145,66 +150,153 @@
 
 <!-- ===================== HERO À BANDEAU DÉFILANT ===================== -->
 <section class="hero" id="top">
-  <div class="hero__ambient" aria-hidden="true"></div>
-  <div class="hero__grid">
-    <div class="hero__in">
-      <p class="hero__tag"><span></span> Fabrication sur mesure · Loir-et-Cher</p>
+
+  <div class="hero__media" id="hero-media">
+    <img src="assets/img/gallery/maison-gamme.webp"
+         srcset="assets/img/gallery/maison-gamme-sm.webp 900w, assets/img/gallery/maison-gamme.webp 1600w"
+         sizes="100vw"
+         alt="Maison équipée de pergolas bioclimatiques, stores et fermetures vitrées Vera Nova"
+         width="1600" height="900" fetchpriority="high" decoding="async">
+    <span class="hero__scrim" aria-hidden="true"></span>
+
+    <!-- Pas d'aria-label sur cette liste : un <ul> nu n'accepte pas de nom
+         accessible. Chaque point porte le sien via .sr-only. -->
+    <ul class="pins" id="pins">
+      <li class="pin" data-x="33.0" data-y="40.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-platin">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Platin</span>
+        </button>
+        <div class="pin__tip" id="tip-platin" role="tooltip">
+          <p class="pin__cat">Lames orientables</p>
+          <p class="pin__nom">Platin</p>
+          <p class="pin__txt">Jusqu’à 6 m de large, et des lames qui s’escamotent sur un côté.</p>
+          <a class="pin__lien" href="#produit-platin">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="37.5" data-y="56.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-compact">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Compact</span>
+        </button>
+        <div class="pin__tip" id="tip-compact" role="tooltip">
+          <p class="pin__cat">Lames orientables</p>
+          <p class="pin__nom">Compact</p>
+          <p class="pin__txt">Des lames qui pivotent jusqu’à 110°, plus que la plupart des systèmes.</p>
+          <a class="pin__lien" href="#produit-compact">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="52.0" data-y="39.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-toiture-vitree">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Toiture vitrée</span>
+        </button>
+        <div class="pin__tip" id="tip-toiture-vitree" role="tooltip">
+          <p class="pin__cat">Toiture fixe</p>
+          <p class="pin__nom">Toiture vitrée</p>
+          <p class="pin__txt">Verre feuilleté, chéneau intégré, aucune gouttière apparente.</p>
+          <a class="pin__lien" href="#produit-toiture-vitree">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="62.0" data-y="45.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-pliant">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Pliant vitré</span>
+        </button>
+        <div class="pin__tip" id="tip-pliant" role="tooltip">
+          <p class="pin__cat">Vitrage manuel</p>
+          <p class="pin__nom">Pliant vitré</p>
+          <p class="pin__txt">Les vantaux se replient et s’ouvrent des deux côtés.</p>
+          <a class="pin__lien" href="#produit-pliant">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="73.0" data-y="35.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-guillotine">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Guillotine</span>
+        </button>
+        <div class="pin__tip" id="tip-guillotine" role="tooltip">
+          <p class="pin__cat">Vitrage motorisé</p>
+          <p class="pin__nom">Guillotine</p>
+          <p class="pin__txt">Des panneaux qui montent et descendent, double vitrage 4+16+4.</p>
+          <a class="pin__lien" href="#produit-guillotine">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="88.0" data-y="31.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-store-banne">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Store banne à coffre</span>
+        </button>
+        <div class="pin__tip" id="tip-store-banne" role="tooltip">
+          <p class="pin__cat">Store de façade</p>
+          <p class="pin__nom">Store banne à coffre</p>
+          <p class="pin__txt">Le coffre referme la toile : ni salissure, ni vieillissement.</p>
+          <a class="pin__lien" href="#produit-store-banne">Voir la fiche</a>
+        </div>
+      </li>
+      <li class="pin" data-x="84.0" data-y="51.0">
+        <button type="button" class="pin__btn" aria-expanded="false"
+                aria-controls="tip-carport">
+          <span class="pin__halo" aria-hidden="true"></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="sr-only">Carport</span>
+        </button>
+        <div class="pin__tip" id="tip-carport" role="tooltip">
+          <p class="pin__cat">Abri de voiture</p>
+          <p class="pin__nom">Carport</p>
+          <p class="pin__txt">La même structure aluminium, dimensionnée pour la voiture.</p>
+          <a class="pin__lien" href="#produit-carport">Voir la fiche</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Trois bandes : le titre sur le ciel, la maison libre au milieu pour
+       les points, les appels a l'action sur la pelouse. Un bloc unique
+       recouvrait sept des dix points, qui devenaient incliquables. -->
+  <div class="hero__over">
+    <div class="hero__haut">
+      <p class="hero__tag"><span aria-hidden="true"></span> Fabrication sur mesure · Loir-et-Cher</p>
 
       <h1 class="hero__title">
         <span class="hero__fixed">Votre terrasse,</span>
         <span class="rot" id="rotate"></span>
       </h1>
 
-      <p class="hero__desc">
-        Une architecture extérieure pensée pour la lumière. Pergolas bioclimatiques,
-        protections solaires et fermetures vitrées, conçues et posées par notre équipe.
+      <p class="hero__lead">
+        Pergolas bioclimatiques, protections solaires et fermetures vitrées,
+        conçues et posées par notre équipe en <span class="script">Sologne</span>.
       </p>
+    </div>
+
+    <div class="hero__bas">
 
       <div class="hero__cta">
-        <a class="cta" data-magnetic="0.3" href="#contact">
-          <span>Étudier mon projet</span>
-          <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-        </a>
-        <a class="cta cta--ghost" data-magnetic="0.22" href="#realisations">
-          <span>Découvrir nos réalisations</span>
-          <i class="ph ph-arrow-down" aria-hidden="true"></i>
-        </a>
+        <a class="btn btn--solid" href="#contact" data-magnetic="0.28"><span class="mag__in">Étudier mon projet</span></a>
+        <a class="btn" href="#produits" data-magnetic="0.28"><span class="mag__in">Découvrir la gamme</span></a>
       </div>
 
-      <ul class="hero__proof">
-        <li><strong>10 ans</strong><span>garantie structure</span></li>
-        <li><strong>100 %</strong><span>sur mesure</span></li>
-        <li><strong>Local</strong><span>équipe de pose</span></li>
-      </ul>
-    </div>
-
-    <div class="hero__visual" data-depth-card>
-      <div class="hero__frame" data-mask data-depth="0.04">
-        <img src="assets/img/gallery/maison-gamme.webp"
-             srcset="assets/img/gallery/maison-gamme-sm.webp 900w, assets/img/gallery/maison-gamme.webp 1600w"
-             sizes="(max-width: 900px) 100vw, min(1240px, 100vw)"
-             alt="Maison équipée de pergolas bioclimatiques, stores et fermetures vitrées Vera Nova"
-             width="1600" height="900" fetchpriority="high" decoding="async">
-        <div class="hero__shade" aria-hidden="true"></div>
-        <div class="hero__caption">
-          <span>Toute la gamme, sur une seule maison</span>
-          <b>Douze systèmes</b>
-        </div>
-      </div>
-      <div class="hero__louvers" aria-hidden="true" data-depth="-0.09">
-        <i></i><i></i><i></i><i></i><i></i><i></i>
-      </div>
-      <div class="hero__badge" aria-hidden="true" data-depth="0.20">
-        <i class="ph ph-sun-horizon"></i>
-        <span>Lumière<br>maîtrisée</span>
-      </div>
+      <p class="hero__aide">Touchez un point sur la maison pour voir le système</p>
     </div>
   </div>
 
-  <div class="mq" id="marquee">
+</section>
+
+<div class="mq" id="marquee">
     <div class="mq__track" id="marquee-track"></div>
   </div>
-</section>
 
 <!-- ============================ LE PRINCIPE ============================ -->
 <section class="principe" id="principe">
@@ -851,6 +943,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/pins.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
 </body>
 </html>
