@@ -41,7 +41,10 @@
 Une entreprise qui vient de se créer n'a ni photos de chantier, ni avis
 clients, ni budget publicitaire — mais ses concurrents en ont. Le site répond à
 ce déséquilibre en misant sur ce qui ne demande pas d'antériorité : la clarté
-de l'offre, la transparence des prix, et une exécution technique soignée.
+de l'offre, la précision technique, et une exécution soignée. Les prix ne sont
+volontairement pas affichés — chaque pergola étant calculée pour son
+emplacement, un tarif au mètre carré serait un chiffre que la visite
+démentirait.
 L'objectif unique de la page est la **demande de devis locale**.
 
 ---

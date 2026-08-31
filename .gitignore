@@ -45,3 +45,14 @@ $RECYCLE.BIN/
 *.orig
 *.rej
 *~
+
+# ------------------------------------------- documents source du fabricant
+# Photographies du catalogue Royal Tente et pages redressées qui en dérivent.
+# Ce sont les documents d'un tiers : ils servent de référence de travail en
+# local et ne doivent JAMAIS partir dans un dépôt public. Le contenu
+# exploitable est déjà transcrit dans docs/catalogue-produits.md.
+Photo donner/
+docs/media/reference/pages/
+docs/media/reference/*.jpg
+docs/media/reference/*.jpeg
+docs/media/reference/*.png
