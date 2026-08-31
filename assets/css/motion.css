@@ -16,8 +16,8 @@ html.lenis, html.lenis body { height: auto; }
 /* Le masquage est conditionné à la présence du script, qui pose lui-même
    .has-motion sur <html>. Sans ce garde-fou, un CDN injoignable ou une
    erreur JS ferait disparaître les six titres de la page pour de bon. */
-.has-motion [data-split] { visibility: hidden; }
-.has-motion [data-split].is-shown { visibility: visible; }
+.has-motion [data-scroll-reveal] { visibility: hidden; }
+.has-motion [data-scroll-reveal].is-shown { visibility: visible; }
 
 .sp {
   display: inline-block;
@@ -133,7 +133,7 @@ html.lenis, html.lenis body { height: auto; }
    Tout est neutralisé : la page reste complète et lisible.
    ====================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  [data-split] { visibility: visible; }
+  [data-scroll-reveal] { visibility: visible; }
   .sp, .sp__i { display: inline; overflow: visible; padding: 0; margin: 0; }
   [data-tilt]::after, [data-glow]::before { display: none; }
   /* on remet la course à zéro sans toucher au transform : celui-ci porte

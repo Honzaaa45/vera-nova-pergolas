@@ -77,19 +77,28 @@
   }
 
   /* ===================================================================
-     2. RÉVÉLATION TYPOGRAPHIQUE
-     Chaque mot est glissé sous un masque puis remonte, en cascade.
-     Le découpage se fait par mot et non par lettre : sur un titre
-     français, la césure lettre par lettre casse la lecture et fait
-     exploser le nombre de noeuds à animer.
+     2. RÉVÉLATIONS AU DÉFILEMENT
+
+     Un seul attribut, data-scroll-reveal, décliné en variantes :
+
+       h     un titre, révélé mot à mot sous un masque
+       p     un paragraphe, qui monte en fondu
+       a     un fragment court, même mouvement en plus rapide
+       ctn   un conteneur, dont les enfants montent en cascade
+       line  un filet qui se trace
+       slide un bloc qui entre par le côté
+
+     Le découpage des titres se fait par mot et non par lettre : sur du
+     français, la césure lettre par lettre casse la lecture et multiplie
+     les nœuds à animer.
      =================================================================== */
 
   function decouper(el) {
     if (el.dataset.splitDone) return [];
     var mots = [];
 
-    // on ne traverse que les noeuds de texte : le balisage interne
-    // (<em>, <span>) est conservé tel quel
+    // on ne traverse que les nœuds de texte : le balisage interne
+    // (<em>, <span class="script">) est conservé tel quel
     var arbre = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
     var textes = [], n;
     while ((n = arbre.nextNode())) if (n.textContent.trim()) textes.push(n);
@@ -115,23 +124,79 @@
     return mots;
   }
 
-  var titres = Array.prototype.slice.call(document.querySelectorAll('[data-split]'));
+  var reveles = Array.prototype.slice.call(
+    document.querySelectorAll('[data-scroll-reveal]'));
 
   if (REDUCED || !hasST) {
-    titres.forEach(function (el) { el.classList.add('is-shown'); });
+    // Sans script d'animation, tout doit rester lisible : c'est la classe
+    // is-shown qui lève le masquage posé par la feuille de style.
+    reveles.forEach(function (el) { el.classList.add('is-shown'); });
   } else {
-    titres.forEach(function (el) {
-      var mots = decouper(el);
-      if (!mots.length) { el.classList.add('is-shown'); return; }
+    reveles.forEach(function (el) {
+      var type = el.dataset.scrollReveal || 'p';
       el.classList.add('is-shown');
 
-      gsap.set(mots, { yPercent: 115 });
-      gsap.to(mots, {
-        yPercent: 0,
-        duration: 0.9,
-        ease: 'expo.out',
-        stagger: 0.055,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      var declencheur = { trigger: el, start: 'top 88%', once: true };
+
+      if (type === 'h') {
+        var mots = decouper(el);
+        if (!mots.length) return;
+        gsap.set(mots, { yPercent: 118 });
+        gsap.to(mots, {
+          yPercent: 0, duration: .95, ease: 'expo.out', stagger: .05,
+          scrollTrigger: declencheur
+        });
+
+      } else if (type === 'ctn') {
+        // On anime les enfants directs plutôt que le conteneur : la cascade
+        // est ce qui donne le rythme, un bloc entier qui monte d'un coup
+        // paraît lourd.
+        var enfants = Array.prototype.slice.call(el.children);
+        if (!enfants.length) enfants = [el];
+        gsap.set(enfants, { y: 34, autoAlpha: 0 });
+        gsap.to(enfants, {
+          y: 0, autoAlpha: 1, duration: .9, ease: 'expo.out', stagger: .09,
+          scrollTrigger: declencheur
+        });
+
+      } else if (type === 'line') {
+        gsap.fromTo(el, { scaleX: 0 }, {
+          scaleX: 1, duration: 1.1, ease: 'expo.out',
+          transformOrigin: 'left center', scrollTrigger: declencheur
+        });
+
+      } else if (type === 'slide') {
+        gsap.fromTo(el, { x: 60, autoAlpha: 0 }, {
+          x: 0, autoAlpha: 1, duration: 1, ease: 'expo.out',
+          scrollTrigger: declencheur
+        });
+
+      } else {
+        // p et a : le même mouvement, la seconde un peu plus vive
+        gsap.fromTo(el, { y: 26, autoAlpha: 0 }, {
+          y: 0, autoAlpha: 1,
+          duration: type === 'a' ? .7 : .9,
+          ease: 'expo.out', scrollTrigger: declencheur
+        });
+      }
+    });
+  }
+
+  /* ===================================================================
+     2 bis. PARALLAXE SUR LES IMAGES
+     data-parallax donne l'amplitude en pixels. Reprise ici depuis l'ancien
+     module anim.js, supprimé avec la refonte.
+     =================================================================== */
+
+  if (hasST && !REDUCED) {
+    document.querySelectorAll('[data-parallax]').forEach(function (el) {
+      var amp = parseFloat(el.dataset.parallax) || 16;
+      gsap.fromTo(el, { y: amp }, {
+        y: -amp, ease: 'none',
+        scrollTrigger: {
+          trigger: el.closest('section') || el,
+          start: 'top bottom', end: 'bottom top', scrub: .6
+        }
       });
     });
   }

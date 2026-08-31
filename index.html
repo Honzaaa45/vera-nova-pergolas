@@ -29,8 +29,7 @@
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/premium.css">
+<link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/motion.css">
 <script>document.documentElement.classList.add('js')</script>
 
@@ -104,51 +103,62 @@
 
 <a class="skip" href="#contenu">Aller au contenu</a>
 
-<!-- ===================== BARRE HAUTE + DOCK ===================== -->
-<header class="topbar" id="topbar">
-  <div class="topbar__in">
-
-    <a class="brand" href="#top" aria-label="Vera Nova, accueil">
-      <!-- Deux jeux de logos : la barre flotte sur une image sombre en
-           haut de page, puis prend un fond clair une fois réduite. Un
-           seul logo serait invisible dans l'un des deux états. -->
-      <img class="brand__mark brand--sombre" src="assets/img/logo-mark.png" alt="" width="537" height="333" decoding="async">
-      <img class="brand__word brand--sombre" src="assets/img/logo-word.png" alt="Vera Nova" width="1078" height="136" decoding="async">
-      <img class="brand__mark brand--clair" src="assets/img/logo-mark-light.png" alt="" width="537" height="333" decoding="async">
-      <img class="brand__word brand--clair" src="assets/img/logo-word-light.png" alt="" width="1078" height="136" decoding="async">
-    </a>
-
-    <nav class="dock" id="dock" aria-label="Navigation des sections">
-      <div class="dock__list" id="dock-list">
-        <span class="dock__pill" id="dock-pill" aria-hidden="true"></span>
-        <a class="dock__item" href="#top"><i class="ph ph-house" aria-hidden="true"></i><span class="dock__tip">Accueil</span></a>
-        <a class="dock__item" href="#principe"><i class="ph ph-sun-horizon" aria-hidden="true"></i><span class="dock__tip">Le principe</span></a>
-        <a class="dock__item" href="#produits"><i class="ph ph-squares-four" aria-hidden="true"></i><span class="dock__tip">Nos produits</span></a>
-        <a class="dock__item" href="#options"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span class="dock__tip">Options</span></a>
-        <a class="dock__item" href="#realisations"><i class="ph ph-images" aria-hidden="true"></i><span class="dock__tip">Réalisations</span></a>
-        <a class="dock__item" href="#deroulement"><i class="ph ph-path" aria-hidden="true"></i><span class="dock__tip">Déroulement</span></a>
-        <a class="dock__item" href="#questions"><i class="ph ph-question" aria-hidden="true"></i><span class="dock__tip">Questions</span></a>
-      </div>
-    </nav>
-
-    <div class="topbar__act">
-      <a class="tel-link" href="tel:+33700000000"><i class="ph ph-phone" aria-hidden="true"></i>07 XX XX XX XX</a>
-      <a class="ihb ihb--sm" href="#contact">
-        <span class="ihb__base">Demander un devis</span>
-        <span class="ihb__hover"><span>Demander un devis</span><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        <span class="ihb__dot" aria-hidden="true"></span>
-      </a>
-      <button type="button" class="dock__toggle" id="dock-toggle" aria-expanded="false" aria-label="Ouvrir le menu" aria-controls="dock-list">
-        <span></span><span></span>
-      </button>
-    </div>
-
+<!-- =====================================================================
+     ÉCRAN D'OUVERTURE
+     Se retire dès que les polices sont prêtes. Le contenu de la page est
+     déjà en dessous : si le script échoue, la page reste consultable.
+     ===================================================================== -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__in">
+    <span class="intro__marque">Vera Nova</span>
+    <span class="intro__lieu script">Loir-et-Cher</span>
+    <span class="intro__rule"></span>
+    <span class="intro__base">Pergolas bioclimatiques</span>
   </div>
+</div>
+
+<!-- =====================================================================
+     BARRE HAUTE
+     Trois liens, rien de plus. Le badge tourne lentement sur lui-même.
+     ===================================================================== -->
+<header class="bar" id="bar">
+  <a class="bar__badge" href="#top" aria-label="Vera Nova, accueil">
+    <svg class="bar__ring" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><path id="cercle" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
+      <text><textPath href="#cercle" startOffset="0">VERA NOVA · PERGOLAS BIOCLIMATIQUES · </textPath></text>
+    </svg>
+    <img class="bar__mark" src="assets/img/logo-mark-light.png" alt="" width="537" height="333" decoding="async">
+  </a>
+
+  <nav class="bar__nav" aria-label="Navigation principale">
+    <a class="bar__lien" href="#gamme"><span>La gamme</span></a>
+    <a class="bar__lien" href="#contact"><span>Demander un devis</span></a>
+    <a class="bar__lien" href="#contact"><span>Contact</span></a>
+  </nav>
+
+  <button type="button" class="bar__burger" id="burger" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span>
+    <span class="sr-only">Ouvrir le menu</span>
+  </button>
 </header>
+
+<div class="menu" id="menu" hidden>
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="#principe"><span class="menu__no">01</span> Le principe</a>
+    <a href="#gamme"><span class="menu__no">02</span> La gamme</a>
+    <a href="#options"><span class="menu__no">03</span> Les options</a>
+    <a href="#secteur"><span class="menu__no">04</span> Notre secteur</a>
+    <a href="#questions"><span class="menu__no">05</span> Questions</a>
+    <a href="#contact"><span class="menu__no">06</span> Demander un devis</a>
+  </nav>
+  <p class="menu__tel"><a href="tel:+33700000000">07 XX XX XX XX</a></p>
+</div>
 
 <main id="contenu">
 
-<!-- ===================== HERO À BANDEAU DÉFILANT ===================== -->
+<!-- =====================================================================
+     1 · OUVERTURE
+     ===================================================================== -->
 <section class="hero" id="top">
 
   <div class="hero__media" id="hero-media">
@@ -159,42 +169,39 @@
          width="1600" height="900" fetchpriority="high" decoding="async">
     <span class="hero__scrim" aria-hidden="true"></span>
 
-    <!-- Pas d'aria-label sur cette liste : un <ul> nu n'accepte pas de nom
-         accessible. Chaque point porte le sien via .sr-only. -->
+    <!-- Chaque produit visible porte sa pastille. Coordonnées exprimées dans
+         l'espace de l'image, projetées par assets/js/pins.js. -->
     <ul class="pins" id="pins">
-      <li class="pin" data-x="33.0" data-y="40.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-platin">
+      <li class="pin" data-x="33" data-y="40">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-platin">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Platin</span>
         </button>
         <div class="pin__tip" id="tip-platin" role="tooltip">
           <p class="pin__cat">Lames orientables</p>
           <p class="pin__nom">Platin</p>
-          <p class="pin__txt">Jusqu’à 6 m de large, et des lames qui s’escamotent sur un côté.</p>
+          <p class="pin__txt">Jusqu'à 6 m de large, et des lames qui s'escamotent sur un côté.</p>
           <a class="pin__lien" href="#produit-platin">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="37.5" data-y="56.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-compact">
+      <li class="pin" data-x="37.5" data-y="56">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-compact">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Compact</span>
         </button>
         <div class="pin__tip" id="tip-compact" role="tooltip">
           <p class="pin__cat">Lames orientables</p>
           <p class="pin__nom">Compact</p>
-          <p class="pin__txt">Des lames qui pivotent jusqu’à 110°, plus que la plupart des systèmes.</p>
+          <p class="pin__txt">Des lames qui pivotent jusqu'à 110°, plus que la plupart des systèmes.</p>
           <a class="pin__lien" href="#produit-compact">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="52.0" data-y="39.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-toiture-vitree">
+      <li class="pin" data-x="52" data-y="39">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-toiture-vitree">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Toiture vitrée</span>
         </button>
         <div class="pin__tip" id="tip-toiture-vitree" role="tooltip">
@@ -204,25 +211,23 @@
           <a class="pin__lien" href="#produit-toiture-vitree">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="62.0" data-y="45.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-pliant">
+      <li class="pin" data-x="62" data-y="45">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-pliant">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Pliant vitré</span>
         </button>
         <div class="pin__tip" id="tip-pliant" role="tooltip">
           <p class="pin__cat">Vitrage manuel</p>
           <p class="pin__nom">Pliant vitré</p>
-          <p class="pin__txt">Les vantaux se replient et s’ouvrent des deux côtés.</p>
+          <p class="pin__txt">Les vantaux se replient et s'ouvrent des deux côtés.</p>
           <a class="pin__lien" href="#produit-pliant">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="73.0" data-y="35.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-guillotine">
+      <li class="pin" data-x="73" data-y="35">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-guillotine">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Guillotine</span>
         </button>
         <div class="pin__tip" id="tip-guillotine" role="tooltip">
@@ -232,11 +237,10 @@
           <a class="pin__lien" href="#produit-guillotine">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="88.0" data-y="31.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-store-banne">
+      <li class="pin" data-x="88" data-y="31">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-store-banne">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Store banne à coffre</span>
         </button>
         <div class="pin__tip" id="tip-store-banne" role="tooltip">
@@ -246,11 +250,10 @@
           <a class="pin__lien" href="#produit-store-banne">Voir la fiche</a>
         </div>
       </li>
-      <li class="pin" data-x="84.0" data-y="51.0">
-        <button type="button" class="pin__btn" aria-expanded="false"
-                aria-controls="tip-carport">
+      <li class="pin" data-x="84" data-y="51">
+        <button type="button" class="pin__btn" aria-expanded="false" aria-controls="tip-carport">
           <span class="pin__halo" aria-hidden="true"></span>
-          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pin__dot"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <span class="sr-only">Carport</span>
         </button>
         <div class="pin__tip" id="tip-carport" role="tooltip">
@@ -263,687 +266,670 @@
     </ul>
   </div>
 
-  <!-- Trois bandes : le titre sur le ciel, la maison libre au milieu pour
-       les points, les appels a l'action sur la pelouse. Un bloc unique
-       recouvrait sept des dix points, qui devenaient incliquables. -->
   <div class="hero__over">
-    <div class="hero__haut">
-      <p class="hero__tag"><span aria-hidden="true"></span> Fabrication sur mesure · Loir-et-Cher</p>
+    <h1 class="hero__titre">
+      <span class="hero__l1" data-scroll-reveal="h">Vera Nova</span>
+      <span class="hero__l2 script" data-scroll-reveal="h">Loir-et-Cher</span>
+    </h1>
 
-      <h1 class="hero__title">
-        <span class="hero__fixed">Votre terrasse,</span>
-        <span class="rot" id="rotate"></span>
-      </h1>
+    <p class="hero__signature">
+      <span class="a-gauche" data-scroll-reveal="a">Votre terrasse,</span>
+      <span class="hero__rot" id="rotate"></span>
+      <span class="a-droite" data-scroll-reveal="a">toute l'année</span>
+    </p>
 
-      <p class="hero__lead">
-        Pergolas bioclimatiques, protections solaires et fermetures vitrées,
-        conçues et posées par notre équipe en <span class="script">Sologne</span>.
+    <p class="hero__aide">Touchez un point sur la maison</p>
+    <a class="hero__desc" href="#principe"><span>Défiler</span></a>
+  </div>
+</section>
+
+<!-- =====================================================================
+     2 · TRANSITION — la phrase qui installe le propos
+     ===================================================================== -->
+<section class="bascule theme-nuit" id="principe">
+  <div class="wrap">
+    <p class="surtitre" data-scroll-reveal="p">Sologne · Val de Loire</p>
+    <h2 class="titre-xl" data-scroll-reveal="h">
+      Un extérieur qu'on habite,<br>d'avril à <span class="script">octobre</span>
+    </h2>
+    <p class="bascule__mot" data-scroll-reveal="p">Trois raisons de nous appeler</p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     3 · TROIS RAISONS
+     ===================================================================== -->
+<section class="raisons theme-nuit">
+  <div class="wrap">
+
+    <article class="raison" data-scroll-reveal="ctn">
+      <p class="raison__no">01</p>
+      <div class="raison__txt">
+        <h3 class="titre-m">Rien n'est standard</h3>
+        <p>
+          Aucune dimension imposée. La structure est calculée pour votre terrasse,
+          sa portée et son exposition — jusqu'à dix mètres sans appui intermédiaire.
+          C'est ce qui distingue une pergola dessinée d'une pergola choisie sur
+          catalogue.
+        </p>
+      </div>
+      <figure class="raison__fig" data-mask>
+        <img src="assets/img/gallery/canopy-acier.webp" alt="Pergola bioclimatique à lames orientables" width="1000" height="750" loading="lazy" decoding="async">
+      </figure>
+    </article>
+
+    <article class="raison" data-scroll-reveal="ctn">
+      <p class="raison__no">02</p>
+      <div class="raison__txt">
+        <h3 class="titre-m">Nos poseurs, pas des sous-traitants</h3>
+        <p>
+          La visite technique, le relevé, la fabrication et la pose passent par les
+          mêmes mains. Personne ne se renvoie la responsabilité quand il faut
+          revenir régler une lame ou reprendre une étanchéité.
+        </p>
+      </div>
+      <figure class="raison__fig" data-mask>
+        <img src="assets/img/gallery/maison-terrasse.webp" alt="Pose d'une structure aluminium sur une terrasse" width="1000" height="750" loading="lazy" decoding="async">
+      </figure>
+    </article>
+
+    <article class="raison" data-scroll-reveal="ctn">
+      <p class="raison__no">03</p>
+      <div class="raison__txt">
+        <h3 class="titre-m">Somfy et Nice, pas une marque blanche</h3>
+        <p>
+          Les moteurs et les automatismes viennent de deux fabricants établis, dont
+          un français. Un capteur de vent ferme la toile sans vous, une application
+          pilote l'ensemble, et les pièces se trouveront encore dans dix ans.
+        </p>
+      </div>
+      <figure class="raison__fig" data-mask>
+        <img src="assets/img/gallery/pergola-guirlandes.webp" alt="Pergola motorisée éclairée en soirée" width="1000" height="750" loading="lazy" decoding="async">
+      </figure>
+    </article>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     4 · LA CITATION
+     ===================================================================== -->
+<section class="citation">
+  <div class="wrap">
+    <blockquote class="citation__txt" data-scroll-reveal="h">
+      La lame orientable fait tout le travail : fermée elle protège de la pluie et
+      reprend la neige, entrouverte elle ventile, ouverte elle rend le ciel.
+    </blockquote>
+    <p class="citation__src" data-scroll-reveal="p">
+      <span>Le principe bioclimatique</span>
+      <span>Vera Nova · Romorantin-Lanthenay</span>
+    </p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     5 · LE PRINCIPE — grand texte
+     ===================================================================== -->
+<section class="concept">
+  <div class="wrap concept__in">
+    <p class="surtitre" data-scroll-reveal="p">Le principe</p>
+    <h2 class="titre-l" data-scroll-reveal="h">
+      Une toiture qu'on règle, sur une structure qui ne bouge pas
+    </h2>
+    <div class="concept__col">
+      <p data-scroll-reveal="p">
+        Des lames en aluminium pivotent sur toute la toiture. Vous réglez l'ombre au
+        degré près, du plein soleil à la fermeture complète. La pluie s'évacue par les
+        chéneaux périphériques et descend dans les poteaux, sans une gouttière visible.
+      </p>
+      <p data-scroll-reveal="p">
+        La structure est en aluminium TS-6063, posée avec une pente de 4 à 12 %. Elle
+        ne rouille pas, ne se repeint pas, et se rince à l'eau claire une à deux fois
+        par an. C'est tout l'entretien.
       </p>
     </div>
+  </div>
 
-    <div class="hero__bas">
+  <figure class="concept__fig" data-mask>
+    <img src="assets/img/gallery/terrasse-piscine-moderne.webp" alt="Terrasse contemporaine abritée par une pergola bioclimatique" width="1600" height="900" loading="lazy" decoding="async" data-parallax="18">
+  </figure>
+</section>
 
-      <div class="hero__cta">
-        <a class="btn btn--solid" href="#contact" data-magnetic="0.28"><span class="mag__in">Étudier mon projet</span></a>
-        <a class="btn" href="#produits" data-magnetic="0.28"><span class="mag__in">Découvrir la gamme</span></a>
+<!-- =====================================================================
+     6 · LE SECTEUR
+     ===================================================================== -->
+<section class="secteur theme-nuit" id="secteur">
+  <div class="wrap">
+    <p class="surtitre" data-scroll-reveal="p">Romorantin-Lanthenay, Loir-et-Cher</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Nous intervenons ici</h2>
+  </div>
+
+  <div class="secteur__carte">
+    <div id="map" class="map" role="application" aria-label="Carte du secteur d'intervention de Vera Nova"></div>
+    <p class="secteur__aide">Faites glisser pour explorer</p>
+  </div>
+
+  <div class="wrap secteur__zones">
+    <p data-scroll-reveal="p"><span>Loir-et-Cher</span><span>Sologne</span><span>Val de Loire</span><span>Cher</span><span>Indre-et-Loire</span></p>
+    <p class="secteur__note" data-scroll-reveal="p">
+      Nous nous déplaçons plus loin pour les projets importants. Appelez-nous pour
+      vérifier votre commune.
+    </p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     7 · LA GAMME — douze systèmes
+     ===================================================================== -->
+<section class="gamme" id="gamme">
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">La gamme</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Douze systèmes,<br>une seule structure</h2>
+    <p class="gamme__chapo" data-scroll-reveal="p">
+      Tout part du même profilé et du même nuancier. Vous choisissez la toiture, puis
+      les fermetures qui vont autour — et l'ensemble se pilote depuis une seule
+      télécommande.
+    </p>
+  </div>
+
+  <div class="wrap gamme__corps">
+    <div class="fam" data-scroll-reveal="ctn">
+      <div class="fam__tete">
+        <p class="fam__no">01</p>
+        <h3 class="fam__titre">Les pergolas</h3>
+        <p class="fam__chapo">Toiture pilotable, adossée ou autoportante</p>
       </div>
-
-      <p class="hero__aide">Touchez un point sur la maison pour voir le système</p>
-    </div>
-  </div>
-
-</section>
-
-<div class="mq" id="marquee">
-    <div class="mq__track" id="marquee-track"></div>
-  </div>
-
-<!-- ============================ LE PRINCIPE ============================ -->
-<section class="principe" id="principe">
-  <div class="wrap">
-    <h2 class="h2" data-split>La lame orientable fait tout le travail.</h2>
-    <p class="lead" data-reveal data-delay="90">
-      Une pergola bioclimatique n'est pas un toit fixe. Ses lames en aluminium pivotent, et c'est
-      ce mouvement qui règle la température, la lumière et la pluie sous la terrasse.
-    </p>
-
-    <div class="states" data-stagger="110">
-      <article class="state" data-tilt="4" data-glow>
-        <i class="ph ph-sun" aria-hidden="true"></i>
-        <b>Lames ouvertes</b>
-        <span>Plein soleil et ventilation naturelle. L'air chaud s'échappe, la terrasse reste respirante.</span>
-      </article>
-      <article class="state" data-tilt="4" data-glow>
-        <i class="ph ph-sun-horizon" aria-hidden="true"></i>
-        <b>Lames inclinées</b>
-        <span>L'ombre portée protège du soleil de midi sans assombrir la pièce qui donne sur la terrasse.</span>
-      </article>
-      <article class="state" data-tilt="4" data-glow>
-        <i class="ph ph-cloud-rain" aria-hidden="true"></i>
-        <b>Lames fermées</b>
-        <span>Toiture étanche. L'eau file dans les chéneaux puis descend dans les poteaux, invisible.</span>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== NOS PRODUITS ====================== -->
-<section class="gamme" id="produits">
-  <div class="wrap">
-    <h2 class="h2" data-split>Douze systèmes, une seule structure.</h2>
-    <p class="lead" data-reveal data-delay="90">
-      Tout part du même profilé aluminium et du même nuancier. Vous choisissez la
-      toiture, puis les fermetures qui vont autour — et l'ensemble se pilote depuis
-      une seule télécommande.
-    </p>
-
-      <div class="gfam">
-        <div class="gfam__tete">
-          <h3 class="gfam__titre">Les pergolas</h3>
-          <p class="gfam__chapo">Structures à toiture pilotable, adossées à la façade ou autoportantes.</p>
-        </div>
-        <div class="gfam__grille" data-stagger="90">
-        <article class="gcard" id="produit-compact" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+      <div class="fam__grille">
+        <article class="sys" id="produit-compact" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/canopy-acier.webp" alt="Pergola bioclimatique à lames orientables adossée à une maison"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Lames orientables</p>
-            <h4 class="gcard__nom">Compact</h4>
-            <p class="gcard__txt">La pergola à lames la plus compacte de la gamme. Les lames pivotent jusqu'à 110 degrés, davantage que la plupart des systèmes du marché, et dégagent largement le ciel sans jamais quitter leur cadre.</p>
-            <dl class="gcard__specs">
-            <div><dt>Largeur maximale</dt><dd>4,5 m</dd></div>
-            <div><dt>Avancée maximale</dt><dd>7,5 m</dd></div>
-            <div><dt>Rotation des lames</dt><dd>110°</dd></div>
-            <div><dt>Toit coulissant</dt><dd>non</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Lames orientables</p>
+            <h3 class="sys__nom">Compact</h3>
+            <p class="sys__txt">La plus compacte de la gamme. Les lames pivotent jusqu'à 110 degrés, davantage que la plupart des systèmes du marché.</p>
+            <dl class="mini">
+              <div><dt>Largeur</dt><dd>4,5 m</dd></div>
+              <div><dt>Avancée</dt><dd>7,5 m</dd></div>
+              <div><dt>Rotation</dt><dd>110°</dd></div>
+              <div><dt>Toit coulissant</dt><dd>non</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-platin" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-platin" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/pergola-guirlandes.webp" alt="Grande pergola bioclimatique éclairée en soirée"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Lames orientables</p>
-            <h4 class="gcard__nom">Platin</h4>
-            <p class="gcard__txt">Le modèle le plus large, dont la toiture ne fait pas que pivoter : les lames s'escamotent et s'empilent sur un côté, découvrant réellement le ciel. Bandeau LED intégré à la poutre périmétrique.</p>
-            <dl class="gcard__specs">
-            <div><dt>Largeur maximale</dt><dd>6 m</dd></div>
-            <div><dt>Avancée maximale</dt><dd>7,5 m</dd></div>
-            <div><dt>Toit coulissant</dt><dd>oui</dd></div>
-            <div><dt>Éclairage</dt><dd>LED intégrées</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Lames orientables</p>
+            <h3 class="sys__nom">Platin</h3>
+            <p class="sys__txt">La toiture ne fait pas que pivoter : les lames s'escamotent sur un côté et découvrent réellement le ciel. LED intégrées.</p>
+            <dl class="mini">
+              <div><dt>Largeur</dt><dd>6 m</dd></div>
+              <div><dt>Avancée</dt><dd>7,5 m</dd></div>
+              <div><dt>Toit coulissant</dt><dd>oui</dd></div>
+              <div><dt>Éclairage</dt><dd>LED</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-oval" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-oval" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/terrasse-piscine-moderne.webp" alt="Pergola autoportante à poteaux de section ovale"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Lames orientables</p>
-            <h4 class="gcard__nom">Oval</h4>
-            <p class="gcard__txt">Poteaux de section ovale intégrant la descente d'eau : aucun tuyau apparent, l'évacuation se fait dans la structure elle-même et se dirige du côté voulu.</p>
-            <dl class="gcard__specs">
-            <div><dt>Rotation des lames</dt><dd>75°</dd></div>
-            <div><dt>Évacuation</dt><dd>intégrée aux poteaux</dd></div>
-            <div><dt>Pose</dt><dd>autoportante ou adossée</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Lames orientables</p>
+            <h3 class="sys__nom">Oval</h3>
+            <p class="sys__txt">Poteaux ovales intégrant la descente d'eau : aucun tuyau apparent, l'évacuation part du côté voulu.</p>
+            <dl class="mini">
+              <div><dt>Rotation</dt><dd>75°</dd></div>
+              <div><dt>Évacuation</dt><dd>dans les poteaux</dd></div>
+              <div><dt>Pose</dt><dd>libre ou adossée</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-toile" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-toile" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/terrasse-couverte.webp" alt="Terrasse couverte par une pergola à toile tendue"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Toile rétractable</p>
-            <h4 class="gcard__nom">Pergola à toile</h4>
-            <p class="gcard__txt">Toile tendue sur rails, repliable en accordéon. C'est la solution des grandes portées : jusqu'à douze mètres de large, avec une silhouette bien plus fine qu'une toiture à lames.</p>
-            <dl class="gcard__specs">
-            <div><dt>Largeur maximale</dt><dd>12 m</dd></div>
-            <div><dt>Avancée maximale</dt><dd>8 à 10 m</dd></div>
-            <div><dt>Entre rails</dt><dd>4 m</dd></div>
-            <div><dt>Systèmes</dt><dd>2, 3 ou 4 rails</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Toile rétractable</p>
+            <h3 class="sys__nom">Pergola à toile</h3>
+            <p class="sys__txt">Toile tendue sur rails, repliable en accordéon. La solution des grandes portées, avec une silhouette bien plus fine.</p>
+            <dl class="mini">
+              <div><dt>Largeur</dt><dd>12 m</dd></div>
+              <div><dt>Avancée</dt><dd>8 à 10 m</dd></div>
+              <div><dt>Entre rails</dt><dd>4 m</dd></div>
+              <div><dt>Rails</dt><dd>2, 3 ou 4</dd></div>
             </dl>
           </div>
         </article>
-        </div>
       </div>
+    </div>
 
-      <div class="gfam">
-        <div class="gfam__tete">
-          <h3 class="gfam__titre">Les fermetures latérales</h3>
-          <p class="gfam__chapo">Ce qui transforme une terrasse couverte en pièce à vivre.</p>
-        </div>
-        <div class="gfam__grille" data-stagger="90">
-        <article class="gcard" id="produit-guillotine" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+    <div class="fam" data-scroll-reveal="ctn">
+      <div class="fam__tete">
+        <p class="fam__no">02</p>
+        <h3 class="fam__titre">Les fermetures</h3>
+        <p class="fam__chapo">Ce qui transforme une terrasse en pièce à vivre</p>
+      </div>
+      <div class="fam__grille">
+        <article class="sys" id="produit-guillotine" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/maison-terrasse.webp" alt="Fermeture vitrée à panneaux coulissants verticaux"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Vitrage motorisé</p>
-            <h4 class="gcard__nom">Guillotine</h4>
-            <p class="gcard__txt">Des panneaux de verre qui montent et descendent, pilotés au moteur. Ils s'arrêtent à n'importe quelle hauteur pour ventiler, et le panneau bas fixe fait office de garde-corps.</p>
-            <dl class="gcard__specs">
-            <div><dt>Vitrage</dt><dd>double, 4+16+4 mm</dd></div>
-            <div><dt>Hauteur</dt><dd>jusqu'à 3 m</dd></div>
-            <div><dt>Largeur</dt><dd>jusqu'à 4 m</dd></div>
-            <div><dt>Commande</dt><dd>motorisée</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Vitrage motorisé</p>
+            <h3 class="sys__nom">Guillotine</h3>
+            <p class="sys__txt">Des panneaux de verre qui montent et descendent au moteur. Ils s'arrêtent à toute hauteur pour ventiler.</p>
+            <dl class="mini">
+              <div><dt>Vitrage</dt><dd>4+16+4 mm</dd></div>
+              <div><dt>Hauteur</dt><dd>3 m</dd></div>
+              <div><dt>Largeur</dt><dd>4 m</dd></div>
+              <div><dt>Commande</dt><dd>motorisée</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-coulissant" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-coulissant" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/lounge-exterieur.webp" alt="Fermeture vitrée coulissante ouvrant sur un jardin"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Vitrage manuel</p>
-            <h4 class="gcard__nom">Coulissant vitré</h4>
-            <p class="gcard__txt">Vantaux vitrés qui glissent à l'horizontale et s'empilent sur le côté. Isolation thermique et phonique une fois fermés, terrasse entièrement ouverte une fois rangés.</p>
-            <dl class="gcard__specs">
-            <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
-            <div><dt>Déplacement</dt><dd>horizontal</dd></div>
-            <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Vitrage manuel</p>
+            <h3 class="sys__nom">Coulissant vitré</h3>
+            <p class="sys__txt">Vantaux qui glissent à l'horizontale et s'empilent sur le côté. Isolation une fois fermés, terrasse ouverte une fois rangés.</p>
+            <dl class="mini">
+              <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
+              <div><dt>Course</dt><dd>horizontale</dd></div>
+              <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-pliant" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-pliant" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/mobilier-blanc-plantes.webp" alt="Vitrage pliant ouvrant une terrasse sur le jardin"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Vitrage manuel</p>
-            <h4 class="gcard__nom">Pliant vitré</h4>
-            <p class="gcard__txt">Même principe que le coulissant, mais les vantaux se replient et peuvent s'ouvrir des deux côtés. La surface de vie couverte gagne d'autant.</p>
-            <dl class="gcard__specs">
-            <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
-            <div><dt>Ouverture</dt><dd>dans les deux sens</dd></div>
-            <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Vitrage manuel</p>
+            <h3 class="sys__nom">Pliant vitré</h3>
+            <p class="sys__txt">Même principe que le coulissant, mais les vantaux se replient et s'ouvrent des deux côtés.</p>
+            <dl class="mini">
+              <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
+              <div><dt>Ouverture</dt><dd>deux sens</dd></div>
+              <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-zip" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-zip" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/terrasse-salon.webp" alt="Store vertical à coulisses latérales sur une terrasse"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Store toile</p>
-            <h4 class="gcard__nom">Zip Screen</h4>
-            <p class="gcard__txt">Toile technique tendue dans deux glissières verticales. Elle coupe le soleil sans supprimer la vue, casse le vent et tient les insectes à distance.</p>
-            <dl class="gcard__specs">
-            <div><dt>Filtration UV</dt><dd>70 à 80 %</dd></div>
-            <div><dt>Coupe-vent</dt><dd>oui</dd></div>
-            <div><dt>Anti-insectes</dt><dd>oui</dd></div>
-            <div><dt>Toiles</dt><dd>14 références</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Store toile</p>
+            <h3 class="sys__nom">Zip Screen</h3>
+            <p class="sys__txt">Toile technique tendue dans deux glissières. Elle coupe le soleil sans supprimer la vue, casse le vent, tient les insectes dehors.</p>
+            <dl class="mini">
+              <div><dt>Filtration UV</dt><dd>70 à 80 %</dd></div>
+              <div><dt>Coupe-vent</dt><dd>oui</dd></div>
+              <div><dt>Anti-insectes</dt><dd>oui</dd></div>
+              <div><dt>Toiles</dt><dd>14 réf.</dd></div>
             </dl>
           </div>
         </article>
-        </div>
       </div>
+    </div>
 
-      <div class="gfam">
-        <div class="gfam__tete">
-          <h3 class="gfam__titre">Les compléments</h3>
-          <p class="gfam__chapo">Ce qui se pose autour, avec la même structure et les mêmes teintes.</p>
-        </div>
-        <div class="gfam__grille" data-stagger="90">
-        <article class="gcard" id="produit-toiture-vitree" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
-            <img src="assets/img/gallery/piscine-table.webp" alt="Auvent à toiture entièrement vitrée reliant maison et jardin"
+    <div class="fam" data-scroll-reveal="ctn">
+      <div class="fam__tete">
+        <p class="fam__no">03</p>
+        <h3 class="fam__titre">Les compléments</h3>
+        <p class="fam__chapo">Même structure, mêmes teintes</p>
+      </div>
+      <div class="fam__grille">
+        <article class="sys" id="produit-toiture-vitree" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
+            <img src="assets/img/gallery/piscine-table.webp" alt="Auvent à toiture vitrée reliant maison et jardin"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Toiture fixe</p>
-            <h4 class="gcard__nom">Toiture vitrée</h4>
-            <p class="gcard__txt">Un auvent entièrement vitré qui garde la lumière tout en abritant. Chéneau intégré sur le pourtour, sans gouttière apparente.</p>
-            <dl class="gcard__specs">
-            <div><dt>Toiture</dt><dd>verre feuilleté</dd></div>
-            <div><dt>Évacuation</dt><dd>chéneau intégré</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Toiture fixe</p>
+            <h3 class="sys__nom">Toiture vitrée</h3>
+            <p class="sys__txt">Un auvent entièrement vitré qui garde la lumière tout en abritant. Chéneau intégré au pourtour.</p>
+            <dl class="mini">
+              <div><dt>Toiture</dt><dd>verre feuilleté</dd></div>
+              <div><dt>Évacuation</dt><dd>chéneau intégré</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-store-banne" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-store-banne" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/terrasse-chauffage.webp" alt="Store banne à coffre déployé au-dessus d'une terrasse"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Store de façade</p>
-            <h4 class="gcard__nom">Store banne à coffre</h4>
-            <p class="gcard__txt">Le coffre referme entièrement la toile quand elle est rangée : ni salissure, ni vieillissement prématuré. Se pose en façade, sans structure au sol.</p>
-            <dl class="gcard__specs">
-            <div><dt>Coffre</dt><dd>intégral</dd></div>
-            <div><dt>Pose</dt><dd>en façade</dd></div>
-            <div><dt>Commande</dt><dd>motorisée</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Store de façade</p>
+            <h3 class="sys__nom">Store banne à coffre</h3>
+            <p class="sys__txt">Le coffre referme entièrement la toile au repos : ni salissure, ni vieillissement prématuré. Pose en façade.</p>
+            <dl class="mini">
+              <div><dt>Coffre</dt><dd>intégral</dd></div>
+              <div><dt>Pose</dt><dd>en façade</dd></div>
+              <div><dt>Commande</dt><dd>motorisée</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-parasol" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-parasol" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/piscine-transats.webp" alt="Parasol déporté à mât latéral au bord d'une piscine"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Protection mobile</p>
-            <h4 class="gcard__nom">Parasol déporté</h4>
-            <p class="gcard__txt">Mât déporté sur le côté, donc aucun pied au milieu de la table. La solution la plus simple quand rien ne peut être fixé au sol.</p>
-            <dl class="gcard__specs">
-            <div><dt>Mât</dt><dd>déporté</dd></div>
-            <div><dt>Pose</dt><dd>posée, sans ancrage</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Protection mobile</p>
+            <h3 class="sys__nom">Parasol déporté</h3>
+            <p class="sys__txt">Mât déporté sur le côté, donc aucun pied au milieu de la table. Le plus simple quand rien ne peut être fixé.</p>
+            <dl class="mini">
+              <div><dt>Mât</dt><dd>déporté</dd></div>
+              <div><dt>Pose</dt><dd>sans ancrage</dd></div>
             </dl>
           </div>
         </article>
-        <article class="gcard" id="produit-carport" data-tilt="4" data-glow>
-          <figure class="gcard__fig" data-mask>
+        <article class="sys" id="produit-carport" data-tilt="4" data-glow>
+          <figure class="sys__fig" data-mask>
             <img src="assets/img/gallery/guirlandes-ville.webp" alt="Abri de voiture en aluminium adossé à une maison"
                  width="1000" height="750" loading="lazy" decoding="async">
           </figure>
-          <div class="gcard__body">
-            <p class="gcard__cat">Abri de voiture</p>
-            <h4 class="gcard__nom">Carport</h4>
-            <p class="gcard__txt">La même structure aluminium, dimensionnée pour abriter une ou deux voitures. Teintes et finitions identiques au reste de la gamme.</p>
-            <dl class="gcard__specs">
-            <div><dt>Caractéristiques</dt><dd>sur demande</dd></div>
+          <div class="sys__corps">
+            <p class="sys__cat">Abri de voiture</p>
+            <h3 class="sys__nom">Carport</h3>
+            <p class="sys__txt">La même structure aluminium, dimensionnée pour abriter une ou deux voitures.</p>
+            <dl class="mini">
+              <div><dt>Détails</dt><dd>sur demande</dd></div>
             </dl>
           </div>
         </article>
-        </div>
-      </div>
-  </div>
-</section>
-
-<!-- ============================ OPTIONS ============================ -->
-<section class="opts" id="options">
-  <div class="wrap">
-    <h2 class="h2" data-split>Ce que vous choisissez, pièce par pièce.</h2>
-    <p class="lead" data-reveal data-delay="90">
-      Rien n'est imposé. Chaque pergola se compose au moment du devis, et nous vous disons
-      ce que chaque choix change, techniquement comme budgétairement, avant de valider.
-    </p>
-
-    <div class="opts__grid" data-stagger="120">
-      <div class="optg" data-glow>
-        <h3><i class="ph ph-house-line" aria-hidden="true"></i> Implantation</h3>
-        <dl>
-          <dt>Adossée</dt><dd>Contre la façade, deux poteaux au sol</dd>
-          <dt>Autoportée</dt><dd>Quatre poteaux, libre au milieu du jardin</dd>
-          <dt>Îlot double</dt><dd>Deux modules accolés pour les grandes largeurs</dd>
-          <dt>Entre murs</dt><dd>Encastrée dans un renfoncement existant</dd>
-        </dl>
-      </div>
-      <div class="optg" data-glow>
-        <h3><i class="ph ph-rows" aria-hidden="true"></i> Toiture</h3>
-        <dl>
-          <dt>Lames orientables</dt><dd>De 0 à 90 degrés, motorisées</dd>
-          <dt>Lames rétractables</dt><dd>Elles se rangent en paquet, ciel totalement dégagé</dd>
-          <dt>Toiture vitrée</dt><dd>Verre feuilleté, avec store intérieur</dd>
-          <dt>Évacuation intégrée</dt><dd>Chéneaux périphériques, descente cachée dans les poteaux</dd>
-        </dl>
-      </div>
-      <div class="optg" data-glow>
-        <h3><i class="ph ph-columns" aria-hidden="true"></i> Fermeture des côtés</h3>
-        <dl>
-          <dt>Store screen ZIP</dt><dd>Coulisses latérales, tient au vent</dd>
-          <dt>Coulissant vitré</dt><dd>Panneaux de verre qui s'empilent</dd>
-          <dt>Brise-vue à lames</dt><dd>Aluminium fixe ou orientable</dd>
-          <dt>Panneau décoratif</dt><dd>Découpe laser, motif au choix</dd>
-        </dl>
-      </div>
-      <div class="optg" data-glow>
-        <h3><i class="ph ph-sliders-horizontal" aria-hidden="true"></i> Confort et pilotage</h3>
-        <dl>
-          <dt>Télécommande</dt><dd>Lames, stores et éclairage sur un seul boîtier</dd>
-          <dt>Capteurs pluie et vent</dt><dd>La pergola se protège toute seule</dd>
-          <dt>Éclairage LED</dt><dd>Intégré aux traverses, sur variateur</dd>
-          <dt>Chauffage infrarouge</dt><dd>Fixé sous le chéneau, pour les soirées fraîches</dd>
-        </dl>
       </div>
     </div>
+  </div>
+</section>
 
-    <p class="opts__note" data-reveal>
-      <i class="ph ph-swatches" aria-hidden="true"></i>
-      Nuancier RAL complet sur la structure, finition mate, satinée ou sablée. Anthracite 7016,
-      blanc 9010 et gris quartz 7039 sont les trois teintes les plus demandées.
+<!-- =====================================================================
+     8 · LA PORTÉE — affirmation technique
+     ===================================================================== -->
+<section class="affirme theme-nuit">
+  <div class="wrap">
+    <h2 class="titre-xl" data-scroll-reveal="h">
+      Jusqu'à <span class="chiffre">10</span> mètres<br>sans un poteau au milieu
+    </h2>
+    <p data-scroll-reveal="p">
+      C'est le profilé de rail qui le permet. Sur une grande terrasse, cela change
+      tout : la table ne contourne pas un appui, et la vue reste entière.
     </p>
   </div>
 </section>
 
-<!-- ============================ RÉALISATIONS ============================ -->
+<!-- =====================================================================
+     9 · LES ÉQUIPEMENTS
+     ===================================================================== -->
+<section class="equip" id="options">
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">Les équipements</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Ce qui se pilote,<br>ce qui s'ajoute</h2>
+  </div>
+
+  <div class="wrap equip__grille" data-scroll-reveal="ctn">
+
+    <article class="equip__i" data-glow>
+      <h3 class="titre-s">Motorisation</h3>
+      <p>
+        Moteurs Somfy et Nice, de 55 à 120 Nm. Télécommande mono ou multicanal :
+        les lames, les stores et les vitrages répondent à la même.
+      </p>
+      <dl class="mini">
+        <div><dt>Couple</dt><dd>55 à 120 Nm</dd></div>
+        <div><dt>Marques</dt><dd>Somfy · Nice</dd></div>
+      </dl>
+    </article>
+
+    <article class="equip__i" data-glow>
+      <h3 class="titre-s">Capteur vent et soleil</h3>
+      <p>
+        La toile se referme seule quand le vent forcit, au seuil que vous réglez.
+        Le capteur suit aussi l'ensoleillement et ferme les lames à votre place.
+      </p>
+      <dl class="mini">
+        <div><dt>Seuil de vent</dt><dd>réglable</dd></div>
+        <div><dt>Déclenchement</dt><dd>automatique</dd></div>
+      </dl>
+    </article>
+
+    <article class="equip__i" data-glow>
+      <h3 class="titre-s">Pilotage à distance</h3>
+      <p>
+        Connexoon depuis un téléphone, une tablette ou un ordinateur. Yubi pour
+        rassembler l'ensemble des automatismes de la maison.
+      </p>
+      <dl class="mini">
+        <div><dt>Applications</dt><dd>Connexoon · Yubi</dd></div>
+        <div><dt>Depuis</dt><dd>partout</dd></div>
+      </dl>
+    </article>
+
+    <article class="equip__i" data-glow>
+      <h3 class="titre-s">Éclairage intégré</h3>
+      <p>
+        Bandeaux LED logés dans la poutre périmétrique, sur variateur. La lumière
+        vient de la structure, aucun luminaire rapporté.
+      </p>
+      <dl class="mini">
+        <div><dt>Intégration</dt><dd>dans la poutre</dd></div>
+        <div><dt>Réglage</dt><dd>variateur</dd></div>
+      </dl>
+    </article>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     10 · LES FINITIONS — nuancier
+     ===================================================================== -->
+<section class="finitions theme-nuit">
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">Les finitions</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Vingt teintes de structure</h2>
+    <p class="gamme__chapo" data-scroll-reveal="p">
+      Aluminium thermolaqué. Les gris ardoise pour disparaître, les bruns pour
+      accompagner une charpente, les blancs pour agrandir. Le nuancier RAL complet
+      reste disponible sur demande.
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="nuancier" id="nuancier" data-scroll-reveal="ctn"></div>
+    <p class="nuancier__note">
+      Les teintes affichées sont une approximation à l'écran. Nous apportons le
+      nuancier physique lors de la visite : un RAL ne se choisit pas sur un écran.
+    </p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     11 · LA FABRICATION
+     ===================================================================== -->
+<section class="fabrique">
+  <div class="wrap fabrique__in">
+    <div class="fabrique__txt">
+      <p class="surtitre" data-scroll-reveal="p">La fabrication</p>
+      <h2 class="titre-l" data-scroll-reveal="h">Aluminium TS-6063,<br>thermolaqué</h2>
+      <p data-scroll-reveal="p">
+        Les profilés sont dimensionnés selon la portée : chéneau de 130 × 140 mm,
+        poteau de 120 × 130 mm, rail permettant jusqu'à dix mètres d'ouverture libre.
+        La pièce basse du poteau, en aluminium moulé, assure à la fois l'ancrage au
+        sol et l'évacuation de l'eau.
+      </p>
+      <p data-scroll-reveal="p">
+        Nos systèmes sont fabriqués en partenariat avec un industriel européen
+        spécialisé, dont nous distribuons la gamme.
+      </p>
+
+      <dl class="fabrique__specs" data-scroll-reveal="ctn">
+        <div><dt>Alliage</dt><dd>TS-6063</dd></div>
+        <div><dt>Pente de pose</dt><dd>4 à 12 %</dd></div>
+        <div><dt>Portée libre</dt><dd>jusqu'à 10 m</dd></div>
+        <div><dt>Finition</dt><dd>thermolaquage</dd></div>
+      </dl>
+    </div>
+
+    <figure class="fabrique__fig" data-mask>
+      <img src="assets/img/gallery/terrasse-couverte.webp" alt="Structure aluminium d'une pergola" width="1000" height="1250" loading="lazy" decoding="async" data-parallax="14">
+    </figure>
+  </div>
+</section>
+
+<!-- =====================================================================
+     12 · LES RÉALISATIONS
+     ===================================================================== -->
 <section class="real" id="realisations">
-  <div class="wrap">
-    <h2 class="h2" data-split>Des terrasses qui se vivent.</h2>
-    <p class="lead" data-reveal data-delay="90">
-      Voici le type d'aménagement que nous réalisons. Nos propres chantiers viendront
-      remplacer ces visuels au fil des poses.
-    </p>
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">En situation</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Ce que ça donne, dehors</h2>
+  </div>
 
-    <div class="grid-real" data-stagger="90">
-      <figure class="rcard rcard--tall" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/terrasse-salon.webp" alt="Salon d'extérieur installé sous une pergola" loading="lazy" decoding="async" data-parallax="14">
-        <figcaption><b>Salon sous pergola</b><span>Vivre dehors comme dans une pièce</span></figcaption>
-      </figure>
-      <figure class="rcard" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/pergola-guirlandes.webp" alt="Pergola habillée de guirlandes lumineuses le soir" loading="lazy" decoding="async" data-parallax="12">
-        <figcaption><b>Éclairage d'ambiance</b><span>LED intégrées et guirlandes</span></figcaption>
-      </figure>
-      <figure class="rcard" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/piscine-transats.webp" alt="Transats au bord d'une piscine à côté d'une terrasse couverte" loading="lazy" decoding="async" data-parallax="12">
-        <figcaption><b>Abord de piscine</b><span>Ombre portée sur l'espace détente</span></figcaption>
-      </figure>
-      <figure class="rcard" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/lounge-exterieur.webp" alt="Espace lounge extérieur avec bar et végétation" loading="lazy" decoding="async" data-parallax="12">
-        <figcaption><b>Espace lounge</b><span>Cuisine et bar couverts</span></figcaption>
-      </figure>
-      <figure class="rcard rcard--wide" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/maison-terrasse.webp" alt="Maison avec une grande terrasse couverte donnant sur le jardin" loading="lazy" decoding="async" data-parallax="14">
-        <figcaption><b>Extension de la maison</b><span>La terrasse prolonge le séjour</span></figcaption>
-      </figure>
-      <figure class="rcard" data-tilt="5" data-glow data-mask>
-        <img src="assets/img/gallery/terrasse-chauffage.webp" alt="Terrasse équipée d'un chauffage d'extérieur" loading="lazy" decoding="async" data-parallax="12">
-        <figcaption><b>Confort d'arrière-saison</b><span>Chauffage infrarouge sous chéneau</span></figcaption>
-      </figure>
-    </div>
+  <div class="real__rail" id="real-rail">
+    <figure class="rcard" data-mask><img src="assets/img/gallery/terrasse-salon.webp" alt="Salon d'extérieur sous une pergola" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>Salon d'extérieur</b><span>La pièce en plus, sans travaux de maçonnerie</span></figcaption></figure>
+    <figure class="rcard" data-mask><img src="assets/img/gallery/piscine-transats.webp" alt="Terrasse au bord d'une piscine" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>Abord de piscine</b><span>De l'ombre portée sur l'espace détente</span></figcaption></figure>
+    <figure class="rcard" data-mask><img src="assets/img/gallery/pergola-guirlandes.webp" alt="Pergola éclairée le soir" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>Le soir</b><span>Bandeaux LED intégrés à la structure</span></figcaption></figure>
+    <figure class="rcard" data-mask><img src="assets/img/gallery/lounge-exterieur.webp" alt="Espace lounge extérieur" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>Coin lounge</b><span>Fermé sur deux côtés par des Zip Screen</span></figcaption></figure>
+    <figure class="rcard" data-mask><img src="assets/img/gallery/maison-terrasse.webp" alt="Maison avec terrasse couverte" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>En adossé</b><span>La pergola prolonge la façade</span></figcaption></figure>
+    <figure class="rcard" data-mask><img src="assets/img/gallery/terrasse-chauffage.webp" alt="Terrasse équipée d'un chauffage extérieur" width="1000" height="750" loading="lazy" decoding="async"><figcaption><b>En hiver</b><span>Chauffage infrarouge sous le chéneau</span></figcaption></figure>
+  </div>
+
+  <p class="real__note wrap">
+    Visuels d'illustration. Nos premiers chantiers sont en cours : nous les
+    publierons ici, photographiés chez nos clients.
+  </p>
+</section>
+
+<!-- =====================================================================
+     13 · LES QUESTIONS
+     ===================================================================== -->
+<section class="faq" id="questions">
+  <div class="wrap gamme__tete">
+    <p class="surtitre" data-scroll-reveal="p">Avant d'appeler</p>
+    <h2 class="titre-l" data-scroll-reveal="h">Les questions qui reviennent</h2>
+  </div>
+
+  <div class="wrap faq__liste">
+    <details class="qa"><summary><span>Faut-il une autorisation d'urbanisme ?</span></summary><div class="qa__r"><p>En général, une déclaration préalable de travaux suffit jusqu'à 20 m² d'emprise au sol. Au-delà, ou en secteur protégé, un permis de construire peut être demandé. Nous vous indiquons la démarche exacte pour votre commune lors de la visite, et nous préparons les pièces graphiques du dossier.</p></div></details>
+    <details class="qa"><summary><span>Résiste-t-elle à la neige et au vent ?</span></summary><div class="qa__r"><p>Oui. Les profilés et l'entraxe des poteaux sont calculés selon la portée et la zone climatique. Lames fermées, la toiture reprend la charge de neige. En cas de rafale, le capteur de vent ouvre les lames automatiquement pour laisser passer l'air et soulager la structure.</p></div></details>
+    <details class="qa"><summary><span>Peut-on poser sur une terrasse déjà carrelée ?</span></summary><div class="qa__r"><p>Dans la grande majorité des cas, oui. Nous vérifions l'épaisseur et la portance de la dalle pendant la visite. Si la dalle ne convient pas, nous vous le disons avant le devis et nous proposons des plots ou des massifs béton.</p></div></details>
+    <details class="qa"><summary><span>Combien de temps entre la commande et la pose ?</span></summary><div class="qa__r"><p>Comptez en moyenne 6 à 10 semaines, le temps de la fabrication sur mesure et du thermolaquage. La pose elle-même prend 1 à 2 jours selon la taille et les options.</p></div></details>
+    <details class="qa"><summary><span>Quel entretien faut-il prévoir ?</span></summary><div class="qa__r"><p>Très peu. Un rinçage à l'eau claire une à deux fois par an sur les lames et les chéneaux, et un contrôle des évacuations à l'automne quand les feuilles tombent. L'aluminium thermolaqué ne rouille pas et ne se repeint pas.</p></div></details>
+    <details class="qa"><summary><span>Pourquoi n'affichez-vous pas vos prix ?</span></summary><div class="qa__r"><p>Parce qu'ils seraient faux. Le prix dépend de la portée, du nombre d'appuis, de la motorisation, des fermetures et de la teinte : deux terrasses de même surface n'aboutissent pas au même devis. Nous préférons venir mesurer, puis vous remettre un devis détaillé ligne par ligne, que vous gardez sans engagement.</p></div></details>
   </div>
 </section>
 
-<!-- ============================ BUDGET ============================ -->
-<section class="budget">
-  <div class="wrap budget__in">
-    <div class="budget__fig" data-reveal="left">
-      <span class="budget__from">étude et devis</span>
-      <b class="budget__free">Gratuits</b>
-      <span class="budget__unit">sans engagement</span>
-    </div>
-    <div class="budget__txt" data-reveal="right" data-delay="120">
-      <h2 class="h2 h2--sm">Pas de tarif au mètre carré, et c'est volontaire.</h2>
-      <p>
-        Aucune de nos pergolas n'est un produit sur étagère. Le prix dépend de la portée,
-        du nombre d'appuis, de la motorisation, des fermetures latérales et de la teinte :
-        deux terrasses de même surface n'aboutissent pas au même devis. Afficher un prix
-        au mètre carré reviendrait à annoncer un chiffre que la visite démentirait.
+<!-- =====================================================================
+     14 · LE DEVIS
+     ===================================================================== -->
+<section class="devis theme-nuit" id="contact">
+  <div class="wrap devis__in">
+
+    <div class="devis__txt">
+      <p class="surtitre" data-scroll-reveal="p">Parlons-en</p>
+      <h2 class="titre-l" data-scroll-reveal="h">Une visite,<br>puis un <span class="script">devis</span></h2>
+      <p data-scroll-reveal="p">
+        Une conversation de dix minutes suffit à cerner ce qui convient à votre
+        terrasse. Nous passons mesurer, puis nous vous remettons un devis détaillé.
+        L'étude ne vous engage à rien.
       </p>
-      <p>
-        Nous préférons venir mesurer, puis vous remettre un devis détaillé, ligne par
-        ligne, que vous gardez sans engagement.
-      </p>
-      <ul class="budget__inc">
-        <li><i class="ph ph-check" aria-hidden="true"></i> Visite technique et relevé sur place</li>
-        <li><i class="ph ph-check" aria-hidden="true"></i> Étude et devis détaillé</li>
-        <li><i class="ph ph-check" aria-hidden="true"></i> Fabrication sur mesure</li>
-        <li><i class="ph ph-check" aria-hidden="true"></i> Livraison, pose et mise en service</li>
+
+      <ul class="devis__coord">
+        <li><span>Téléphone</span><a href="tel:+33700000000">07 XX XX XX XX</a></li>
+        <li><span>Second numéro</span><a href="tel:+33600000000">06 XX XX XX XX</a></li>
+        <li><span>Courriel</span><a href="mailto:contact@veranova.fr">contact@veranova.fr</a></li>
+        <li><span>Atelier</span><a href="https://www.google.com/maps/search/?api=1&amp;query=5+Rue+Ren%C3%A9+Bonnet+41200+Romorantin-Lanthenay" target="_blank" rel="noopener">5 rue René Bonnet<br>41200 Romorantin-Lanthenay</a></li>
       </ul>
     </div>
-  </div>
 
-  <div class="wrap">
-    <div class="eng__grid" data-stagger="110">
-      <div class="eng__i">
-        <!-- À CONFIRMER : durée exacte de la garantie structure -->
-        <b><span data-count="10" data-suffix=" ans">0</span></b><span>Garantie sur la structure aluminium et le thermolaquage</span>
+    <form class="devis__form" id="form" novalidate>
+      <div class="champ"><label for="f-nom">Nom</label><input id="f-nom" name="nom" type="text" autocomplete="name" required></div>
+      <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" required></div>
+      <div class="champ"><label for="f-mail">Courriel</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+      <div class="champ"><label for="f-ville">Commune</label><input id="f-ville" name="ville" type="text" autocomplete="address-level2"></div>
+      <div class="champ champ--large"><label for="f-sys">Ce qui vous intéresse</label>
+        <select id="f-sys" name="systeme">
+          <option value="">Je ne sais pas encore</option>
+          <option>Pergola bioclimatique Compact</option>
+          <option>Pergola bioclimatique Platin</option>
+          <option>Pergola Oval</option>
+          <option>Pergola à toile</option>
+          <option>Guillotine</option>
+          <option>Coulissant vitré</option>
+          <option>Pliant vitré</option>
+          <option>Zip Screen</option>
+          <option>Toiture vitrée</option>
+          <option>Store banne à coffre</option>
+          <option>Parasol déporté</option>
+          <option>Carport</option>
+        </select>
       </div>
-      <div class="eng__i">
-        <!-- À CONFIRMER : durée exacte de la garantie motorisation -->
-        <b><span data-count="5" data-suffix=" ans">0</span></b><span>Garantie sur la motorisation et l'électronique</span>
-      </div>
-      <div class="eng__i">
-        <b>Sur mesure</b><span>Aucune dimension standard imposée, chaque pergola est calculée pour son emplacement</span>
-      </div>
-      <div class="eng__i">
-        <b>Équipe intégrée</b><span>La pose est faite par nos poseurs, jamais sous-traitée</span>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="champ champ--large"><label for="f-msg">Votre projet</label><textarea id="f-msg" name="message" rows="4" placeholder="Dimensions approximatives, exposition, ce que vous imaginez…"></textarea></div>
 
-<!-- ============================ DÉROULEMENT ============================ -->
-<section class="steps" id="deroulement">
-  <div class="wrap">
-    <h2 class="h2" data-split>De l'appel à la première soirée dehors.</h2>
-    <ol class="tl" id="tl">
-      <li class="tl__i">
-        <h3>Nous venons mesurer</h3>
-        <p>Visite sur place, relevé des dimensions, orientation, contraintes de façade et d'évacuation. Gratuit et sans engagement.</p>
-      </li>
-      <li class="tl__i">
-        <h3>Vous recevez le projet chiffré</h3>
-        <p>Plan coté, teinte, options et prix ferme. Nous passons le devis ensemble et nous ajustons jusqu'à ce qu'il vous convienne.</p>
-      </li>
-      <li class="tl__i">
-        <h3>Votre pergola part en fabrication</h3>
-        <p>Profilés coupés et thermolaqués à vos dimensions. Rien n'est standard, rien n'est recoupé sur le chantier.</p>
-      </li>
-      <li class="tl__i">
-        <h3>Nous posons et nous réglons</h3>
-        <p>Pose par notre équipe, mise en service de la motorisation et des capteurs, puis prise en main de la télécommande avec vous.</p>
-      </li>
-    </ol>
-  </div>
-</section>
+      <!-- Piège à robots : un humain ne remplit jamais ce champ, invisible. -->
+      <div class="pot"><label for="f-pot">Ne remplissez pas ce champ</label><input id="f-pot" name="website" type="text" tabindex="-1" autocomplete="off"></div>
 
-<!-- ============================ TÉMOIGNAGES ============================
-     Alimentée par assets/data/temoignages.json. Ce fichier part vide et la
-     section reste masquée : aucun avis n'est inventé. Voir README.md.     -->
-<section class="avis" id="avis" hidden>
-  <div class="wrap">
-    <h2 class="h2" data-split>Ce que disent nos clients.</h2>
-    <div class="avis__cols" id="avis-cols"></div>
-  </div>
-</section>
+      <button class="btn btn--solid" type="submit" data-magnetic="0.25"><span class="mag__in">Envoyer ma demande</span></button>
+      <p class="devis__etat" id="form-etat" role="status" aria-live="polite"></p>
+    </form>
 
-<!-- ============================ QUESTIONS ============================ -->
-<section class="faq" id="questions">
-  <div class="wrap wrap--narrow">
-    <h2 class="h2" data-split>Les questions qu'on nous pose.</h2>
-    <div class="acc" id="acc" data-stagger="60">
-      <details class="acc__i">
-        <summary>Faut-il une autorisation d'urbanisme ?</summary>
-        <div class="acc__c"><p>En général, une déclaration préalable de travaux suffit jusqu'à 20 m² d'emprise au sol. Au-delà, ou en secteur protégé, un permis de construire peut être demandé. Nous vous indiquons la démarche exacte pour votre commune lors de la visite, et nous préparons les pièces graphiques du dossier.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Une pergola bioclimatique résiste-t-elle à la neige et au vent ?</summary>
-        <div class="acc__c"><p>Oui. Les profilés et l'entraxe des poteaux sont calculés selon la portée et la zone climatique. Lames fermées, la toiture reprend la charge de neige. En cas de rafale, le capteur de vent ouvre les lames automatiquement pour laisser passer l'air et soulager la structure.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Peut-on l'installer sur une terrasse déjà carrelée ?</summary>
-        <div class="acc__c"><p>Dans la grande majorité des cas, oui. Nous vérifions l'épaisseur et la portance de la dalle pendant la visite. Si la dalle ne convient pas, nous vous le disons avant le devis et nous proposons des plots ou des massifs béton.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Combien de temps entre la commande et la pose ?</summary>
-        <div class="acc__c"><p>Comptez en moyenne 6 à 10 semaines, le temps de la fabrication sur mesure et du thermolaquage. La pose elle-même prend 1 à 2 jours selon la taille et les options.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Quel entretien faut-il prévoir ?</summary>
-        <div class="acc__c"><p>Très peu. Un rinçage à l'eau claire une à deux fois par an sur les lames et les chéneaux, et un contrôle des évacuations à l'automne quand les feuilles tombent. L'aluminium thermolaqué ne rouille pas et ne se repeint pas.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Vous êtes une jeune entreprise, quelles garanties j'ai ?</summary>
-        <div class="acc__c"><p>Vera Nova est récente, et nous préférons le dire que le cacher. Concrètement : les profilés et la motorisation viennent de fabricants établis et gardent leur garantie constructeur, le devis est ferme et détaillé ligne par ligne, et vous ne réglez le solde qu'après la mise en service. Venez voir la structure au 5 rue René Bonnet avant de vous décider.</p></div>
-      </details>
-      <details class="acc__i">
-        <summary>Intervenez-vous en dehors du Loir-et-Cher ?</summary>
-        <div class="acc__c"><p>Oui. Nous rayonnons depuis Romorantin-Lanthenay sur toute la Sologne et le Val de Loire, le Cher et l'Indre-et-Loire. Appelez-nous pour vérifier votre secteur, nous nous déplaçons plus loin pour les projets importants.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ CONTACT ============================ -->
-<section class="contact" id="contact">
-  <div class="wrap contact__grid">
-
-    <div class="contact__form" data-reveal="left">
-      <h2 class="h2">Parlons de votre terrasse.</h2>
-      <p class="lead">
-        Décrivez votre projet en deux lignes. Nous vous rappelons pour convenir d'une visite,
-        et le devis qui suit est gratuit.
-      </p>
-
-      <form id="form" novalidate>
-        <!-- Piège à robots : invisible et hors du parcours clavier. Un
-             humain ne le remplit jamais, un robot le remplit presque
-             toujours. Le formulaire est alors abandonné en silence. -->
-        <div class="pot" aria-hidden="true">
-          <label for="f-site">Ne pas remplir</label>
-          <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="f2">
-          <div class="field">
-            <label for="f-nom">Nom et prénom</label>
-            <input id="f-nom" name="nom" type="text" autocomplete="name" required>
-            <p class="err" data-for="f-nom"></p>
-          </div>
-          <div class="field">
-            <label for="f-tel">Téléphone</label>
-            <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required>
-            <p class="err" data-for="f-tel"></p>
-          </div>
-        </div>
-
-        <div class="f2">
-          <div class="field">
-            <label for="f-mail">E-mail</label>
-            <input id="f-mail" name="email" type="email" autocomplete="email" required>
-            <p class="err" data-for="f-mail"></p>
-          </div>
-          <div class="field">
-            <label for="f-cp">Code postal</label>
-            <input id="f-cp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="5" required>
-            <p class="err" data-for="f-cp"></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="f-type">Ce qui vous intéresse</label>
-          <select id="f-type" name="type">
-            <option>Pergola bioclimatique</option>
-            <option>Pergola occultante</option>
-            <option>Fermeture vitrée</option>
-            <option>Je ne sais pas encore</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="f-msg">Votre projet</label>
-          <textarea id="f-msg" name="message" rows="4" placeholder="Dimensions approximatives, adossée ou autoportée, délai souhaité."></textarea>
-          <p class="hint">Une photo de la terrasse aide beaucoup. Vous pourrez nous l'envoyer par retour d'e-mail.</p>
-        </div>
-
-        <button class="ihb ihb--full" data-magnetic="0.18" type="submit" id="submit">
-          <span class="ihb__base">Demander un devis</span>
-          <span class="ihb__hover"><span>Demander un devis</span><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-          <span class="ihb__dot" aria-hidden="true"></span>
-        </button>
-        <p class="form__state" id="form-state" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-
-    <aside class="contact__side" data-reveal="right" data-delay="120">
-      <div class="map">
-        <div class="map__canvas" id="map-canvas" role="application" aria-label="Carte de l'atelier Vera Nova"></div>
-        <div class="map__card">
-          <p class="map__addr">
-            <b>5 Rue René Bonnet</b>
-            41200 Romorantin-Lanthenay
-          </p>
-          <div class="map__act">
-            <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/search/?api=1&query=5+Rue+Ren%C3%A9+Bonnet%2C+41200+Romorantin-Lanthenay">
-              <i class="ph ph-map-trifold" aria-hidden="true"></i> Ouvrir dans Maps
-            </a>
-            <a class="btn btn--solid btn--sm" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/dir/?api=1&destination=5+Rue+Ren%C3%A9+Bonnet%2C+41200+Romorantin-Lanthenay">
-              <i class="ph ph-navigation-arrow" aria-hidden="true"></i> Itinéraire
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="phones">
-        <a class="phone" data-glow href="tel:+33700000000">
-          <i class="ph ph-phone-call" aria-hidden="true"></i>
-          <span><b>07 XX XX XX XX</b>Appeler l'atelier</span>
-        </a>
-        <a class="phone" data-glow href="tel:+33600000000">
-          <i class="ph ph-phone" aria-hidden="true"></i>
-          <span><b>06 XX XX XX XX</b>Second numéro</span>
-        </a>
-      </div>
-
-      <p class="zone">
-        <i class="ph ph-crosshair" aria-hidden="true"></i>
-        Nous intervenons en Loir-et-Cher, Sologne, Val de Loire, Cher et Indre-et-Loire.
-      </p>
-    </aside>
   </div>
 </section>
 
 </main>
 
-<!-- ============================ FOOTER ============================ -->
-<footer class="foot">
-  <div class="wrap foot__in">
-    <div class="foot__brand">
-      <img src="assets/img/logo-full-light.png" alt="Vera Nova, plus qu'un extérieur, un art de vivre." width="1085" height="606" decoding="async" loading="lazy">
+<!-- =====================================================================
+     PIED DE PAGE
+     ===================================================================== -->
+<footer class="pied theme-sombre">
+  <div class="wrap pied__in">
+    <a class="pied__top" href="#top"><span>Revenir en haut</span></a>
+
+    <div class="pied__marque">
+      <img src="assets/img/logo-full-light.png" alt="Vera Nova" width="1078" height="272" loading="lazy" decoding="async">
+      <p class="script pied__script">Loir-et-Cher</p>
     </div>
-    <div class="foot__cols">
-      <div>
-        <h4>Produits</h4>
-        <a href="#produits">Pergola bioclimatique</a>
-        <a href="#produits">Pergola occultante</a>
-        <a href="#produits">Fermeture vitrée</a>
-        <a href="#options">Options et coloris</a>
-      </div>
-      <div>
-        <h4>En savoir plus</h4>
-        <a href="#principe">Le principe</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#deroulement">Déroulement</a>
-        <a href="#questions">Questions</a>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="tel:+33700000000">07 XX XX XX XX</a>
-        <a href="tel:+33600000000">06 XX XX XX XX</a>
-        <!-- À COMPLÉTER : adresse e-mail professionnelle -->
-        <a href="mailto:contact@veranova.fr">contact@veranova.fr</a>
-        <span>5 Rue René Bonnet<br>41200 Romorantin-Lanthenay</span>
-      </div>
+
+    <div class="pied__cols">
+      <div><span>Téléphone</span><a href="tel:+33700000000">07 XX XX XX XX</a><a href="tel:+33600000000">06 XX XX XX XX</a></div>
+      <div><span>Atelier</span><p>5 rue René Bonnet<br>41200 Romorantin-Lanthenay</p></div>
+      <div><span>Secteur</span><p>Loir-et-Cher, Sologne, Val de Loire, Cher, Indre-et-Loire</p></div>
     </div>
-  </div>
-  <div class="wrap foot__bar">
-    <p>&copy; <span id="year">2026</span> Vera Nova. Tous droits réservés.</p>
-    <p class="foot__legal">
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="confidentialite.html">Confidentialité</a>
-      <a href="#top">Haut de page</a>
-    </p>
+
+    <div class="pied__bas">
+      <p>Vera Nova · © 2026 Tous droits réservés</p>
+      <p><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></p>
+    </div>
   </div>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script src="assets/js/text-rotate.js" defer></script>
-<script src="assets/js/hero-marquee.js" defer></script>
-<script src="assets/js/dock.js" defer></script>
-<script src="assets/js/anim.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/nuancier.js" defer></script>
 <script src="assets/js/map.js" defer></script>
 <script src="assets/js/main.js" defer></script>
-<script src="assets/js/premium.js" defer></script>
 
-<!-- Couche d'interactions : defilement fluide, revelations, magnetisme.
-     Lenis et GSAP sont charges avant motion.js, qui les detecte et
-     degrade proprement s'ils manquent. -->
+<!-- Défilement fluide et animations. Chargés en CDN, sans étape de build. -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/pins.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
+
 </body>
 </html>
