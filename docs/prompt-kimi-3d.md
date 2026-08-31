@@ -1,113 +1,151 @@
-# Prompt à donner à Kimi — scène 3D interactive
+# Du catalogue au modèle 3D — la marche à suivre
 
-## Image à joindre
+Trois étapes, dans cet ordre. Chacune produit l'entrée de la suivante.
 
-**Une seule : `docs/media/reference/vue-ensemble-gamme.jpg`**
-
-C'est la vue d'ensemble du catalogue, que j'ai redressée, recadrée et passée en
-16:9. Les dix produits y sont légendés et lisibles — c'est exactement ce qu'il
-faut pour que Kimi comprenne la composition attendue.
-
-> **Important sur la formulation.** Le prompt ci-dessous demande de *s'inspirer*
-> de la composition, pas de reproduire le rendu. Cette image appartient au
-> fabricant turc : demander une copie fidèle produirait une œuvre dérivée que
-> vous ne pourriez pas publier. Une maison générique portant les mêmes types de
-> produits est à la fois plus sûre et plus utile, puisqu'elle vous appartiendra.
-
-N'envoyez pas les autres photos : elles sont illisibles une fois réduites et
-n'apporteront rien au modèle.
+```
+photo du catalogue  →  ①  image nettoyée  →  ②  image sans étiquettes  →  ③  modèle 3D
+   (téléphone)          recadrée, redressée      plus aucun texte           Kimi + Three.js
+```
 
 ---
 
-## Le prompt
+## ① C'est déjà fait
 
-Copiez tout ce qui suit.
+`docs/media/reference/vue-ensemble-gamme.jpg` — la double page redressée,
+recadrée au format 16:9, sans la main ni le clavier. C'est **ce fichier** qui
+sert d'entrée à l'étape suivante, pas la photo brute du téléphone. Autrement
+l'IA doit régler deux problèmes difficiles d'un coup, et elle en rate un.
 
 ---
 
-Tu es développeur front-end spécialisé en WebGL et en interfaces interactives.
+## ② Effacer toutes les étiquettes
 
-**Contexte.** Je construis le site vitrine d'un poseur français de pergolas
-bioclimatiques. Le site existant est en HTML, CSS et JavaScript natifs,
-**sans aucune étape de build** et sans framework. Cette contrainte n'est pas
-négociable : le propriétaire du site n'est pas développeur et doit pouvoir
-ouvrir un fichier et le modifier.
+**Outil :** Gemini, ou tout éditeur d'image par IA. Joignez
+`vue-ensemble-gamme.jpg` et collez ceci.
 
-**Ce que je veux.** Une scène 3D interactive d'une maison contemporaine
-équipée des différents produits de la gamme. Au survol d'un produit, la caméra
-s'anime en douceur pour cadrer cet endroit de la maison, et une étiquette
-apparaît avec le nom du produit. Un clic déclenche un évènement que je pourrai
-brancher sur l'ouverture d'une fiche produit.
+```
+Retire tous les éléments graphiques ajoutés par-dessus cette illustration
+d'architecture, pour ne laisser que la scène elle-même.
 
-**Inspire-toi de la composition de l'image jointe** — l'implantation des
-produits autour de la maison, l'angle de vue général — mais **ne cherche pas à
-reproduire ce rendu.** Construis une maison générique, en volumes simples et
-propres. L'image sert de plan d'implantation, pas de modèle à copier.
+À effacer complètement :
+- Tous les mots en majuscules posés sur le ciel et sur la pelouse :
+  UMBRELLA, PLATIN, ZIP SCREEN, COMPACT, OVAL PERGOLA, GLASS ROOF,
+  SLIDING GLASS, GUILLOTINE, CASSETTE AWNING, PERGOLA.
+- Toutes les lignes pointillées et toutes les petites flèches.
+- Toutes les pastilles de couleur (vertes, orange, violettes, jaunes, roses).
+- Le texte manuscrit en bas à droite.
+- Les quatre pictogrammes ronds en haut à gauche.
+- Le numéro de page.
+- La pliure verticale au centre de l'image, ainsi que les deux taches de
+  reflet lumineux sur la pelouse.
 
-**Les dix éléments à placer et à rendre survolables :**
+À reconstituer sous les éléments effacés :
+- Le ciel bleu dégradé, sans raccord visible.
+- La pelouse, la végétation et les arbres, en prolongeant naturellement les
+  textures voisines.
 
-| Identifiant | Étiquette française | Emplacement |
+À conserver strictement intact :
+- La maison et toute son architecture.
+- Toutes les pergolas, stores, vitrages et structures en aluminium.
+- La voiture, le mobilier de jardin, la terrasse en bois, l'allée.
+- Le cadrage, les proportions, les couleurs et la lumière.
+
+Résultat attendu : la même illustration, propre, sans aucun texte ni
+annotation, comme un rendu d'architecte d'origine. Haute résolution.
+```
+
+**Si le résultat n'est pas net du premier coup**, relancez en ajoutant :
+`Il reste du texte visible ici : [décrivez l'endroit]. Efface-le et
+reconstitue le fond.` Deux ou trois allers-retours sont normaux.
+
+> **Sur la perfection.** Cette image sert de **plan d'implantation pour Kimi**,
+> pas de visuel pour le site. Kimi a besoin de comprendre où se trouve chaque
+> produit, pas de pixels irréprochables. Ne passez pas deux heures dessus :
+> dès que les étiquettes ont disparu et que la scène est lisible, c'est bon.
+
+---
+
+## ③ Le modèle 3D
+
+Votre démonstration **Villa Ravine** montre exactement ce dont Kimi est
+capable, et confirme que l'approche est compatible avec le site :
+
+| Ce que fait Villa Ravine | Verdict |
+|---|---|
+| Three.js 0.166 chargé en `importmap` depuis unpkg | ✅ aucun build nécessaire |
+| Géométrie générée en code, aucun fichier 3D à charger | ✅ |
+| 338 000 triangles à 58 images/seconde | ✅ fluide |
+| 64 Ko de code, plus 260 Ko pour Three.js | ✅ dans le budget |
+| Points de vue prédéfinis, heure de la journée, calques | ✅ exactement le principe voulu |
+
+Le prompt à donner à Kimi, en joignant **l'image nettoyée de l'étape ②** :
+
+---
+
+Construis un modèle 3D temps réel du même type que « Villa Ravine », dans le
+même esprit et avec la même qualité d'exécution.
+
+**Le sujet.** La maison de l'image jointe, avec l'ensemble de ses protections
+solaires extérieures. Inspire-toi de l'implantation et de l'angle de vue de
+l'image ; ce n'est pas une copie à faire au pixel près, c'est un plan
+d'implantation.
+
+**Les dix éléments à modéliser et à rendre sélectionnables**, chacun avec son
+identifiant et son étiquette française :
+
+| Identifiant | Étiquette | Emplacement sur l'image |
 |---|---|---|
-| `compact` | Pergola bioclimatique Compact | terrasse latérale, rez-de-chaussée |
-| `platin` | Pergola bioclimatique Platin | grande terrasse arrière |
+| `compact` | Pergola bioclimatique Compact | terrasse latérale gauche, rez-de-chaussée |
+| `platin` | Pergola bioclimatique Platin | grande terrasse, corps de bâtiment gauche |
 | `oval` | Pergola Oval | jonction entre les deux corps de bâtiment |
-| `pergola` | Pergola à toile | jardin, en autoportant |
+| `pergola` | Pergola à toile | jardin, autoportante, à droite |
 | `zip` | Store Zip Screen | façade de la terrasse latérale |
-| `guillotine` | Vitrage Guillotine | étage, façade principale |
-| `sliding` | Coulissant vitré | étage, angle |
-| `glassroof` | Toiture vitrée | passage entre maison et jardin |
-| `cassette` | Store banne coffre | façade droite, à l'étage |
+| `guillotine` | Vitrage Guillotine | étage, façade droite |
+| `sliding` | Coulissant vitré | étage, angle du corps droit |
+| `glassroof` | Toiture vitrée | passage vitré au centre |
+| `cassette` | Store banne à coffre | façade droite, à l'étage |
 | `umbrella` | Parasol déporté | jardin, à gauche |
 
-**Contraintes techniques, à respecter strictement :**
+**Les interactions.** Au survol d'un élément, la caméra s'anime vers un
+cadrage rapproché et une étiquette apparaît. Un clic émet un évènement
+`produit:selection` portant l'identifiant, que je branche sur mes fiches
+produit. Une liste de points de vue latérale permet d'y aller directement,
+comme dans Villa Ravine.
 
-- Three.js importé depuis un CDN en module ES, via un `importmap`. Aucun
-  bundler, aucun `npm install`, aucun fichier à compiler.
-- Livre exactement deux fichiers : une page `demo.html` autonome et un module
-  `scene.js` commenté en français.
-- Géométrie construite en code — `BoxGeometry`, `ExtrudeGeometry`, etc. Aucun
-  fichier `.glb` ou `.obj` à télécharger.
-- Poids total du JavaScript sous **600 Ko**, temps d'affichage sous 2 secondes
-  sur un ordinateur portable courant.
-- Sur mobile et sur écran tactile : le survol n'existe pas, remplace-le par un
-  appui. Réduis la qualité de rendu et le nombre de lumières.
-- Respecte `prefers-reduced-motion` : si l'utilisateur a réduit les animations,
-  la caméra se déplace instantanément au lieu de s'animer.
-- **Prévois une solution de repli** si WebGL est indisponible : affiche une
-  image fixe avec des zones cliquables positionnées en pourcentages, qui
-  déclenchent les mêmes évènements. Le site ne doit jamais afficher un cadre
-  vide.
-- Accessibilité : chaque point d'intérêt doit être atteignable au clavier par
-  tabulation, avec un nom accessible. Ne piège pas le focus dans le canevas.
-- Expose une API simple : `scene.focus('platin')`, `scene.reset()`, et un
-  évènement `produit:selection` portant l'identifiant, pour que je puisse
-  brancher mes fiches produit.
+**Les commandes utiles à garder :** heure de la journée, orbite automatique,
+et des bascules pour masquer la végétation ou le mobilier.
 
-**Palette :** accent rouge `#D80110`, anthracite `#2D3740`, fond blanc cassé
-`#F4F1EB`. Structures des pergolas en gris anthracite.
+**Les contraintes techniques :**
 
-**Ce que je ne veux pas :** pas de React, pas de TypeScript, pas de
-`package.json`, pas de post-processing lourd, pas de contrôles orbitaux libres
-— la caméra reste sur des positions que tu définis.
+- Three.js en `importmap` depuis un CDN, exactement comme Villa Ravine.
+  Aucun `npm install` à faire de mon côté.
+- Géométrie construite en code. Aucun fichier `.glb` ou `.obj` externe.
+- Sous 400 Ko de code, hors Three.js.
+- Sur écran tactile, le survol n'existe pas : remplace-le par un appui, et
+  baisse la qualité de rendu.
+- Respecte `prefers-reduced-motion` : la caméra se déplace alors sans
+  animation.
+- **Prévois un repli si WebGL est indisponible** : une image fixe avec des
+  zones cliquables en pourcentages, déclenchant les mêmes évènements. Le site
+  ne doit jamais afficher un cadre vide.
+- Chaque point d'intérêt doit être atteignable au clavier, avec un nom
+  accessible. Ne piège pas le focus dans le canevas.
+- Expose `scene.focus('platin')` et `scene.reset()`.
 
-Commente le code en français, en expliquant les choix plutôt que la syntaxe.
-Termine par les étapes d'intégration, numérotées.
+**Palette :** structures en gris anthracite RAL 7016, accent rouge `#D80110`,
+fond blanc cassé `#F4F1EB`. Maison à enduit clair, terrasse en bois gris,
+végétation de climat tempéré français — pas de palmiers.
+
+Commente le code en français. Termine par les étapes d'intégration, numérotées.
 
 ---
 
-## Avant de lancer Kimi, une remarque
+## Ce que je ferai ensuite
 
-L'effet que vous décrivez — survoler une zone, zoomer dessus — **ne nécessite
-pas de 3D.** Une image large en 16:9 avec des zones cliquables et une animation
-de zoom en CSS produit exactement la même sensation, pèse quelques dizaines de
-kilo-octets au lieu de six cents, fonctionne partout, et se modifie en changeant
-une image.
+Quand Kimi vous aura livré le modèle, envoyez-le-moi. Je m'occupe de :
 
-La 3D apporte autre chose : la possibilité de tourner autour, de voir les lames
-s'ouvrir réellement, de changer la teinte en direct. Si c'est cela que vous
-visez, elle se justifie pleinement. Si vous vouliez surtout le zoom au survol,
-dites-le-moi et je vous le construis directement, sans passer par Kimi ni par
-Three.js.
-
-Dans tous les cas, gardez le repli en tête : c'est lui qui fera tourner le site
-sur le téléphone d'un client en zone blanche.
+1. l'intégrer dans la page sans casser la couche d'animation existante ;
+2. brancher `produit:selection` sur les douze fiches produit déjà en place ;
+3. vérifier le repli sans WebGL, le clavier et le mobile ;
+4. mesurer le coût réel au chargement, et le charger à la demande plutôt qu'au
+   démarrage si nécessaire.
