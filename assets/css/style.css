@@ -408,53 +408,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* 230vh pour trois produits : assez pour que la révélation au geste se
    sente, sans transformer la section en tunnel */
-.prod__track{position:relative;height:230vh}
-.prod__pin{
-  position:sticky;top:0;height:100dvh;
-  display:grid;grid-template-columns:24% 45% 31%;
-  grid-template-rows:minmax(0,1fr);
-  transition:grid-template-columns .85s var(--ease-lay);
-}
-.prod__pin.is-detail{grid-template-columns:0% 28% 72%}
-.prod__left,.prod__stage,.prod__right{min-height:0;min-width:0}
 
-.prod__left{background:var(--paper);border-right:1px solid var(--line);overflow:hidden;display:flex;align-items:center}
-.prod__left-in{width:100%;min-width:240px;padding:clamp(1.5rem,3vw,2.75rem);padding-top:calc(var(--top-h) + 1rem)}
-.prod__left-in > p{margin:0 0 1.75rem;color:var(--muted);font-size:.92rem;max-width:34ch}
 
-.prod__idx{list-style:none;margin:0 0 1.75rem;padding:0;counter-reset:p}
-.prod__idx li{
-  counter-increment:p;cursor:pointer;
-  display:grid;grid-template-columns:auto 1fr;gap:.15rem .75rem;
-  padding:.8rem 0;border-top:1px solid var(--line);
-  transition:opacity .35s var(--ease),padding-left .35s var(--ease);
-  opacity:.42;
-}
-.prod__idx li::before{
-  content:counter(p,decimal-leading-zero);
-  grid-row:span 2;align-self:center;
-  font-family:var(--f-display);font-size:.72rem;color:var(--faint);letter-spacing:.06em;
-}
-.prod__idx li b{font-family:var(--f-display);font-weight:600;font-size:.94rem;color:var(--ink-2);letter-spacing:-.015em}
-.prod__idx li span{font-size:.78rem;color:var(--faint)}
-.prod__idx li:hover{opacity:.75}
-.prod__idx li.is-on{opacity:1;padding-left:.5rem}
-.prod__idx li.is-on b{color:var(--red)}
 
-.prod__hint{display:flex;align-items:center;gap:.45rem;margin:0;font-size:.76rem;color:var(--faint)}
-.prod__hint i{animation:nudge 1.8s var(--ease) infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 
-.prod__stage{position:relative;overflow:hidden;background:#0F1418;cursor:pointer}
-.pslide{
-  position:absolute;inset:0;margin:0;
-  opacity:0;transform:translateY(7%) scale(1.04);
-  transition:opacity .9s var(--ease),transform .9s var(--ease);
-}
-.pslide.is-on{opacity:1;transform:none}
-.pslide.is-prev{transform:translateY(-7%) scale(1.04)}
-.pslide__img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--ease)}
-.prod__stage:hover .pslide.is-on .pslide__img{transform:scale(1.045)}
 
 /* ---------- cadre de visée : quatre équerres qui se referment au survol */
 .pfocus{
@@ -462,7 +420,6 @@ button,input,select,textarea{font:inherit;color:inherit}
   pointer-events:none;opacity:0;
   transition:opacity .45s var(--ease);
 }
-.prod__stage:hover .pfocus{opacity:1}
 .pfocus > span{
   position:absolute;width:28px;height:28px;
   border:2px solid rgba(255,255,255,.92);
@@ -472,7 +429,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .pfocus > span:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;transform:translate(-14px,14px)}
 .pfocus > span:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;transform:translate(14px,-14px)}
 .pfocus > span:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;transform:translate(-14px,-14px)}
-.prod__stage:hover .pfocus > span{transform:none}
 
 .pfocus__tag{
   position:absolute;left:0;bottom:0;
@@ -485,36 +441,15 @@ button,input,select,textarea{font:inherit;color:inherit}
   opacity:0;transform:translateY(10px);
   transition:opacity .5s var(--ease) .08s, transform .5s var(--ease-out) .08s;
 }
-.prod__stage:hover .pfocus__tag{opacity:1;transform:none}
 
 /* ---------- panneau sombre : parcours puis détail */
 /* pas d'overflow caché ici : le bouton circulaire doit pouvoir déborder
    sur l'image, c'est ce chevauchement qui fait la composition */
-.prod__right{position:relative;background:var(--ink-3);color:#fff}
 
 /* le contenu dégage la largeur du bouton circulaire à cheval sur le bord */
-.prod__brief,.prod__detail-in{padding-left:clamp(5rem,7.5vw,8rem)}
 
-.prod__brief{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(1.5rem,3vw,2.5rem);
-  padding-top:calc(var(--top-h) + 1rem);
-  transition:opacity .45s var(--ease),transform .6s var(--ease-lay);
-}
-.prod__pin.is-detail .prod__brief{opacity:0;transform:translateX(-28px);pointer-events:none}
 
-.prod__serie{
-  margin:0 0 .7rem;font-family:var(--f-display);font-weight:600;
-  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);
-}
 
-.prod__name{
-  font-family:var(--f-display);font-weight:600;
-  font-size:clamp(1.35rem,2.2vw,2.15rem);line-height:1.08;letter-spacing:-.03em;
-  margin:0 0 .9rem;
-}
 .pn__w{display:inline-block;white-space:nowrap}
 /* chaque lettre passe de fantôme flou à nette au fil du glissement */
 .pn__c{
@@ -524,66 +459,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .pn__c.is-on{opacity:1;filter:none;transform:none}
 
-.prod__teaser{margin:0 0 1.6rem;color:rgba(255,255,255,.7);font-size:.95rem;max-width:38ch}
 
-.prod__meter{height:2px;max-width:230px;background:rgba(255,255,255,.16);border-radius:2px;overflow:hidden}
-.prod__meter span{display:block;height:100%;background:var(--red);transform-origin:left;transform:scaleX(0)}
-.prod__count{margin:.85rem 0 0;font-family:var(--f-display);font-size:.75rem;color:rgba(255,255,255,.42);letter-spacing:.06em}
-.prod__count b{color:#fff;font-size:1.05rem}
 
 /* Calé en bas plutôt qu'au milieu : à mi-hauteur il recouvrait le nom du
    produit et son résumé. Il reste à cheval sur le bord de l'image. */
-.pbtn{
-  position:absolute;z-index:5;left:-54px;top:auto;bottom:clamp(1.5rem,5vh,3rem);
-  width:108px;height:108px;border-radius:999px;
-  background:#fff;border:1px solid var(--line);
-  color:var(--ink-2);cursor:pointer;
-  font-family:var(--f-display);font-weight:600;font-size:.72rem;letter-spacing:-.012em;
-  line-height:1.25;padding:.6rem;
-  box-shadow:0 8px 26px rgba(15,20,25,.28);
-  transition:transform .28s var(--ease),background .28s var(--ease),color .28s var(--ease);
-}
-.pbtn:hover{transform:scale(1.07)}
-.pbtn.is-back{background:var(--red);color:#fff;border-color:var(--red)}
 
-.prod__detail{
-  position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;
-  opacity:0;pointer-events:none;transition:opacity .5s var(--ease) .18s;
-}
-.prod__pin.is-detail .prod__detail{opacity:1;pointer-events:auto}
 
 /* deux colonnes : le texte et l'image occupent toute la partie droite */
-.prod__detail-in{
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.82fr);
-  gap:clamp(1.5rem,3vw,3rem);align-items:start;
-  padding:clamp(1.5rem,3vw,2.75rem);
-  padding-top:calc(var(--top-h) + 1.5rem);
-  padding-bottom:clamp(2rem,4vw,3.5rem);
-}
-.prod__dcol{min-width:0}
-.prod__dfig{margin:0;min-width:0;position:sticky;top:0}
-.prod__dfig figcaption{margin-top:.6rem;font-size:.79rem;color:rgba(255,255,255,.5)}
 
 /* le contenu se rejoue à chaque changement de produit */
-.js .prod__detail.is-fresh .prod__detail-in > *{
-  animation:dIn .6s var(--ease-out) backwards;
-}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(1){animation-delay:.02s}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(2){animation-delay:.07s}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(3){animation-delay:.12s}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(4){animation-delay:.17s}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(5){animation-delay:.22s}
-.js .prod__detail.is-fresh .prod__detail-in > *:nth-child(6){animation-delay:.27s}
 @keyframes dIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.prod__eyebrow{display:flex;align-items:center;gap:.5rem;margin:0 0 .6rem;font-size:.78rem;color:rgba(255,255,255,.62)}
-.prod__eyebrow i{color:var(--red);font-size:1.1rem}
-.prod__detail h3{font-family:var(--f-display);font-weight:600;font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.1;letter-spacing:-.03em;margin:0 0 .9rem}
-.prod__dtext{margin:0 0 1.75rem;color:rgba(255,255,255,.76);max-width:56ch;font-size:.95rem}
-.prod__dimg{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);display:block}
 
-.prod__dlist{margin:0 0 2rem;display:grid;grid-template-columns:minmax(9rem,auto) 1fr;gap:0 1.5rem}
-.prod__dlist dt{font-family:var(--f-display);font-weight:600;font-size:.88rem;color:#fff;padding:.7rem 0;border-top:1px solid var(--line-d)}
-.prod__dlist dd{margin:0;color:rgba(255,255,255,.68);font-size:.86rem;padding:.7rem 0;border-top:1px solid var(--line-d)}
 
 /* ================== OPTIONS ================== */
 
@@ -865,8 +751,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:1100px){
   .eng__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .avis__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .prod__pin{grid-template-columns:26% 40% 34%}
-  .prod__pin.is-detail{grid-template-columns:0% 26% 74%}
   .grid-real{grid-template-columns:repeat(2,minmax(0,1fr))}
 
   /* le dock passe en panneau déroulant */
@@ -910,49 +794,19 @@ button,input,select,textarea{font:inherit;color:inherit}
   /* La bascule à trois colonnes n'a pas de place : on empile. Le détail
      n'apparaît qu'au clic, sinon le résumé et le détail seraient affichés
      en même temps et le contenu ferait doublon. */
-  .prod__track{height:auto}
-  .prod__pin{position:static;height:auto;display:block}
-  .prod__left{border-right:0;border-bottom:1px solid var(--line)}
   /* en pile, le défilement ne change plus de produit : on touche la liste */
-  .prod__hint{display:none}
-  .prod__idx li{padding:1rem 0}
-  .prod__left-in{padding-top:clamp(2rem,6vw,3rem)}
-  .prod__stage{height:min(56vh,400px)}
-  .prod__right{padding-bottom:clamp(1.5rem,5vw,2rem)}
 
-  .prod__brief{
-    position:static;opacity:1;transform:none;pointer-events:auto;
-    padding:clamp(1.75rem,5vw,2.25rem) clamp(1.5rem,5vw,2rem) 0;
-  }
-  .prod__pin.is-detail .prod__brief{opacity:1;transform:none;pointer-events:auto}
 
-  .pbtn{
-    position:static;transform:none;width:auto;height:auto;
-    border-radius:999px;padding:.85rem 1.6rem;
-    margin:1.5rem clamp(1.5rem,5vw,2rem) 0;
-  }
-  .pbtn:hover{transform:none}
 
-  .prod__detail{position:static;opacity:1;pointer-events:auto;height:auto;overflow:visible;display:none}
-  .prod__pin.is-detail .prod__detail{display:block}
-  .prod__detail-in{
-    display:block;
-    padding:1.5rem clamp(1.5rem,5vw,2rem) clamp(1.5rem,5vw,2rem);
-  }
-  .prod__dfig{position:static;margin-top:1.5rem}
-  .prod__dimg{aspect-ratio:16/10}
 }
 
 @media (max-width:760px){
   .states{grid-template-columns:minmax(0,1fr)}
   .foot__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
   .avis__cols{grid-template-columns:minmax(0,1fr)}
-  .optg dl,.prod__dlist,.legal__dl{grid-template-columns:minmax(0,1fr);gap:0}
   .legal__dl dt{padding-bottom:0}
   .legal__dl dd{padding-top:.1rem;border-top:0}
   .legal__dl > dt:first-of-type + dd{border-top:0}
-  .optg dt,.prod__dlist dt{padding-bottom:0}
-  .optg dd,.prod__dlist dd{padding-top:.1rem;border-top:0}
   .optg dl > dt:first-of-type + dd{border-top:0}
   .grid-real{grid-auto-rows:180px}
   .rcard--wide{grid-column:span 2}
@@ -998,3 +852,11 @@ button,input,select,textarea{font:inherit;color:inherit}
   .pfocus{opacity:1}
   .pfocus > span,.pfocus__tag{transform:none;opacity:1}
 }
+
+
+/* Règles récupérées après le retrait du carrousel produits : leur
+   sélecteur groupait des styles du carrousel avec ceux des cartes
+   Options et des pages légales, qui eux restent nécessaires. */
+  .optg dl,.legal__dl{grid-template-columns:minmax(0,1fr);gap:0}
+  .optg dt{padding-bottom:0}
+  .optg dd{padding-top:.1rem;border-top:0}

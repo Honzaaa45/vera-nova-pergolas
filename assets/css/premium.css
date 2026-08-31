@@ -89,17 +89,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 160; heig
 .state span { color: rgba(255,255,255,.55); }
 
 /* Produits */
-.prod { background: #fff; }
-.prod__pin { box-shadow: none; }
-.prod__left { background: var(--paper); border-color: var(--line); }
-.prod__right { background: var(--ink-2); }
-.prod__stage { overflow: hidden; }
-.prod__stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
-.prod__img { filter: saturate(.78) contrast(1.06); }
-.prod__left-in > p { color: var(--muted); }
-.prod__idx li { border-color: var(--line); }
-.prod__idx li.is-on { color: var(--red); }
-.pbtn { box-shadow: var(--shadow-m); }
 
 /* Options */
 .opts { background: var(--paper); }
@@ -212,4 +201,145 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 160; heig
 @media (prefers-reduced-motion: reduce) {
   .hero__visual, .hero__frame img, .optg, .rcard img { transition: none !important; transform: none !important; }
   body::before { display: none; }
+}
+
+/* =========================================================================
+   LA GAMME
+   Remplace le carrousel piloté au défilement, qui tenait pour trois produits
+   mais aurait demandé plus de dix écrans de haut pour douze. Une grille les
+   montre tous d'un coup, se lit au clavier, et surtout : le contenu est dans
+   le HTML, donc indexable. L'ancienne version construisait les fiches en
+   JavaScript, ce qui les rendait invisibles pour un moteur de recherche —
+   pénalisant pour un site dont l'unique raison d'être est d'être trouvé.
+   ========================================================================= */
+
+.gamme { padding: clamp(4.5rem, 9vw, 8rem) 0; }
+.gamme .lead { max-width: 60ch; margin-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* ---------------------------------------------------------- une famille */
+.gfam + .gfam { margin-top: clamp(3.5rem, 7vw, 6rem); }
+
+.gfam__tete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .6rem 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--line, #E4E0D9);
+}
+.gfam__titre {
+  margin: 0;
+  font: 600 clamp(1.25rem, 2.2vw, 1.6rem)/1.2 var(--f-display);
+  color: var(--ink-1, #20272D);
+}
+.gfam__chapo {
+  margin: 0;
+  color: var(--ink-3, #6A747C);
+  font-size: .95rem;
+}
+
+.gfam__grille {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+}
+
+/* ------------------------------------------------------------ une carte */
+.gcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line, #E4E0D9);
+  /* La perspective est posée ici et non sur la grille : sur le conteneur,
+     toutes les cartes partageraient le même point de fuite et celles des
+     bords sembleraient se coucher. */
+  transform-style: preserve-3d;
+  transition: box-shadow .45s var(--ease, ease), border-color .45s var(--ease, ease);
+}
+.gcard:hover {
+  box-shadow: 0 18px 40px -26px rgba(25, 30, 35, .45);
+  border-color: #D6D1C8;
+}
+
+.gcard__fig {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--wash, #F1EFEA);
+}
+.gcard__fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s var(--ease-out, ease);
+}
+.gcard:hover .gcard__fig img { transform: scale(1.045); }
+
+.gcard__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.35rem 1.35rem 1.5rem;
+}
+
+.gcard__cat {
+  margin: 0 0 .35rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--red, #D80110);
+}
+.gcard__nom {
+  margin: 0 0 .6rem;
+  font: 600 1.2rem/1.25 var(--f-display);
+  color: var(--ink-1, #20272D);
+}
+.gcard__txt {
+  margin: 0 0 1.1rem;
+  font-size: .92rem;
+  line-height: 1.6;
+  color: var(--ink-3, #6A747C);
+}
+
+/* ------------------------------------------------- tableau des mesures
+   Une liste de définitions plutôt qu'un tableau : ce sont des paires
+   nom/valeur, pas des données croisées. Un lecteur d'écran annonce alors
+   « Largeur maximale, 4,5 mètres » au lieu d'énumérer des cellules. */
+.gcard__specs {
+  margin: auto 0 0;
+  display: grid;
+  gap: .05rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--line, #E4E0D9);
+}
+.gcard__specs > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .38rem 0;
+}
+.gcard__specs > div + div { border-top: 1px dotted #EAE6DF; }
+.gcard__specs dt {
+  font-size: .82rem;
+  color: var(--ink-3, #6A747C);
+}
+.gcard__specs dd {
+  margin: 0;
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--ink-1, #20272D);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- mobile */
+@media (max-width: 560px) {
+  .gfam__grille { grid-template-columns: 1fr; }
+  .gcard__fig { aspect-ratio: 16 / 10; }
 }

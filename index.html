@@ -232,58 +232,234 @@
 </section>
 
 <!-- ====================== NOS PRODUITS ====================== -->
-<section class="prod" id="produits">
-  <div class="prod__track" id="prod-track">
-    <div class="prod__pin" id="prod-pin">
+<section class="gamme" id="produits">
+  <div class="wrap">
+    <h2 class="h2" data-split>Douze systèmes, une seule structure.</h2>
+    <p class="lead" data-reveal data-delay="90">
+      Tout part du même profilé aluminium et du même nuancier. Vous choisissez la
+      toiture, puis les fermetures qui vont autour — et l'ensemble se pilote depuis
+      une seule télécommande.
+    </p>
 
-      <div class="prod__left">
-        <div class="prod__left-in">
-          <h2 class="h2 h2--sm">Nos produits</h2>
-          <p>
-            Grâce à notre équipe technique et à un accompagnement centré sur le client,
-            nous couvrons les trois façons de fermer une terrasse.
-          </p>
-          <ol class="prod__idx" id="prod-idx"></ol>
-          <p class="prod__hint"><i class="ph ph-arrow-down" aria-hidden="true"></i> Faites défiler pour parcourir</p>
+      <div class="gfam">
+        <div class="gfam__tete">
+          <h3 class="gfam__titre">Les pergolas</h3>
+          <p class="gfam__chapo">Structures à toiture pilotable, adossées à la façade ou autoportantes.</p>
         </div>
-      </div>
-
-      <div class="prod__stage" id="prod-stage"></div>
-
-      <div class="prod__right">
-
-        <button type="button" class="pbtn" id="prod-btn" aria-expanded="false" aria-controls="prod-detail">
-          <span class="pbtn__t">Plus de détails</span>
-        </button>
-
-        <!-- vue parcours : le nom se dévoile au fil du défilement -->
-        <div class="prod__brief" id="prod-brief">
-          <p class="prod__serie" id="prod-serie">Série Platin</p>
-          <h3 class="prod__name" id="prod-name">Pergola bioclimatique</h3>
-          <p class="prod__teaser" id="prod-teaser"></p>
-          <div class="prod__meter" aria-hidden="true"><span id="prod-meter"></span></div>
-          <p class="prod__count" aria-hidden="true"><b id="prod-no">01</b> / 03</p>
-        </div>
-
-        <!-- vue détail : occupe tout le panneau -->
-        <div class="prod__detail" id="prod-detail" inert>
-          <div class="prod__detail-in">
-            <div class="prod__dcol">
-              <p class="prod__eyebrow"><i class="ph ph-squares-four" aria-hidden="true"></i> Systèmes de pergolas</p>
-              <h3 id="prod-dtitle">Pergola bioclimatique</h3>
-              <p class="prod__dtext" id="prod-dtext"></p>
-              <dl class="prod__dlist" id="prod-dlist"></dl>
-              <a class="btn btn--solid" href="#contact"><i class="ph ph-arrow-right" aria-hidden="true"></i> Demander un devis</a>
-            </div>
-            <figure class="prod__dfig">
-              <img class="prod__dimg" id="prod-dimg" src="assets/img/gallery/canopy-acier.webp" alt="" loading="lazy" decoding="async">
-              <figcaption id="prod-dcap">Série Platin</figcaption>
-            </figure>
+        <div class="gfam__grille" data-stagger="90">
+        <article class="gcard" id="produit-compact" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/canopy-acier.webp" alt="Pergola bioclimatique à lames orientables adossée à une maison"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Lames orientables</p>
+            <h4 class="gcard__nom">Compact</h4>
+            <p class="gcard__txt">La pergola à lames la plus compacte de la gamme. Les lames pivotent jusqu'à 110 degrés, davantage que la plupart des systèmes du marché, et dégagent largement le ciel sans jamais quitter leur cadre.</p>
+            <dl class="gcard__specs">
+            <div><dt>Largeur maximale</dt><dd>4,5 m</dd></div>
+            <div><dt>Avancée maximale</dt><dd>7,5 m</dd></div>
+            <div><dt>Rotation des lames</dt><dd>110°</dd></div>
+            <div><dt>Toit coulissant</dt><dd>non</dd></div>
+            </dl>
           </div>
+        </article>
+        <article class="gcard" id="produit-platin" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/pergola-guirlandes.webp" alt="Grande pergola bioclimatique éclairée en soirée"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Lames orientables</p>
+            <h4 class="gcard__nom">Platin</h4>
+            <p class="gcard__txt">Le modèle le plus large, dont la toiture ne fait pas que pivoter : les lames s'escamotent et s'empilent sur un côté, découvrant réellement le ciel. Bandeau LED intégré à la poutre périmétrique.</p>
+            <dl class="gcard__specs">
+            <div><dt>Largeur maximale</dt><dd>6 m</dd></div>
+            <div><dt>Avancée maximale</dt><dd>7,5 m</dd></div>
+            <div><dt>Toit coulissant</dt><dd>oui</dd></div>
+            <div><dt>Éclairage</dt><dd>LED intégrées</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-oval" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/terrasse-piscine-moderne.webp" alt="Pergola autoportante à poteaux de section ovale"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Lames orientables</p>
+            <h4 class="gcard__nom">Oval</h4>
+            <p class="gcard__txt">Poteaux de section ovale intégrant la descente d'eau : aucun tuyau apparent, l'évacuation se fait dans la structure elle-même et se dirige du côté voulu.</p>
+            <dl class="gcard__specs">
+            <div><dt>Rotation des lames</dt><dd>75°</dd></div>
+            <div><dt>Évacuation</dt><dd>intégrée aux poteaux</dd></div>
+            <div><dt>Pose</dt><dd>autoportante ou adossée</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-toile" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/terrasse-couverte.webp" alt="Terrasse couverte par une pergola à toile tendue"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Toile rétractable</p>
+            <h4 class="gcard__nom">Pergola à toile</h4>
+            <p class="gcard__txt">Toile tendue sur rails, repliable en accordéon. C'est la solution des grandes portées : jusqu'à douze mètres de large, avec une silhouette bien plus fine qu'une toiture à lames.</p>
+            <dl class="gcard__specs">
+            <div><dt>Largeur maximale</dt><dd>12 m</dd></div>
+            <div><dt>Avancée maximale</dt><dd>8 à 10 m</dd></div>
+            <div><dt>Entre rails</dt><dd>4 m</dd></div>
+            <div><dt>Systèmes</dt><dd>2, 3 ou 4 rails</dd></div>
+            </dl>
+          </div>
+        </article>
         </div>
       </div>
 
-    </div>
+      <div class="gfam">
+        <div class="gfam__tete">
+          <h3 class="gfam__titre">Les fermetures latérales</h3>
+          <p class="gfam__chapo">Ce qui transforme une terrasse couverte en pièce à vivre.</p>
+        </div>
+        <div class="gfam__grille" data-stagger="90">
+        <article class="gcard" id="produit-guillotine" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/maison-terrasse.webp" alt="Fermeture vitrée à panneaux coulissants verticaux"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Vitrage motorisé</p>
+            <h4 class="gcard__nom">Guillotine</h4>
+            <p class="gcard__txt">Des panneaux de verre qui montent et descendent, pilotés au moteur. Ils s'arrêtent à n'importe quelle hauteur pour ventiler, et le panneau bas fixe fait office de garde-corps.</p>
+            <dl class="gcard__specs">
+            <div><dt>Vitrage</dt><dd>double, 4+16+4 mm</dd></div>
+            <div><dt>Hauteur</dt><dd>jusqu'à 3 m</dd></div>
+            <div><dt>Largeur</dt><dd>jusqu'à 4 m</dd></div>
+            <div><dt>Commande</dt><dd>motorisée</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-coulissant" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/lounge-exterieur.webp" alt="Fermeture vitrée coulissante ouvrant sur un jardin"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Vitrage manuel</p>
+            <h4 class="gcard__nom">Coulissant vitré</h4>
+            <p class="gcard__txt">Vantaux vitrés qui glissent à l'horizontale et s'empilent sur le côté. Isolation thermique et phonique une fois fermés, terrasse entièrement ouverte une fois rangés.</p>
+            <dl class="gcard__specs">
+            <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
+            <div><dt>Déplacement</dt><dd>horizontal</dd></div>
+            <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-pliant" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/mobilier-blanc-plantes.webp" alt="Vitrage pliant ouvrant une terrasse sur le jardin"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Vitrage manuel</p>
+            <h4 class="gcard__nom">Pliant vitré</h4>
+            <p class="gcard__txt">Même principe que le coulissant, mais les vantaux se replient et peuvent s'ouvrir des deux côtés. La surface de vie couverte gagne d'autant.</p>
+            <dl class="gcard__specs">
+            <div><dt>Manœuvre</dt><dd>manuelle</dd></div>
+            <div><dt>Ouverture</dt><dd>dans les deux sens</dd></div>
+            <div><dt>Isolation</dt><dd>thermique et phonique</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-zip" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/terrasse-salon.webp" alt="Store vertical à coulisses latérales sur une terrasse"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Store toile</p>
+            <h4 class="gcard__nom">Zip Screen</h4>
+            <p class="gcard__txt">Toile technique tendue dans deux glissières verticales. Elle coupe le soleil sans supprimer la vue, casse le vent et tient les insectes à distance.</p>
+            <dl class="gcard__specs">
+            <div><dt>Filtration UV</dt><dd>70 à 80 %</dd></div>
+            <div><dt>Coupe-vent</dt><dd>oui</dd></div>
+            <div><dt>Anti-insectes</dt><dd>oui</dd></div>
+            <div><dt>Toiles</dt><dd>14 références</dd></div>
+            </dl>
+          </div>
+        </article>
+        </div>
+      </div>
+
+      <div class="gfam">
+        <div class="gfam__tete">
+          <h3 class="gfam__titre">Les compléments</h3>
+          <p class="gfam__chapo">Ce qui se pose autour, avec la même structure et les mêmes teintes.</p>
+        </div>
+        <div class="gfam__grille" data-stagger="90">
+        <article class="gcard" id="produit-toiture-vitree" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/piscine-table.webp" alt="Auvent à toiture entièrement vitrée reliant maison et jardin"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Toiture fixe</p>
+            <h4 class="gcard__nom">Toiture vitrée</h4>
+            <p class="gcard__txt">Un auvent entièrement vitré qui garde la lumière tout en abritant. Chéneau intégré sur le pourtour, sans gouttière apparente.</p>
+            <dl class="gcard__specs">
+            <div><dt>Toiture</dt><dd>verre feuilleté</dd></div>
+            <div><dt>Évacuation</dt><dd>chéneau intégré</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-store-banne" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/terrasse-chauffage.webp" alt="Store banne à coffre déployé au-dessus d'une terrasse"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Store de façade</p>
+            <h4 class="gcard__nom">Store banne à coffre</h4>
+            <p class="gcard__txt">Le coffre referme entièrement la toile quand elle est rangée : ni salissure, ni vieillissement prématuré. Se pose en façade, sans structure au sol.</p>
+            <dl class="gcard__specs">
+            <div><dt>Coffre</dt><dd>intégral</dd></div>
+            <div><dt>Pose</dt><dd>en façade</dd></div>
+            <div><dt>Commande</dt><dd>motorisée</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-parasol" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/piscine-transats.webp" alt="Parasol déporté à mât latéral au bord d'une piscine"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Protection mobile</p>
+            <h4 class="gcard__nom">Parasol déporté</h4>
+            <p class="gcard__txt">Mât déporté sur le côté, donc aucun pied au milieu de la table. La solution la plus simple quand rien ne peut être fixé au sol.</p>
+            <dl class="gcard__specs">
+            <div><dt>Mât</dt><dd>déporté</dd></div>
+            <div><dt>Pose</dt><dd>posée, sans ancrage</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard" id="produit-carport" data-tilt="4" data-glow>
+          <figure class="gcard__fig" data-mask>
+            <img src="assets/img/gallery/guirlandes-ville.webp" alt="Abri de voiture en aluminium adossé à une maison"
+                 width="1000" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="gcard__body">
+            <p class="gcard__cat">Abri de voiture</p>
+            <h4 class="gcard__nom">Carport</h4>
+            <p class="gcard__txt">La même structure aluminium, dimensionnée pour abriter une ou deux voitures. Teintes et finitions identiques au reste de la gamme.</p>
+            <dl class="gcard__specs">
+            <div><dt>Caractéristiques</dt><dd>sur demande</dd></div>
+            </dl>
+          </div>
+        </article>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -661,7 +837,6 @@
 <script src="assets/js/hero-marquee.js" defer></script>
 <script src="assets/js/dock.js" defer></script>
 <script src="assets/js/anim.js" defer></script>
-<script src="assets/js/products.js" defer></script>
 <script src="assets/js/map.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/premium.js" defer></script>
