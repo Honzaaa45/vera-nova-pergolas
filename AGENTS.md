@@ -5,8 +5,9 @@ Site vitrine une page pour **Vera Nova**, pergolas bioclimatiques,
 chantier photographié à ce jour. But du site : générer des demandes de devis
 locales.
 
-**Dossier complet : `RESUME-DU-SITE.md`.** À lire avant toute modification
-de structure.
+**À lire avant toute modification de structure :**
+`docs/contenu-du-site.md` pour la reprise générale, et
+`docs/catalogue-produits.md` pour les caractéristiques produits, qui font foi.
 
 ---
 
@@ -30,20 +31,17 @@ mentions-legales.html    obligatoire, 11 champs à compléter
 confidentialite.html     notice RGPD
 404.html
 
-assets/css/style.css     design system et mise en page
-assets/css/premium.css   couche de finition
+assets/css/fonts.css     @font-face locaux, généré par tools/telecharger-polices.py
+assets/css/site.css      feuille principale : jetons, typographie, sections
 assets/css/motion.css    couche d'animation, chargée en DERNIER
-assets/css/fonts.css     @font-face locaux
 
+assets/js/nav.js           barre haute, menu, écran d'ouverture
 assets/js/text-rotate.js   titre à mots tournants
-assets/js/hero-marquee.js  ruban d'images
-assets/js/dock.js          navigation de la barre haute
-assets/js/anim.js          révélations, compteurs, parallaxe
-assets/js/products.js      section Produits
-assets/js/map.js           carte Leaflet
-assets/js/main.js          frise, témoignages, formulaire
-assets/js/premium.js       effets de finition
-assets/js/motion.js        Lenis + GSAP : défilement, révélations, magnétisme
+assets/js/pins.js          points d'intérêt sur l'image d'accueil
+assets/js/nuancier.js      les vingt teintes RAL, construites depuis des données
+assets/js/map.js           carte Leaflet du secteur
+assets/js/main.js          formulaire de devis
+assets/js/motion.js        Lenis + GSAP : défilement, révélations, parallaxe
 
 assets/img/gallery/        24 webp : 12 photos en 1000 px et 520 px
 assets/data/temoignages.json  vide, volontairement
@@ -51,9 +49,22 @@ assets/data/temoignages.json  vide, volontairement
 
 ## Design system
 
-Un seul accent : le rouge `#D80110`. Anthracite `#2D3740` pour les titres.
-Fond blanc. Un seul rayon d'angle (8 px), pilule pour les boutons.
-Sora pour les titres, Manrope pour le texte. **Ni Inter, ni serif.**
+Direction éditoriale, inspirée d'era-residence.com : **deux registres
+typographiques et rien entre les deux.**
+
+- **Titres** : Bodoni Moda, Didone à fort contraste, posée très grande
+  (jusqu'à 6,5 rem) avec un interlettrage négatif de -.02em. Jamais sous
+  20 px : ses déliés y disparaissent.
+- **Tout le reste** : Archivo, grotesque à chasse variable, employée
+  minuscule (.6 à .7 rem), en capitales, interlettrage +.2em.
+- **Un mot d'accent par section** : Pinyon Script. Au-delà, l'anglaise
+  cesse d'être un accent pour devenir un motif.
+
+Palette : blanc chaud `#F3F3EC`, bleu nuit `#17233B`, aubergine `#340C24`
+pour l'écran d'ouverture, rouge de la marque `#D80110`.
+
+Angles vifs, sauf les boutons en pilule. La variable `--air` porte toute la
+respiration verticale : la réduire tasse instantanément la page.
 
 ## Couche d'animation
 
@@ -62,12 +73,17 @@ chargés en CDN. Tout se pilote par attribut, sans toucher au JS :
 
 | attribut | effet |
 |---|---|
-| `data-split` | le titre se révèle mot par mot |
+| `data-scroll-reveal="h"` | titre révélé mot par mot sous un masque |
+| `data-scroll-reveal="p"` | paragraphe qui monte en fondu |
+| `data-scroll-reveal="a"` | même mouvement, plus vif, pour un fragment court |
+| `data-scroll-reveal="ctn"` | les enfants du conteneur montent en cascade |
+| `data-scroll-reveal="line"` | un filet se trace de gauche à droite |
+| `data-scroll-reveal="slide"` | un bloc entre par le côté |
 | `data-magnetic="0.3"` | le bouton est attiré par le curseur |
 | `data-tilt="5"` | la carte s'incline et reçoit un reflet |
 | `data-glow` | liseré rouge au survol |
 | `data-mask` | l'image se dévoile par le bas |
-| `data-depth="0.2"` | parallaxe ; négatif pour reculer la couche |
+| `data-parallax="18"` | l'image dérive de ±18 px au défilement |
 
 Règles à ne pas casser :
 
@@ -76,10 +92,12 @@ Règles à ne pas casser :
   déjà un `translateZ` et une rotation : leur poser un `transform` GSAP les
   aplatirait. Toute nouvelle couche doit recomposer son transform dans
   `motion.css`.
-- Ne jamais cumuler `data-depth` et `data-parallax` sur un même élément :
-  ce sont deux systèmes distincts, `data-parallax` vit dans `anim.js`.
-- Le masquage des titres est conditionné à `.has-motion`, posé par le script.
-  Sans ce garde-fou, un CDN injoignable ferait disparaître les titres.
+- Le masquage des éléments révélés est conditionné à `.has-motion`, posée par
+  le script lui-même. Sans ce garde-fou, un CDN injoignable ferait disparaître
+  la moitié de la page pour de bon.
+- Les coordonnées des points d'intérêt sont exprimées **dans l'espace de
+  l'image**, pas du conteneur : l'image est en `object-fit: cover`, donc le
+  cadrage visible dépend du format de l'écran. `pins.js` fait la projection.
 - `history.scrollRestoration` passe en `manual` : sinon la position restaurée
   au rechargement désynchronise Lenis et ScrollTrigger, et le parallaxe se fige.
 
@@ -109,10 +127,11 @@ le client juridiquement.
 6. **Ne détourne jamais le défilement.** Pas de `preventDefault` sur `wheel`,
    pas de scroll-jacking : ça casse le clavier et les lecteurs d'écran.
    Utilise `position: sticky`.
-7. **Ne supprime pas le piège à robots** du formulaire (champ `site`, classe
-   `.pot` dans `main.js` et `style.css`).
-8. **N'ajoute pas d'effet de loupe au dock.** Animer `width`/`height`
-   déformait la barre. L'indicateur glissant actuel le remplace.
+7. **Ne supprime pas le piège à robots** du formulaire (champ `website`,
+   classe `.pot`).
+8. **N'affiche aucun prix.** Exigence explicite de l'entreprise : chaque
+   pergola étant calculée pour son emplacement, un tarif au mètre carré
+   serait démenti par la visite. Tout passe par le devis.
 9. **Zéro tiret cadratin** (`—`) et zéro demi-cadratin (`–`) dans tout texte
    visible. Utilise le trait d'union ou reformule.
 10. **Respecte `prefers-reduced-motion`** sur toute nouvelle animation.
@@ -122,7 +141,6 @@ le client juridiquement.
 Ne les présente jamais comme certaines. Elles portent un commentaire
 `À CONFIRMER` ou `[À COMPLÉTER]` dans le code :
 
-- prix de 750 € TTC le m², fourchette 9 000 à 13 000 €
 - garanties 10 ans (structure) et 5 ans (motorisation)
 - délais 6 à 10 semaines, pose en 1 à 2 jours
 - `contact@veranova.fr` est un exemple
