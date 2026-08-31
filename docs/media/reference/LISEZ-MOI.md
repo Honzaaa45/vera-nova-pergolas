@@ -1,26 +1,37 @@
-# Images de référence — ne pas publier
+# Images de référence
 
-Ce dossier contient les pages du catalogue du fabricant, redressées par
-`tools/nettoyer-catalogue.py`.
+Ce dossier contient les pages du catalogue Royal Tente, redressées par
+`tools/nettoyer-catalogue.py`. Il est exclu du dépôt : ces fichiers pèsent
+lourd et n'ont pas à voyager avec le code.
 
-**Elles servent uniquement de référence de travail.** Aucune ne doit se
-retrouver sur le site :
+Vera Nova est partenaire de Royal Tente sous contrat, l'usage des visuels du
+catalogue est donc couvert. La question qui reste est celle de la **qualité**.
 
-- ce sont des photographies d'un catalogue imprimé, avec trame d'impression,
-  reflets spéculaires, pliure centrale et courbure du papier — le recadrage ne
-  corrige rien de tout cela ;
-- le contenu appartient au fabricant turc, pas à Vera Nova.
+## Pourquoi ces fichiers ne peuvent pas aller sur le site tels quels
 
-Le redressement automatique reste imparfait : sur plusieurs pages le clavier
-reste dans le cadre et l'orientation est fausse. C'est assumé — ces fichiers
-n'ont besoin d'être que lisibles.
+Ce sont des photographies d'un exemplaire imprimé posé sur un bureau. Le
+recadrage ne corrige ni la trame d'impression, ni les reflets spéculaires, ni
+la pliure centrale, ni la courbure du papier. Sur un écran, ça se voit
+immédiatement — et un site de pergolas haut de gamme ne peut pas se permettre
+des visuels qui ressemblent à des photocopies.
 
-Pour obtenir de vrais visuels, deux chemins, dans cet ordre :
+Le redressement automatique reste d'ailleurs imparfait : sur plusieurs pages
+le clavier subsiste et l'orientation est fausse.
 
-1. **Demander le media kit du fabricant.** C'est la solution propre : fichiers
-   haute définition et droits d'usage. Tout distributeur légitime y a accès.
-2. **Générer des visuels originaux** à partir des caractéristiques techniques,
-   avec les prompts de `docs/prompts-images-produits.md`.
+## Les trois voies vers de vrais visuels, par ordre de qualité
 
-Le contenu exploitable de ces pages est déjà extrait dans
-`docs/catalogue-produits.md`. Les photos n'ont plus à être consultées.
+1. **Le media kit de Royal Tente.** Les fichiers d'origine, en haute
+   définition. C'est une demande normale entre partenaires, et le résultat
+   est sans comparaison.
+2. **Le nettoyage par IA** des photographies existantes, avec le prompt de
+   `docs/nettoyage-photos-ia.md`. Rattrape le cadrage et la lumière, mais pas
+   la définition. Convient pour des visuels secondaires.
+3. **La génération d'images originales** à partir des caractéristiques
+   techniques, avec `docs/prompts-images-produits.md`.
+
+## Attention aux chiffres
+
+Une IA qui « nettoie » une image en réécrit souvent le texte. Les valeurs qui
+font foi sont celles de `docs/catalogue-produits.md`, transcrites à la main
+depuis les originaux. Ne recopiez jamais une mesure lue sur une image
+retouchée.

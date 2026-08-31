@@ -3,9 +3,13 @@
 Relevé effectué à partir des 15 photographies du dossier `Photo donner`
 (14 pages distinctes, `image5` et `image6` étant identiques).
 
-**Source :** catalogue imprimé du fabricant turc, photographié au téléphone.
-Le nom **Royal Tente** apparaît en toutes lettres dans le corps du texte
-(page « Royal Class »), et le site de référence est `royaltente.com`.
+**Source :** catalogue imprimé de **Royal Tente**, photographié au téléphone.
+Le nom apparaît en toutes lettres dans le corps du texte (page « Royal Class »).
+
+Vera Nova est liée à Royal Tente par un contrat de partenariat signé, ce qui
+couvre l'usage des éléments du catalogue. La contrainte restante n'est donc
+pas juridique mais **qualitative** : une photographie de page imprimée reste
+une photographie de page imprimée.
 
 Chaque information est marquée selon son niveau de certitude :
 
