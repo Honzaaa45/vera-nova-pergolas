@@ -15,17 +15,21 @@
 
   /* Formules volontairement courtes et de longueur voisine : la ligne fixe
      au-dessus fait environ 15 signes, tout ce qui dépasse doit être réduit
-     et l'écart de taille se verrait. */
+     et l'écart de taille se verrait.
+
+     Les émojis ont été retirés. Ils fonctionnaient avec la grotesque
+     géométrique d'origine ; sous une Didone, un pictogramme en couleur casse
+     net le registre que toute la page cherche à tenir. */
   var TEXTES = [
     'toute l’année',
-    'à l’ombre ☀️',
-    'au sec 🌧️',
+    'à l’ombre',
+    'au sec',
     'même en août',
     'à l’abri du vent',
     'sans vis-à-vis',
-    'prête à vivre 🥂',
-    'éclairée ✨',
-    'posée en 2 jours',
+    'prête à vivre',
+    'éclairée le soir',
+    'posée en deux jours',
     'ouverte sur le ciel'
   ];
 

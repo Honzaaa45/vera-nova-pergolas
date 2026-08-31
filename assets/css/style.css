@@ -5,19 +5,26 @@
    ========================================================================= */
 
 :root{
-  --paper:#FFFFFF;
-  --paper-2:#F5F7F8;
-  --paper-3:#EBEEF0;
+  /* Blanc chaud plutôt que blanc pur : sous une Didone, le blanc franc
+     durcit le contraste et fatigue à la lecture. */
+  --paper:#F3F3EC;
+  --paper-2:#EAEAE1;
+  --paper-3:#DFDFD4;
 
-  --ink:#191E23;
-  --ink-2:#2D3740;
-  --ink-3:#1B2126;
-  --muted:#5C666D;
-  --faint:#8C959B;
+  /* Bleu nuit, pas noir. Il porte les aplats sombres comme le texte, et
+     garde une teinte là où le noir pur serait mort. */
+  --ink:#17233B;
+  --ink-2:#17233B;
+  --ink-3:#101A2C;
+  --muted:#5A6579;
+  --faint:#8C93A2;
 
-  --line:rgba(25,30,35,.11);
-  --line-2:rgba(25,30,35,.20);
-  --line-d:rgba(255,255,255,.14);
+  /* Aubergine profond, réservé aux fonds pleins. */
+  --plum:#340C24;
+
+  --line:rgba(23,35,59,.13);
+  --line-2:rgba(23,35,59,.22);
+  --line-d:rgba(243,243,236,.16);
 
   --red:#D80110;
   --red-dk:#A80009;
@@ -38,8 +45,16 @@
   --shadow-m:0 2px 6px rgba(25,30,35,.06), 0 12px 32px rgba(25,30,35,.08);
   --shadow-l:0 24px 70px rgba(15,20,25,.20);
 
-  --f-display:"Sora", system-ui, sans-serif;
-  --f-body:"Manrope", system-ui, sans-serif;
+  /* Didone à fort contraste pour les titres, posée très grande et très
+     serrée : c'est le contraste entre les pleins et les déliés qui porte
+     tout le caractère de la page. */
+  --f-display:"Bodoni Moda", "Times New Roman", serif;
+  /* Grotesque à chasse variable. Employée petite, en capitales très
+     espacées, pour les étiquettes et la navigation. */
+  --f-body:"Archivo", system-ui, sans-serif;
+  /* Manuscrite, réservée à un seul mot par page. Au-delà, elle cesse
+     d'être un accent pour devenir un motif. */
+  --f-script:"Pinyon Script", cursive;
 }
 
 *,*::before,*::after{box-sizing:border-box}

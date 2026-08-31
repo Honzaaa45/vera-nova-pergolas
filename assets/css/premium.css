@@ -4,11 +4,17 @@
    ========================================================================== */
 
 :root {
-  --paper: #f4f1eb; --paper-2: #ebe7df; --paper-3: #dfdad0;
-  --ink: #171a1b; --ink-2: #202628; --ink-3: #111516;
-  --muted: #666966; --faint: #8b8c87;
-  --red: #c81724; --red-dk: #9e0d17; --red-soft: rgba(200, 23, 36, .1);
-  --line: rgba(23, 26, 27, .12); --line-2: rgba(23, 26, 27, .22);
+  /* Blanc chaud et bleu nuit. Cette couche redéfinissait la palette de
+     style.css avec des gris neutres : les deux fichiers se contredisaient
+     et c'est celui-ci qui gagnait, d'où un fond qui n'était jamais celui
+     déclaré dans les jetons. */
+  --paper: #F3F3EC; --paper-2: #EAEAE1; --paper-3: #DFDFD4;
+  --ink: #17233B; --ink-2: #17233B; --ink-3: #101A2C;
+  --muted: #5A6579; --faint: #8C93A2;
+  --plum: #340C24;
+  /* Le rouge de la marque, repris du logo. */
+  --red: #D80110; --red-dk: #A80009; --red-soft: rgba(216, 1, 16, .1);
+  --line: rgba(23, 35, 59, .13); --line-2: rgba(23, 35, 59, .22);
   --r: 18px; --wrap: 1380px; --top-h: 82px;
   --shadow-s: 0 1px 2px rgba(17, 21, 22, .05), 0 8px 24px rgba(17, 21, 22, .06);
   --shadow-m: 0 18px 48px rgba(17, 21, 22, .1);
@@ -400,3 +406,124 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 160; heig
   .hero__title { max-width: none; }
   .hero__badge { width: 92px; right: -.5rem; top: -1.25rem; bottom: auto; }
 }
+
+
+/* =========================================================================
+   COUCHE ÉDITORIALE
+
+   Deux registres, et rien entre les deux — c'est ce contraste qui fait tout
+   le caractère de cette direction :
+
+     · les titres, en Didone, très grands et légèrement resserrés ;
+     · absolument tout le reste, en grotesque, très petit, en capitales et
+       largement espacé.
+
+   La règle à ne pas transgresser : jamais de texte courant en Didone à
+   moins de 20 px. Sous cette taille ses déliés disparaissent à l'écran et
+   la lecture devient pénible.
+   ========================================================================= */
+
+/* ------------------------------------------------------------- les titres */
+.h1, .h2, .h3,
+.hero__title,
+.gfam__titre,
+.gcard__nom {
+  font-family: var(--f-display);
+  font-weight: 500;
+  /* -0.02em et non -0.08em : une Didone a besoin de respirer entre ses
+     pleins et ses déliés, là où une grotesque géométrique supporte le
+     resserrement. */
+  letter-spacing: -.02em;
+  font-variant-numeric: lining-nums;
+}
+
+.h2 {
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  line-height: 1.02;
+  font-weight: 400;
+}
+
+.hero__title {
+  font-weight: 400;
+  font-size: clamp(3.4rem, 8.2vw, 8rem);
+  line-height: .92;
+  letter-spacing: -.025em;
+}
+
+.gfam__titre { font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 400; }
+.gcard__nom  { font-size: 1.45rem; font-weight: 400; letter-spacing: -.015em; }
+
+/* ------------------------------------------------- le mot d'accent, manuscrit
+   Réservé à un seul mot par page. Décalé vers le bas parce qu'une anglaise
+   s'assied optiquement plus haut que des capitales de même corps. */
+.script {
+  font-family: var(--f-script);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--red);
+  display: inline-block;
+  transform: translateY(.08em);
+}
+
+/* --------------------------------------------------- les micro-étiquettes
+   Le second registre : minuscule, capitales, très espacé. C'est lui qui
+   donne l'impression d'un objet imprimé plutôt que d'une page web. */
+.hero__tag,
+.gcard__cat,
+.prod__eyebrow,
+.dock__tip,
+.btn,
+.topbar__act .tel,
+.gcard__specs dt,
+.budget__from,
+.budget__unit,
+.hero__caption span,
+.hero__proof span {
+  font-family: var(--f-body);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-weight: 600;
+  font-stretch: 112%;
+}
+
+.hero__tag     { font-size: .68rem; letter-spacing: .24em; }
+.gcard__cat    { font-size: .62rem; letter-spacing: .22em; }
+.gcard__specs dt { font-size: .64rem; letter-spacing: .14em; font-weight: 500; }
+.btn           { font-size: .7rem;  letter-spacing: .16em; }
+.dock__tip     { font-size: .62rem; letter-spacing: .14em; }
+
+/* Les valeurs chiffrées restent en bas-de-casse : en capitales espacées,
+   « 4,5 m » devient illisible. */
+.gcard__specs dd {
+  font-family: var(--f-body);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------- le texte courant */
+body, p, li, dd, input, textarea, select, button {
+  font-family: var(--f-body);
+}
+.lead {
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.7;
+  color: var(--muted);
+  letter-spacing: .002em;
+}
+
+/* --------------------------------------------------------- les compteurs
+   Les grands nombres passent en Didone : ils deviennent des chiffres
+   d'affiche, ce qui est exactement leur rôle ici. */
+.eng__i > b,
+.budget__free {
+  font-family: var(--f-display);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+/* ---------------------------------------------------------------- fond
+   Le blanc chaud remplace le blanc pur sur toute la page. */
+body { background: var(--paper); }
