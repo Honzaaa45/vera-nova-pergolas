@@ -204,8 +204,8 @@ def tete(titre, description, prefixe='../'):
 <meta name="description" content="{description}">
 <meta name="theme-color" content="#F3F3EC">
 <link rel="icon" href="{prefixe}assets/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="preload" href="{prefixe}assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{prefixe}assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{prefixe}assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{prefixe}assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{prefixe}assets/css/fonts.css">
 <link rel="stylesheet" href="{prefixe}assets/css/site.css">
 <link rel="stylesheet" href="{prefixe}assets/css/motion.css">
@@ -221,10 +221,11 @@ def tete(titre, description, prefixe='../'):
       <text><textPath href="#cercle" startOffset="0">VERA NOVA · PERGOLAS BIOCLIMATIQUES · </textPath></text>
     </svg>
     <img class="bar__mark" src="{prefixe}assets/img/logo-mark.png" alt="" width="537" height="333" decoding="async">
+    <span class="bar__nom">VERA<span>NOVA</span></span>
   </a>
   <nav class="bar__nav" aria-label="Navigation principale">
     <a class="bar__lien" href="index.html"><span>La gamme</span></a>
-    <a class="bar__lien" href="{prefixe}index.html#contact"><span>Demander un devis</span></a>
+    <a class="btn btn--solid bar__cta" href="{prefixe}index.html#contact">Demander un devis</a>
     <a class="bar__lien" href="{prefixe}index.html#secteur"><span>Notre secteur</span></a>
   </nav>
 </header>

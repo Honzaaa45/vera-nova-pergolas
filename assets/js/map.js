@@ -25,10 +25,14 @@
     keyboard: true
   });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  /* Les fonds CARTO exigent désormais une clé d API : sans elle, chaque
+     tuile porte un filigrane « API KEY REQUIRED » en travers de la carte.
+     Les tuiles standard d OpenStreetMap sont libres et sans clé ; leur
+     politique d usage convient à un site vitrine à faible trafic. */
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     subdomains: 'abcd',
-    attribution: '&copy; OpenStreetMap, &copy; CARTO'
+    attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
   // Marqueur dessiné en HTML pour reprendre la goutte rouge de la marque

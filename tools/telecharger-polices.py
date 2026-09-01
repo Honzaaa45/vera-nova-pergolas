@@ -34,15 +34,11 @@ DOSSIER = 'assets/fonts'
 SOUS_ENSEMBLES = ('latin', 'latin-ext')
 
 FAMILLES = [
-    # (requête Google Fonts, nom de fichier local, description)
     # Syntaxe de PLAGE (400..600) et non de liste (400;500;600) : la liste
     # fait renvoyer un fichier statique par graisse, la plage renvoie une
     # seule police variable qui les couvre toutes.
-    ('Bodoni+Moda:opsz,wght@6..96,400..600',
-     'bodoni-moda', 'titres, Didone à fort contraste'),
-    ('Archivo:wdth,wght@100..125,400..700',
-     'archivo', 'interface, grotesque à chasse variable'),
-    ('Pinyon+Script', 'pinyon-script', 'accent manuscrit'),
+    ('Poppins:wght@400;500;600;700', 'poppins', 'titres, grotesque géométrique'),
+    ('Inter:wght@400..600', 'inter', 'texte courant et micro-étiquettes'),
 ]
 
 
@@ -69,7 +65,14 @@ def traiter(requete, base):
         if not url:
             continue
 
-        nom = '%s-%s.woff2' % (base, sous)
+        # Une police NON variable renvoie un fichier par graisse. Sans le
+        # poids dans le nom, les fichiers s'écrasent l'un l'autre et seule
+        # la dernière graisse survit — la page s'affiche alors tout en gras.
+        poids = re.search(r'font-weight:\s*([\d ]+)', bloc)
+        poids = poids.group(1).strip().replace(' ', '-') if poids else '400'
+        variable = ' ' in poids or '-' in poids
+        nom = ('%s-%s.woff2' % (base, sous) if variable
+               else '%s-%s-%s.woff2' % (base, poids, sous))
         chemin = os.path.join(DOSSIER, nom)
         donnees = recuperer(url.group(1))
         with open(chemin, 'wb') as f:

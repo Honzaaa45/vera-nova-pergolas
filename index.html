@@ -24,8 +24,8 @@
 <link rel="icon" href="assets/img/icon-512.png" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-<link rel="preload" href="assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -111,7 +111,7 @@
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro__in">
     <span class="intro__marque">Vera Nova</span>
-    <span class="intro__lieu script">Loir-et-Cher</span>
+    <span class="intro__lieu">Loir-et-Cher</span>
     <span class="intro__rule"></span>
     <span class="intro__base">Pergolas bioclimatiques</span>
   </div>
@@ -123,17 +123,14 @@
      ===================================================================== -->
 <header class="bar" id="bar">
   <a class="bar__badge" href="#top" aria-label="Vera Nova, accueil">
-    <svg class="bar__ring" viewBox="0 0 100 100" aria-hidden="true">
-      <defs><path id="cercle" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
-      <text><textPath href="#cercle" startOffset="0">VERA NOVA · PERGOLAS BIOCLIMATIQUES · </textPath></text>
-    </svg>
-    <img class="bar__mark" src="assets/img/logo-mark-light.png" alt="" width="537" height="333" decoding="async">
+    <img class="bar__mark" src="assets/img/logo-mark.png" alt="" width="537" height="333" decoding="async">
+    <span class="bar__nom">VERA<span>NOVA</span></span>
   </a>
 
   <nav class="bar__nav" aria-label="Navigation principale">
     <a class="bar__lien" href="catalogue/"><span>La gamme</span></a>
-    <a class="bar__lien" href="#contact"><span>Demander un devis</span></a>
-    <a class="bar__lien" href="#contact"><span>Contact</span></a>
+    <a class="bar__lien" href="#secteur"><span>Notre secteur</span></a>
+    <a class="btn btn--solid bar__cta" href="#contact">Demander un devis</a>
   </nav>
 
   <button type="button" class="bar__burger" id="burger" aria-expanded="false" aria-controls="menu">
@@ -275,34 +272,41 @@
   </div>
 
   <div class="hero__over">
-    <h1 class="hero__titre">
-      <span class="hero__l1" data-scroll-reveal="h">Vera Nova</span>
-      <span class="hero__l2 script" data-scroll-reveal="h">Loir-et-Cher</span>
-    </h1>
+    <div class="hero__haut">
+      <p class="hero__tag">Fabrication sur mesure · Loir-et-Cher</p>
 
-    <p class="hero__signature">
-      <span class="a-gauche" data-scroll-reveal="a">Votre terrasse,</span>
-      <span class="hero__rot" id="rotate"></span>
-      <span class="a-droite" data-scroll-reveal="a">toute l'année</span>
-    </p>
+      <h1 class="hero__titre" data-scroll-reveal="h">
+        Votre terrasse, <span class="rot" id="rotate"></span>
+      </h1>
+
+      <p class="hero__lead" data-scroll-reveal="p">
+        Pergolas bioclimatiques, protections solaires et fermetures vitrées,
+        conçues et posées par notre équipe en Sologne et Val de Loire.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#contact" data-magnetic="0.25"><span class="mag__in">Demander un devis</span></a>
+        <a class="btn" href="catalogue/" data-magnetic="0.25"><span class="mag__in">Voir les douze systèmes</span></a>
+      </div>
+    </div>
 
     <div class="hero__pied">
-    <div class="ambiance" role="group" aria-label="Ambiance de l'image">
-      <button type="button" class="ambiance__b est-active" data-vers="jour" aria-pressed="true">De jour</button>
-      <span class="ambiance__trait" aria-hidden="true"></span>
-      <button type="button" class="ambiance__b" data-vers="soir" aria-pressed="false">Le soir</button>
-    </div>
-
-    <p class="hero__aide">Touchez un point sur la maison</p>
-    <a class="hero__desc" href="#principe"><span>Défiler</span></a>
+      <p class="hero__aide">Touchez un point sur la maison</p>
+      <div class="ambiance" role="group" aria-label="Ambiance de l'image">
+        <button type="button" class="ambiance__b est-active" data-vers="jour" aria-pressed="true">De jour</button>
+        <span class="ambiance__trait" aria-hidden="true"></span>
+        <button type="button" class="ambiance__b" data-vers="soir" aria-pressed="false">Le soir</button>
+      </div>
+      <a class="hero__desc" href="#principe"><span>Défiler</span></a>
     </div>
   </div>
+
 </section>
 
 <!-- =====================================================================
      2 · TRANSITION — la phrase qui installe le propos
      ===================================================================== -->
-<section class="bascule theme-nuit" id="principe">
+<section class="bascule theme-gris" id="principe">
   <div class="wrap">
     <p class="surtitre" data-scroll-reveal="p">Sologne · Val de Loire</p>
     <h2 class="titre-xl" data-scroll-reveal="h">
@@ -315,7 +319,7 @@
 <!-- =====================================================================
      3 · TROIS RAISONS
      ===================================================================== -->
-<section class="raisons theme-nuit">
+<section class="raisons theme-gris">
   <div class="wrap">
 
     <article class="raison" data-scroll-reveal="ctn">
@@ -414,7 +418,7 @@
 <!-- =====================================================================
      6 · LE SECTEUR
      ===================================================================== -->
-<section class="secteur theme-nuit" id="secteur">
+<section class="secteur theme-gris" id="secteur">
   <div class="wrap">
     <p class="surtitre" data-scroll-reveal="p">Romorantin-Lanthenay, Loir-et-Cher</p>
     <h2 class="titre-l" data-scroll-reveal="h">Nous intervenons ici</h2>
